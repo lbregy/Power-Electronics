@@ -6,7 +6,7 @@ clc
 clear
 close all
 
-addpath('.\DONOTTOUCH');
+addpath('./DONOTTOUCH');
 SIM.File = 'converter_2021b';     % Simulink file name   
 open_system(SIM.File);
 load ("DeviceLibrary_2026.mat")   % All the specs for the semiconductors are stored here
@@ -17,21 +17,21 @@ load ("DeviceLibrary_2026.mat")   % All the specs for the semiconductors are sto
 %%%%%%%%%%%%%%%%%%%%%%
 %    DAB DATA  
 %%%%%%%%%%%%%%%%%%%%%%
-CONV.U_out = 5;  % [V]   Output voltage
-CONV.f_sw = 10e3;% [Hz]  Switching frequency
-CONV.L = 312.5e-6;% [H]   Transformer magnetizing inductance
-CONV.C_out = 3.6e-3;% [F]   Output capacitance
-CONV.C_in = 6.2500e-4;% [F]   Input capacitance
+CONV.U_out = 12;  % [V]   Output voltage
+CONV.f_sw = 80e3;% [Hz]  Switching frequency
+CONV.L = 2.604167e-05;% [H]   Transformer magnetizing inductance
+CONV.C_out = 1.527198e-04;% [F]   Output capacitance
+CONV.C_in = 635.14e-6;% [F]   Input capacitance
 CONV.U_in_range = [30 60];% [V]   Input voltage range
-CONV.P_out_range = [10 50];% [W]   Output power
-CONV.N_p = 10;% [1]   Transformer primary-side windings
+CONV.P_out_range = [50 50];% [W]   Output power
+CONV.N_p = 4.1667;% [1]   Transformer primary-side windings
 CONV.N_s = 1;% [1]   Transformer secondary-side windings
-CONV.Deadtime = 0.01*(1/1e4);% [s]   Switching deadtime
+CONV.Deadtime = 0; %0.01*(1/1e4);% [s]   Switching deadtime
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Specify the Semiconductors    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Type in the number of your semiconductor, same as in the report
-MOSF_types = [1, 1, 1, 1, 10, 10, 10, 10]; % The number of both your MOSFETs    [P, P, P, P, S, S, S, S] e.g [1, 1, 1, 1, 2, 2, 2, 2]
+MOSF_types = [6, 6, 6, 6, 10, 10, 10, 10]; % The number of both your MOSFETs    [P, P, P, P, S, S, S, S] e.g [1, 1, 1, 1, 2, 2, 2, 2]
 % Better change nothing from here on
 
 %% Simulation Parameters

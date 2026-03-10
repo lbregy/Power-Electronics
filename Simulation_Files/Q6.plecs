@@ -76,8 +76,8 @@ Plecs {
   IncompatibleInitialConditionMsg "2"
   Schematic {
     Location      [0, 66; 1536, 816]
-    ZoomFactor    1
-    SliderPosition [0, 176]
+    ZoomFactor    1.71498
+    SliderPosition [680, 573]
     ShowBrowser   off
     BrowserWidth  177
     Component {
@@ -1873,6 +1873,350 @@ Plecs {
         Show          off
       }
     }
+    Component {
+      Type          Ammeter
+      Name          "Am4"
+      Show          off
+      Position      [480, 375]
+      Direction     up
+      Flipped       off
+      LabelPosition west
+    }
+    Component {
+      Type          SignalMux
+      Name          "Mux2"
+      Show          off
+      Position      [635, 640]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Frame         [-2, -15; 7, 15]
+      Parameter {
+        Variable      "Width"
+        Value         "3"
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope4"
+      Show          on
+      Position      [700, 640]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-15, -15; 15, 15]
+      Location      [375, 66; 1208, 606]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABmAP///wAAAAMAAANBAAAAdvw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA0EAAAA/AP///wAAA0EAAAGJAAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":196,\"Labels\":["
+"\"Min\",\"Max\",\"Mean\",\"RMS\"],\"VisualIdxs\":[5,6,8,9]}"
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0.0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "0"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    "Time / s"
+      ShowLegend    "1"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency / Hz"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Component {
+      Type          Reference
+      SrcComponent  "Components/Control/Filters/RMS Value"
+      Name          "RMS Value1"
+      Show          on
+      Position      [570, 660]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-15, -15; 15, 15]
+      Parameter {
+        Variable      "x0"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "ts"
+        Value         "12.5e-6"
+        Show          off
+      }
+      Parameter {
+        Variable      "fs"
+        Value         "80e3"
+        Show          off
+      }
+      Terminal {
+        Type          Input
+        Position      [-15, 0]
+        Direction     left
+      }
+      Terminal {
+        Type          Output
+        Position      [19, 0]
+        Direction     right
+      }
+    }
+    Component {
+      Type          Display
+      Name          "Output Voltage3"
+      Show          off
+      Position      [700, 685]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-31, -11; 31, 11]
+      Parameter {
+        Variable      "Notation"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Precision"
+        Value         "4"
+        Show          off
+      }
+    }
+    Component {
+      Type          Display
+      Name          "Output Voltage4"
+      Show          off
+      Position      [700, 720]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-31, -11; 31, 11]
+      Parameter {
+        Variable      "Notation"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Precision"
+        Value         "4"
+        Show          off
+      }
+    }
+    Component {
+      Type          PeriodicAverage
+      Name          "Periodic Average"
+      Show          on
+      Position      [570, 710]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "1/80e3"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalMux
+      Name          "Mux3"
+      Show          off
+      Position      [1080, 630]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Frame         [-2, -15; 7, 15]
+      Parameter {
+        Variable      "Width"
+        Value         "3"
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope5"
+      Show          on
+      Position      [1145, 630]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-15, -15; 15, 15]
+      Location      [353, 205; 1155, 742]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABmAP///wAAAAMAAAMiAAAAdvw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAAyIAAABFAP///wAAAyIAAAGGAAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":196,\"Labels\":["
+"\"Min\",\"Max\",\"Mean\",\"RMS\"],\"VisualIdxs\":[5,6,8,9]}"
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0.0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "1"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    "Time / s"
+      ShowLegend    "1"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency / Hz"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Component {
+      Type          Reference
+      SrcComponent  "Components/Control/Filters/RMS Value"
+      Name          "RMS Value2"
+      Show          on
+      Position      [1015, 650]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-15, -15; 15, 15]
+      Parameter {
+        Variable      "x0"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "ts"
+        Value         "12.5e-6"
+        Show          off
+      }
+      Parameter {
+        Variable      "fs"
+        Value         "80e3"
+        Show          off
+      }
+      Terminal {
+        Type          Input
+        Position      [-15, 0]
+        Direction     left
+      }
+      Terminal {
+        Type          Output
+        Position      [19, 0]
+        Direction     right
+      }
+    }
+    Component {
+      Type          Display
+      Name          "Output Voltage5"
+      Show          off
+      Position      [1145, 675]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-31, -11; 31, 11]
+      Parameter {
+        Variable      "Notation"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Precision"
+        Value         "4"
+        Show          off
+      }
+    }
+    Component {
+      Type          Display
+      Name          "Output Voltage6"
+      Show          off
+      Position      [1145, 710]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-31, -11; 31, 11]
+      Parameter {
+        Variable      "Notation"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Precision"
+        Value         "4"
+        Show          off
+      }
+    }
+    Component {
+      Type          PeriodicAverage
+      Name          "Periodic Average1"
+      Show          on
+      Position      [1015, 700]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "T_average"
+        Value         "1/80e3"
+        Show          off
+      }
+    }
+    Component {
+      Type          Ammeter
+      Name          "Am5"
+      Show          off
+      Position      [955, 375]
+      Direction     down
+      Flipped       off
+      LabelPosition east
+    }
     Connection {
       Type          Wire
       SrcComponent  "V_dc"
@@ -1884,7 +2228,7 @@ Plecs {
         DstTerminal   1
       }
       Branch {
-        DstComponent  "FETD"
+        DstComponent  "Am4"
         DstTerminal   1
       }
     }
@@ -1957,20 +2301,6 @@ Plecs {
       Branch {
         DstComponent  "Tr2"
         DstTerminal   4
-      }
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "FETD4"
-      SrcTerminal   1
-      Points        [955, 350; 1090, 350]
-      Branch {
-        DstComponent  "Am2"
-        DstTerminal   1
-      }
-      Branch {
-        DstComponent  "FETD6"
-        DstTerminal   1
       }
     }
     Connection {
@@ -2254,7 +2584,6 @@ Plecs {
         DstTerminal   2
       }
       Branch {
-        Points        [1245, 650]
         DstComponent  "RMS Value"
         DstTerminal   1
       }
@@ -2282,8 +2611,142 @@ Plecs {
       DstComponent  "Scope3"
       DstTerminal   1
     }
+    Connection {
+      Type          Wire
+      SrcComponent  "Am4"
+      SrcTerminal   2
+      DstComponent  "FETD"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Mux2"
+      SrcTerminal   1
+      DstComponent  "Scope4"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Am4"
+      SrcTerminal   3
+      Points        [535, 375; 535, 630]
+      Branch {
+        DstComponent  "Mux2"
+        DstTerminal   2
+      }
+      Branch {
+        Points        [535, 660]
+        Branch {
+          DstComponent  "RMS Value1"
+          DstTerminal   1
+        }
+        Branch {
+          Points        [535, 710]
+          DstComponent  "Periodic Average"
+          DstTerminal   2
+        }
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "RMS Value1"
+      SrcTerminal   2
+      Points        [605, 660]
+      Branch {
+        Points        [605, 685]
+        DstComponent  "Output Voltage3"
+        DstTerminal   1
+      }
+      Branch {
+        Points        [605, 640]
+        DstComponent  "Mux2"
+        DstTerminal   3
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Periodic Average"
+      SrcTerminal   1
+      Points        [620, 710]
+      Branch {
+        Points        [620, 720]
+        DstComponent  "Output Voltage4"
+        DstTerminal   1
+      }
+      Branch {
+        DstComponent  "Mux2"
+        DstTerminal   4
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Mux3"
+      SrcTerminal   1
+      DstComponent  "Scope5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "RMS Value2"
+      SrcTerminal   2
+      Points        [1050, 650; 1050, 675]
+      DstComponent  "Output Voltage5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Periodic Average1"
+      SrcTerminal   1
+      Points        [1065, 700; 1065, 710]
+      DstComponent  "Output Voltage6"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Am5"
+      SrcTerminal   1
+      DstComponent  "FETD4"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Am2"
+      SrcTerminal   1
+      Points        [1090, 350]
+      Branch {
+        DstComponent  "FETD6"
+        DstTerminal   1
+      }
+      Branch {
+        Points        [955, 350]
+        DstComponent  "Am5"
+        DstTerminal   2
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Am5"
+      SrcTerminal   3
+      Points        [880, 375; 880, 620; 980, 620]
+      Branch {
+        DstComponent  "Mux3"
+        DstTerminal   2
+      }
+      Branch {
+        Points        [980, 650]
+        Branch {
+          DstComponent  "RMS Value2"
+          DstTerminal   1
+        }
+        Branch {
+          Points        [980, 700]
+          DstComponent  "Periodic Average1"
+          DstTerminal   2
+        }
+      }
+    }
     RectangleAnnotation {
-      Position     [725, 840]
+      Position     [720, 855]
       Width        700
       Height       200
       CornerRadius 3
@@ -2296,7 +2759,7 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:13px;\">Phase s"
 "hift PWM generator</span></p></body></html>"
-      Position      [465, 755]
+      Position      [460, 770]
     } 
     RectangleAnnotation {
       Position     [895, 195]
@@ -2347,6 +2810,38 @@ Plecs {
       Name          "<html><body>\n<p><span style=\" font-size:14px;\">Q7: cap"
 " courrent</span></p></body></html>"
       Position      [1325, 595]
+    } 
+    RectangleAnnotation {
+      Position     [640, 670]
+      Width        230
+      Height       160
+      CornerRadius 3
+      Thickness    5
+      PenColor     4278190080
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+    Annotation {
+      Name          "<html><body>\n<p><span style=\" font-size:14px;\">Q18</sp"
+"an></p></body></html>"
+      Position      [615, 605]
+    } 
+    RectangleAnnotation {
+      Position     [1085, 660]
+      Width        230
+      Height       160
+      CornerRadius 3
+      Thickness    5
+      PenColor     4278190080
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+    Annotation {
+      Name          "<html><body>\n<p><span style=\" font-size:14px;\">Q18</sp"
+"an></p></body></html>"
+      Position      [1060, 595]
     } 
   }
 }
