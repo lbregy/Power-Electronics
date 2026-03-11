@@ -23,10 +23,10 @@ CONV.L = 2.604167e-05;% [H]   Transformer magnetizing inductance
 CONV.C_out = 1.527198e-04;% [F]   Output capacitance
 CONV.C_in = 635.14e-6;% [F]   Input capacitance
 CONV.U_in_range = [30 60];% [V]   Input voltage range
-CONV.P_out_range = [50 50];% [W]   Output power
+CONV.P_out_range = [10 50];% [W]   Output power
 CONV.N_p = 4.1667;% [1]   Transformer primary-side windings
 CONV.N_s = 1;% [1]   Transformer secondary-side windings
-CONV.Deadtime = 0; %0.01*(1/1e4);% [s]   Switching deadtime
+CONV.Deadtime = 0.01*(1/1e4);% [s]   Switching deadtime
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Specify the Semiconductors    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
