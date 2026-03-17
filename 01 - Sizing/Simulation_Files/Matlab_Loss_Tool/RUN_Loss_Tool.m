@@ -168,7 +168,7 @@ for i= 1:length(CONV.P_out_vec)
             IGBTs{IG_Nr}.Losses.(FileName) = IGBT_losses_func (IGBTs{IG_Nr}.Specs, IGBTs{IG_Nr}.Data.(FileName));
         end
         
-        for MO_Nr = 1 : number_devices(2)
+        for MO_Nr = 5 : 8    % 1 : number_devices(2)
             FileName = ['SIM_Nr' num2str(Sim_counter)];
             MOSFETs{MO_Nr}.Losses.(FileName) = MOSFET_losses_func (MOSFETs{MO_Nr}.Specs, MOSFETs{MO_Nr}.Data.(FileName));
         end
