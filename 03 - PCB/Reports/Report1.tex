@@ -1,0 +1,1264 @@
+\documentclass{PELsmallreport}
+
+\usepackage{svg}
+\usepackage[normalem]{ulem}
+\graphicspath{{gfx/}{figures/}}
+
+\setAuthorOne{{Loris Bregy 379329}}
+\setAuthorTwo{{Rubie Luo 423142}}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\vfill
+
+\clearpage
+\section{DAB Converter Sizing}
+
+The first part of the project deals with the basic design calculations and sizing the main elements of a DC-DC DAB converter, according to the given converter specifications and design requirements. \textbf{Fill out} Table \ref{Tab:Specs} with the parameters assigned to your group, and do not forget to add your names in the report's header. Regarding the results of analytical calculations, please provide them rounded to two digits after the decimal point in the units provided in the solution box. Use the framed boxes below each question to insert your answers and explanations. Keep them concise.
+
+\begin{table}[H]
+\caption{Design parameters and requirements for the DAB converter.}
+\centering
+\label{Tab:Specs}
+\begin{tabular}{|l|l|l|}
+  \hline
+  \textbf{Property} & \textbf{Value} & \textbf{Unit} \\
+  \hline
+  $P_{out,nom}$ & 50 & \si{\watt} \\ \hline
+  $U_{in,nom}$ & 50 & \si{\volt} \\ \hline
+  $U_{in,min}$ & 30  & \si{\volt} \\ \hline
+  $U_{in,max}$ & 60 & \si{\volt} \\ \hline  
+  $U_{out}$ & 12 & \si{\volt} \\ \hline
+  $\Delta U_{out,pp,rel}$ & 2 & \% \\ \hline
+  $f_{sw}$ & 80 & \si{\kilo\hertz} \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Q1: Transformer Turn Ratio} 
+    The best value of the turn ratio of a transformer $n$ is $\frac{V_{pri}}{V_{sec}}$
+    
+    Design the transformer turns ratio to ensure that you can obtain the desired output voltage when working at $V_{in, nom}$.
+    
+    \begin{framed}
+      \vspace{2em}
+    	$V_{pri}$ represents $U_{in,nom}$ (the input) while $V_{sec}$ corresponds to $U_{out}$ (the output). Thus the turn ratio is n = $\frac{V_{pri}}{V_{sec}} = \frac{50 V}{12 V} = 4.17$.
+    	\vspace{2em}
+    \end{framed}
+    
+    \fbox{$n = 4.17$ \qquad\qquad} \quad 
+    \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q2: Inductor $L$}
+    \textbf{NOTE}: You may have to iterate between Q2 and Q3 in case of the $L$ value doesn't satisfy the converter requirements.\\
+
+    The power transfer relation of the DAB converter is given by Equation \ref{eq:P_DAB}
+\begin{equation}
+    P = \frac{n V_{pri} V_{sec}\phi ( \pi-|\phi| ) }{2\pi^2f_{sw}L}
+    \label{eq:P_DAB}
+\end{equation}
+    where $n$ is the transformer turn ratio, $V_{pri}$ is the primary side voltage, $V_{sec}$ is the secondary side voltage, $\phi$ is the phase shift in radians, $f_{sw}$ is the switching frequency, and $L$ is the relevant DAB inductance.
+
+    Adding significant safety margin above the nominal power, the maximum power is designed to be \textbf{three times} the rated power. Please indicate at which $\phi_{Pmax}$ the maximum power transfer occurs, and then calculate the corresponding inductance $L$ for an operation at nominal input and output voltages.
+
+    \begin{framed}
+      \vspace{1em}
+    	For maximum power transfer, $\phi = \frac{\pi}{2}$. With the given nominal power output of 50W, the inductance should be calculated for 150W for a safety factor of 3. First rearranging the equation for L:
+        \begin{align}
+            L &= \frac{n V_{pri} V_{sec}\phi ( \pi-|\phi| ) }{2\pi^2f_{sw}P} \\
+            &= \frac{4.17 \cdot 50V \cdot 12V \cdot \frac{\pi}{2}( \pi-|\frac{\pi}{2}| ) }{2\pi^2\cdot 80kHz \cdot 150W} \\
+            &= 2.60 \cdot 10^{-5}
+        \end{align}
+    	% \vspace{1em}
+    \end{framed}
+    
+    \fbox{$\phi_{Pmax} = \frac{\pi}{2} \si{\radian} $} \qquad \fbox{$L =26.04 \mu$\si{\henry}  } \quad
+    \hfill\fbox{\qquad / 4 pt.} 
+
+\subsection{Q3: Verify L with Minimal Input Voltage}
+
+The DAB converter must be able to deliver nominal power for its entire range of operation, here, namely, for all input voltages.\\
+
+Using Equation \ref{eq:P_DAB}, draw a curve of the relationship between the input voltages and the maximum transferred power.\\
+
+\textbf{NOTE}: The input voltage varies between \SI{30}{\volt} and \SI{60}{\volt}, resulting in different maximum powers.\\
+
+Now, check the maximum output power curve. 
+When the input voltage is at its minimum value, can the converter still output its rated power? 
+If not, re-size the inductor $L$ for higher transfer power, and derive a final value of $L$. 
+     
+    \begin{framed}
+        \vspace{1em}
+
+        The maximum output power curve is seen in figure \ref{fig:Pmax-vin}.
+        
+        \begin{center}\captionsetup{type=figure}
+            \includegraphics[width=0.6\textwidth]{figures/Q3.png}
+            \captionof{figure}{The relationship between the maximum power and the input voltage.}
+            \label{fig:Pmax-vin}
+        \end{center}
+    	\vspace{1em}
+
+        From the graph, at the minimum input voltage of 30V, the maximum output power is 90W which is well above the nominal 50W required.
+    \end{framed}
+
+    \fbox{$L\ = 26.04 \mu$\si{\henry} }  \quad
+    \hfill\fbox{\qquad / 4 pt.}
+
+\subsection{Q4: Range of the Phase Shift, $\phi$}
+
+Calculate the phase shift by Equation \ref{eq:P_DAB}. When you have minimum, maximum, and nominal input voltages, what are the corresponding phase shifts $\phi_{Vmin}$, $\phi_{Vmax}$, and $\phi_{Vnom}$ to achieve nominal power?
+
+    \begin{framed}
+        \vspace{1em}
+        Equation 1 is rearranged to fit the form of a standard quadratic to solve for the phase shift. 
+        
+        \begin{align}
+            L &= \frac{n V_{pri} V_{sec}\phi ( \pi-|\phi| ) }{2\pi^2f_{sw}P} \\
+            \frac{2\pi^2f_{sw}PL}{n V_{pri} V_{sec}} &= ( \phi\pi-\phi^2 ) \quad\quad \phi > 0
+        \end{align}
+        In the equation, everything on the left is a constant based on the hardware specifications. The phase shift can be solved as one does for a quadratic.
+        
+        Substituting values for minimum voltage:
+       \begin{align}
+            \frac{2\pi^2\cdot 80kHz \cdot 50W \cdot 2.60 \cdot 10^{-5}H}{4.17 \cdot 30V \cdot 12V} &= ( \phi\pi-\phi^2 ) \quad\quad \phi > 0 \\
+            \phi &= 0.52, 2.62
+        \end{align}
+
+        The value of $\phi$ should be between 0 and $\frac{\pi}{2}$ since $\frac{\pi}{2}$ indicates the phase shift for maximum power and the power is symmetrical around $\frac{\pi}{2}$. 
+        
+        Doing the same for maximum voltage:
+        \begin{align}
+            \frac{2\pi^2\cdot 80kHz \cdot 50W \cdot 2.60 \cdot 10^{-5}H}{4.17 \cdot 60V \cdot 12V} &= ( \phi\pi-\phi^2 ) \quad\quad \phi > 0 \\
+            \phi &= 0.24, 2.91
+        \end{align}
+
+        Finally, for nominal voltage:
+        \begin{align}
+            \frac{2\pi^2\cdot 80kHz \cdot 50W \cdot 2.60 \cdot 10^{-5}H}{4.17 \cdot 50V \cdot 12V} &= ( \phi\pi-\phi^2 ) \quad\quad \phi > 0 \\
+            \phi &= 0.29, 2.85
+        \end{align}
+        
+        \vspace{1em}
+    \end{framed}
+            
+    \fbox{$\phi_{Vmin} =$ 0.52 \si{\radian} }  \quad \fbox{$\phi_{Vmax} =$ 0.24 \si{\radian} } \quad \fbox{$\phi_{Vnom} =$ 0.29 \si{\radian} }
+    \hfill\fbox{\qquad / 3 pt.}  
+
+\subsection{Q5: Output Capacitance, $C_{out}$}
+\label{sec:Q5}
+\textbf{NOTE}: Take into account the worst operating condition. Calculate with the following steps:\\
+
+\begin{enumerate}
+        \item Calculate the output DC current $I_{out}$ at nominal power
+        \item Calculate currents $I_1$ and $I_2$ as defined in the course's slides at the nominal power and lowest input voltage
+        \item Draw and plot the current waveform of the inductor $i_L$ for one period
+        \item Draw and plot the current waveform of the output current of secondary side full bridge $i_{FB,out}$ for one period
+        \item Draw and plot the current waveform $\Delta i = i_{FB,out} - I_{out}$ for one period
+        \item Based on this curve, calculate the ripple charge of the output capacitor $\Delta Q$ (i.e., the charge that causes the output voltage ripple)
+        \item Calculate $C_{out}$
+    \end{enumerate}
+
+    \begin{framed}
+        \vspace{0.5em}
+        The output DC current at nominal power is:
+        \begin{equation}
+            I_\mathrm{out} = \frac{P_\mathrm{out,nom}}{U_\mathrm{out}}
+                          = \frac{50\,\mathrm{W}}{12\,\mathrm{V}}
+                          \approx 4.17\,\mathrm{A}
+        \end{equation}
+        
+    From page 18 of the data sheet:
+    \begin{align}
+        I_1 &= 0.5 \cdot \left( 2\phi - \left( 1 - N \frac{V_2}{V_1} \right) \pi \right) \cdot \frac{V_1}{\omega L} \\
+        &= 0.5 \left( 2 \cdot 0.52 - (1 - 1.67)\pi \right) \cdot \frac{30}{2\pi \cdot 80 \times 10^3 \cdot 2.60 \times 10^{-5}} \\
+        &= 3.60 \textrm{A} \\ \\
+        I_2 &= 0.5 \cdot \left( 2 \left( N \frac{V_2}{V_1} \right) \phi + \left( 1 - N \frac{V_2}{V_1} \right) \pi \right) \cdot \frac{V_1}{\omega L} \\
+        &= 0.5 \left( 2 \cdot 1.67 \cdot 0.52 + (1 - 1.67)\pi \right) \cdot \frac{30}{2\pi \cdot 80 \times 10^3 \cdot 2.60 \times 10^{-5}} \\
+        &= -0.40 \textrm{A}
+    \end{align}
+
+    The inductor current waveform $i_L(\theta)$ is piecewise-linear over one switching period with key values:
+    
+    \begin{center}
+    \begin{tabular}{cc}
+    \hline
+    $\theta$ & $i_L$ \\
+    \hline
+    $0$          & $-I_2$ \\
+    $\phi$       & $I_1$  \\
+    $\pi$        & $I_2$  \\
+    $\pi+\phi$   & $-I_1$ \\
+    $2\pi$       & $-I_2$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    The plot is shown below in figure \ref{fig:Q5.3}.
+           
+    \begin{center}\captionsetup{type=figure}
+        \includegraphics[width=0.9\textwidth]{figures/Q6.png}
+        \captionof{figure}{Current waveform of the inductor $i_L$ for one period}
+        \label{fig:Q5.3}
+    \end{center}
+
+    The secondary full-bridge switching function is:
+    \begin{equation}
+        s_2(\theta) = \begin{cases}
+            -1 & 0 \le \theta < \phi \\
+            +1 & \phi \le \theta < \pi+\phi \\
+            -1 & \pi+\phi \le \theta < 2\pi
+        \end{cases}
+    \end{equation}
+    
+    The DC-side output current of the secondary bridge is:
+    \begin{equation}
+        i_\mathrm{FB,out}(\theta) = s_2(\theta)\cdot n \cdot i_L(\theta)
+    \end{equation}
+
+    The plot is shown below in figure \ref{fig:Q5.4}. 
+
+    \begin{center}\captionsetup{type=figure}
+        \includegraphics[width=0.9\textwidth]{figures/Q5.4.png}
+        \captionof{figure}{Current waveform of the output current of secondary side full bridge $i_{FB,out}$ for one period}
+        \label{fig:Q5.4}
+    \end{center}
+
+    The capacitor ripple current is $\Delta i = i_\mathrm{FB,out} - I_\mathrm{out}$. A plot of this is seen in figure \ref{fig:Q5.5}.
+
+    \begin{center}\captionsetup{type=figure}
+        \includegraphics[width=0.9\textwidth]{figures/Q5.5.png}
+        \captionof{figure}{Current waveform $\Delta i = i_{FB,out} - I_{out}$ for one period}
+        \label{fig:Q5.5}
+    \end{center}
+    
+    The ripple charge is obtained by integrating the positive portion:
+    \begin{align}
+        \Delta Q &= \int_{\Delta i > 0} \Delta i\, d\theta \\
+        &= 36.65\,\mu\mathrm{C}
+    \end{align}
+    
+    The required output capacitance is:
+    \begin{align}
+        C_\mathrm{out} &= \frac{\Delta Q}{\Delta U_\mathrm{out,pp}} \\
+        &= \frac{36.65\,\mu\mathrm{C}}{240\,\mathrm{mV}} \\
+        &= 152.72\,\mu\mathrm{F}
+    \end{align}
+    \vspace{2em}
+    
+    \end{framed}
+            
+    \fbox{$I_{out} =$ 4.17 \si{\ampere} }  \quad \fbox{$I_1 =$ 3.60 \si{\ampere} }  \quad \fbox{$I_2 =$ −0.40 \si{\ampere} }  \quad \fbox{$\Delta Q = 36.65 \mu$ \si{\coulomb} }  \quad \fbox{$C_{out} = 152.72\,\mu$\si{\farad}}
+    \hfill\fbox{\qquad / 10 pt.}  
+
+\subsection{Q6: PLECS Validation for the Output Voltage Ripple}
+
+Using the provided PLECS model \verb|Q6.plecs|, enter your DAB converter parameters. Verify that the output voltage ripple meets the requirements during the operation with the minimum input voltage. Please show the following waveforms:
+
+\vspace{0.4em}
+\begin{enumerate}[label=\alph*)]
+    \item Current of the inductor $i_{L}$
+    \item Output current of the secondary side full bridge $i_{FB,out}$
+    \item Output voltage $v_{out}$
+\end{enumerate}
+\vspace{0.4em}
+
+\textbf{NOTE}: Please show only three switching periods after the signals reach steady state.\\
+
+Also, write down your output voltage peak-to-peak ripple.
+
+\begin{framed}
+\vspace{2em}
+
+The DAB converter was simulated in PLECS at minimum input voltage 30V using the parameters derived above.
+Figure \ref{fig:q6} shows the required waveforms.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.9\textwidth]{figures/Q6-plecs-plot.png}
+    \captionof{figure}{Voltage and current waveforms of interest.}
+    \label{fig:q6}
+\end{center}
+
+The PLECS measurement tool values are pictured in figure \ref{fig:q6.2}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.9\textwidth]{figures/Q6-plecs-measurment .png}
+    \captionof{figure}{PLECS Measurements.}
+    \label{fig:q6.2}
+\end{center}
+
+The peak-to-peak output voltage ripple is therefore:
+\begin{equation}
+    \Delta V_\mathrm{out,pp} = V_\mathrm{out,max} - V_\mathrm{out,min}
+                             = 12.0347 - 11.9488
+                             = 85.9\,\mathrm{mV}
+\end{equation}
+
+
+\end{framed}
+
+\fbox{$V_{out,ripple}$\ = 85.9 m\si{\volt}} \quad
+    \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q7: Current of the Output capacitor, $i_{Cout}$}
+
+Using the simulation from Q6, obtain and present the waveform of the output capacitor's current $i_{Cout}$. Obtain the RMS value $I_{Cout,RMS}$ using PLECS built in calculation blocks.
+
+    \begin{framed}
+        \vspace{2em}
+           The plot is shown in figure \ref{fig:Q7}.
+
+            \begin{center}\captionsetup{type=figure}
+                \includegraphics[width=0.9\textwidth]{figures/Q7-plot.png}
+                \captionof{figure}{Waveform of the output capacitor's current $i_{Cout}$}
+                \label{fig:Q7}
+            \end{center}
+           From the PLECS measurement tool:
+\begin{itemize}
+    \item $i_{C_\mathrm{out},\min} = -19.25\,\mathrm{A}$, \quad $i_{C_\mathrm{out},\max} = 10.95\,\mathrm{A}$
+    \item $I_{C_\mathrm{out},\mathrm{RMS}} = 5.93\,\mathrm{A}$ (from PLECS)
+\end{itemize}
+        \vspace{2em}
+    \end{framed}
+            
+    \fbox{$I_{Cout,RMS} =$ 5.93 A }
+    \hfill\fbox{\qquad / 2 pt.}  
+
+\subsection{Q8: DC Blocking Capacitor, $C_{DCblock}$}
+
+DC Blocking capacitors are introduced in the power stage to avoid saturation of the transformer due to dead-time impact or unbalanced currents, especially during start-up and load transients. The DC capacitor should not affect the switch node voltage in a significant manner. A good starting value can be determined using provided equation.
+
+\begin{equation}
+    C_{DCblock,min} = \frac{100}{4 \times \pi^2 \times f_{sw}^2 \times L}
+\end{equation}
+   
+    \begin{framed}
+        \vspace{2em}
+        \[
+        C_{DCblock,min} = \frac{100}{4 \times \pi^2 \times f_{sw}^2 \times L} = \frac{100}{4 \times \pi^2 \times 80 000^2 \times 2.60 \times 10^{-5}} = 1.52 \times 10^{-5}
+        \]
+        \vspace{2em}
+    \end{framed}
+        
+    \fbox{$C_{DCBlock,min}$\ = $15.2 \mu$F} \quad
+    \hfill\fbox{\qquad / 2 pt.}
+\subsection{Q9.1: Input Capacitance defined by voltage ripple, $C_{in, ripple}$}
+
+Consider 2 \% of voltage ripple tolerance, similar with the calculation in Q5. Calculate the DC input current $I_{in}$ and the current which goes to the primary side H-bridge stage $i_{FB,pri}$. The difference of these currents causes the voltage ripple on the capacitance $C_{in, ripple}$.\\
+
+     \begin{framed}
+        \vspace{2em}
+           The worst-case DC input current is:
+            \begin{equation}
+                I_\mathrm{in} = \frac{P_\mathrm{out,nom}}{U_\mathrm{in,min}}
+                              = \frac{50\,\mathrm{W}}{30\,\mathrm{V}}
+                              = 1.667\,\mathrm{A}
+            \end{equation}
+            
+            The primary full-bridge switching function is:
+            \begin{equation}
+                s_1(\theta) = \begin{cases}
+                    +1 & 0 \le \theta < \pi \\
+                    -1 & \pi \le \theta < 2\pi
+                \end{cases}
+            \end{equation}
+            
+            The current drawn by the primary bridge is $i_\mathrm{FB,pri}(\theta) = s_1(\theta)\,i_L(\theta)$,
+            and the input capacitor current is:
+            \begin{equation}
+                i_{C_\mathrm{in}}(\theta) = I_\mathrm{in} - i_\mathrm{FB,pri}(\theta)
+            \end{equation}
+            
+            With a 2\,\% input voltage ripple tolerance
+            ($\Delta U_\mathrm{in,pp} = 0.02 \times 30\,\mathrm{V} = 0.60\,\mathrm{V}$),
+            the ripple charge and required capacitance are:
+            \begin{equation}
+                \Delta Q_\mathrm{in} = \int_{i_{C_\mathrm{in}}>0} i_{C_\mathrm{in}}\,d\theta
+                                     = 6.08\,\mu\mathrm{C}
+            \end{equation}
+            \begin{equation}
+                C_\mathrm{in,ripple} = \frac{\Delta Q_\mathrm{in}}{\Delta U_\mathrm{in,pp}}
+                                     = \frac{6.08\,\mu\mathrm{C}}{0.60\,\mathrm{V}}
+                                     = 10.14\,\mu\mathrm{F}
+            \end{equation}
+        \vspace{2em}
+    \end{framed}
+            
+    \fbox{$C_{in, ripple} =$ 10.14 $\mu$ F }  \quad
+    \hfill\fbox{\qquad /2 pt.}  
+
+\subsection{Q9.2: Input capacitance defined by hold-up time, $C_{in, hold up}$}
+In some applications, there may be an AC-DC converter that provides the input voltage to the DAB converter. In case that there is an grid outage (loss of AC supply), there needs to be sufficient installed energy in the capacitance between AC-DC and DC-DC DAB converter, allowing for uninterrupted operation and power delivery to the load at DAB output. This requirement is usually referred to as hold-up time. While in your project, we do not have AC-DC stage before DAB, we can still consider this scenario and calculate required energy or capacitance. \\
+
+Calculate the minimum required capacitance so that, in case of a half-cycle grid's interruption (\SI{10}{\milli\second}), the DAB output voltage remains within the limits, while the converter outputs its rated power. Consider the scenario where the input voltage is allowed to drop from the rated value to the minimum value during \SI{10}{\milli\second}, while the converter delivers rated power to the load.
+\\
+     \begin{framed}
+        \vspace{2em}
+           During a half-cycle grid interruption ($t_\mathrm{holdup} = 10\,\mathrm{ms}$),
+the input capacitor must supply the converter while the voltage drops from
+$U_\mathrm{in,nom} = 50\,\mathrm{V}$ to $U_\mathrm{in,min} = 30\,\mathrm{V}$.
+The energy balance gives:
+\begin{equation}
+    \Delta E = \frac{1}{2}C_\mathrm{in,holdup}
+    \left(U_\mathrm{in,nom}^2 - U_\mathrm{in,min}^2\right)
+    = P_\mathrm{out,nom}\cdot t_\mathrm{holdup}
+\end{equation}
+
+Solving for $C_\mathrm{in,holdup}$:
+\begin{equation}
+    C_\mathrm{in,holdup}
+        = \frac{2\,P_\mathrm{out,nom}\,t_\mathrm{holdup}}
+               {U_\mathrm{in,nom}^2 - U_\mathrm{in,min}^2}
+        = \frac{2\times50\,\mathrm{W}\times10\,\mathrm{ms}}
+               {50^2 - 30^2\,\mathrm{V}^2}
+        = \frac{1\,\mathrm{J}}{1600\,\mathrm{V}^2}
+        = 625.00\,\mu\mathrm{F}
+\end{equation}
+            
+        \vspace{2em}
+    \end{framed}
+            
+    \fbox{$C_{in,holdup} =$ 625 $\mu$F }  \quad
+    \hfill\fbox{\qquad /2 pt.}  
+
+\subsection{Q10: Discharge Resistance}
+A discharge resistance is connected in parallel to the input capacitor to completely discharge the input capacitance when the converter is turned off. This is a safety feature, which prevents the risk of electrical shock to the body of curios humans, interested to hold your DAB converter in their hands.\\
+
+Determine the required resistance $R_{discharge}$ to completely discharge the input capacitance from 100\% to 5\% of the rated voltage in less than 1 minute. \\
+
+Presence of this resistor will cause a constant power loss in operation and impact your DAB efficiency. Calculate the power loss $P_{loss,Rdischarge}$ of this resistor when working with maximum input voltage. \\
+
+     \begin{framed}
+        \vspace{2em}
+The voltage across a capacitor during RC discharge follows:
+\begin{equation}
+    U(t) = U_0 \cdot e^{-t/(RC)}
+\end{equation}
+
+To discharge from $100\%$ to $5\%$ of rated voltage within
+$t_\mathrm{discharge} = 60\,\mathrm{s}$:
+\begin{equation}
+    0.05 = e^{-t_\mathrm{discharge}/(RC)}
+    \quad\Rightarrow\quad
+    R_\mathrm{discharge} = \frac{t_\mathrm{discharge}}{C_\mathrm{in}\cdot\ln(20)}
+\end{equation}
+
+Using $C_\mathrm{in} = 700\,\mu\mathrm{F}$:
+\begin{equation}
+    R_\mathrm{discharge}
+        = \frac{60\,\mathrm{s}}{700\times10^{-6}\,\mathrm{F}\times\ln(20)}
+        = \frac{60}{700\times10^{-6}\times2.9957}
+        = 28 612\,\Omega
+        \approx 28.61\,\mathrm{k}\Omega
+\end{equation}
+
+The continuous power loss at maximum input voltage is:
+\begin{equation}
+    P_\mathrm{loss,R_{discharge}}
+        = \frac{U_\mathrm{in,max}^2}{R_\mathrm{discharge}}
+        = \frac{60^2}{28612}
+        = 0.126\,\mathrm{W}
+        \quad (0.252\%\ \text{of } P_\mathrm{out,nom})
+\end{equation}
+        \vspace{2em}
+    \end{framed}
+            
+    \fbox{$R_{discharge} =$ 28.61 k\(\Omega\) }   \quad \fbox{$P_{loss,Rdischarge} =$ 125.82mW}
+    \hfill\fbox{\qquad /4 pt.}  \
+
+\subsection{Q11: \textsc{Plecs} Validation for Maximum and Minimum Input Voltage} 
+Now that you have determined the values of all relevant components, enter your parameters into the provided PLECS model \verb|Q11.plecs| of the DAB converter. Verify the results for the maximum input voltage. For this purpose, include the following waveforms:
+\vspace{0.4em}
+\begin{enumerate}[label=\alph*)]
+    \item Transformer primary and secondary side voltage
+    \item Voltage and current across the inductor $L$
+    \item Voltage across the DC blocking capacitor $C_{DCblock}$
+    \item Current of the output capacitor $C_{out}$
+    \item Output voltage and output current
+\end{enumerate}
+\vspace{0.4em}
+
+\begin{framed}
+\vspace{2em}
+The plots for minimum voltage 30V is seen in figure \ref{fig:ScopeQ12min} and the plots for maximum voltage 60V is seen in figure \ref{fig:ScopeQ12max}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.8\textwidth]{figures/Q11-Vmin.pdf}
+    \captionof{figure}{Voltage and current waveforms of interest with minimum input voltage.}
+    \label{fig:ScopeQ12min}
+\end{center}
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.8\textwidth]{figures/Q11-Vmax.pdf}
+    \captionof{figure}{Voltage and current waveforms of interest with maximum input voltage.}
+    \label{fig:ScopeQ12max}
+\end{center}
+
+The larger phase shift ($\phi_\mathrm{min} = 30.00^\circ$) at minimum input voltage leads to higher peak inductor currents. The output voltage ripple and average output voltage remain within specification. At maximum input voltage the required phase shift is smaller ($\phi_\mathrm{max} = 13.51^\circ$), resulting in lower peak inductor currents and a reduced output voltage ripple. The output voltage remains regulated at $U_\mathrm{out} = 12\,\mathrm{V}$ within the 2\,\% specification.
+
+\end{framed}
+
+\hfill\fbox{\qquad / 5 pt.}
+
+\clearpage
+
+\subsection{Q12: \textsc{Plecs} validation for $\frac{1}{4}$ of the nominal power} 
+In Q11, you validated your converter design when the input voltage is at its maximum and minimum. 
+In addition to these operating points, your DAB converter must be able to regulate the output voltage within the specific voltage and power ranges. To validate that, analyze the simulation results for the minimum input voltage at $1/4$ of the nominal power. You have to re-calculate  the phase shift $\phi_{\frac{1}{4}}$ by Equation\ref{eq:P_DAB}. Please update these values in the PLECS simulation files.
+
+Then show the following waveforms:
+\vspace{0.4em}
+\begin{enumerate}[label=\alph*)]
+    \item Transformer primary and secondary side voltage
+    \item Voltage and current across the inductor $L$
+    \item Voltage across the DC blocking capacitor $C_{DCblock}$
+    \item Current of the output capacitor $C_{out}$
+    \item Output voltage and output current
+    \item Voltage and gate signal of one MOSFET 
+\end{enumerate}
+\vspace{0.6em}
+Comment briefly on your observations on the graphs: What is the voltage across the selected MOSFET? Is ZVS still achieved?
+
+
+\begin{framed}
+\vspace{2em}
+The phase shift for $\frac{1}{4}$ of nominal power at minimum input voltage is re-calculated from the SPS power transfer equation:
+\begin{equation}
+    P_{1/4} = \frac{P_\mathrm{out,nom}}{4} = 12.5\,\mathrm{W}
+\end{equation}
+
+\begin{equation}
+    \phi_{1/4} = \frac{\pi}{2}\left(1 - \sqrt{1 - \frac{8\,f_\mathrm{sw}\,L\,P_{1/4}}
+    {n\,U_\mathrm{in,min}\,U_\mathrm{out}}}\right)
+    = 0.1132\,\mathrm{rad} = 6.48^\circ
+\end{equation}
+
+The simulation waveforms are shown in Figure~\ref{fig:q12}.
+
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.8\textwidth]{figures/Q12.pdf}
+    \captionof{figure}{Voltage and current waveforms of interest.}
+    \label{fig:q12}
+\end{center}
+% \noindent\textbf{Observations:}
+% At $\frac{1}{4}$ nominal power the phase shift is reduced to $6.48^\circ$, which lowers the peak inductor current and consequently reduces the output voltage ripple. 
+% The minimum phase shift required on the primary side for ZVS is:
+% \[
+% \phi_{}
+% \]
+% The ZVS condition must be verified: at this reduced phase shift and minimum input voltage, the inductor current at the switching instant is smaller, so it is important to confirm from the drain--source voltage waveform that $v_\mathrm{DS}$ reaches zero before the gate signal turns on. If ZVS is lost, hard-switching transitions will appear as steep voltage steps on $v_\mathrm{DS}$ prior to gate turn-on, leading to increased switching losses.
+
+The device voltage, gate signal, and drain current of one MOSFET of the second stage are required to analyze the ZVS operation. To achieve zero-voltage switching (ZVS), current must flow through the body diode before the MOSFET turns on, which results in an almost zero voltage across the device. Therefore, a dead time is required so that the current can commutate to the diode before the MOSFET is switched on. However, the dead time must not be too long, as this could cause the inductor current to drop to zero and prevent ZVS. In Fig. \ref{fig:q12-fet}, the ZVS condition is satisfied. Note that the output voltage is slightly lower than 12\,\text{V} due to the dead time; therefore, the phase shift should be adjusted to compensate for this effect.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.8\textwidth]{figures/Q12-mosfet.pdf}
+    \captionof{figure}{MOSFET Current, voltage, and device gate input.}
+    \label{fig:q12-fet}
+\end{center}
+
+\end{framed}
+
+\fbox{$\phi_{\frac{1}{4}} =$ 0.1132 rad }
+\hfill\fbox{\qquad / 5 pt.}
+
+\newpage
+
+\section{Selection of Semiconductors}
+
+The second part of this report focuses on the selection of semiconductor devices for your design. You will have to derive equations for your design, eventually leading to the selection of proper semiconductors that you will use in your design. As in the first set of questions, provide numeric answers with a precision of two digits after the decimal point in the provided unit.
+
+\phantomsection
+\subsection{Q13: Primary Side Semiconductor Stresses} 
+To select an appropriate MOSFET for your design, you need to determine the maximum voltage and current stress that it has to handle in your circuit under the worst-case operating conditions. For this purpose, provide:
+\vspace{0.4em}
+\begin{enumerate}[label=\alph*)]
+    \item The maximum voltage across the primary-side MOSFET $U_{Q,pri,max}$;
+    \item The maximum current flowing through the primary side MOSFET  $I_{Q,pri,max}$.
+\end{enumerate} 
+
+\vspace{1em}
+Parasitic effects cause voltage overshoots that can damage the device. To estimate these effects, a good practice is to scale up the maximal voltage stress by a factor of 1.5. \\
+
+Obtain the maximum voltage stress and maximum current by theoretical calculation first, then verify them by the simulation in the previous section. In your answer, indicate the working scenario from which you obtained $U_{Q,pri,max}$ and $I_{Q,pri,max}$. Then, considering the voltage safety factor of 1.5, give the final answer for the maximum voltage stress.
+
+\begin{framed}
+  \vspace{2em}
+  The max voltage across the primary-side MOSFET is just the max input voltage, 60V. With the safety factor of 1.5, $U_{Q,pri,max} = 90V$.
+
+  The inductor current $i_L(t)$ flows through the transformer and back through the primary-side H-bridge. When a MOSFET is ON, it conducts this inductor current. The inductor current varies between $I_1$ (peak positive) and $I_2$ (peak negative). Thus the max current is just the higher value between $I_1$ and $I_2$. $I_1$ is higher with a value of 3.60A. 
+
+  These values were used in the simulation from the previous section and verified.
+  \vspace{2em}
+\end{framed}
+
+\fbox{$U_{Q,pri,max} =$ 90V} \quad \fbox{$I_{Q,pri,max}\ =$ 3.60A } \hfill\fbox{\qquad / 4 pt.}
+
+\subsection{Q14: Primary Side Semiconductor Selection} 
+Based on the obtained values from Q13, select one specific MOSFET device for your design from the offered lists in Table \ref{Tab:MOSFET}. Elaborate briefly on why you chose exactly this models and highlight it in the Table, as exemplified for the first device. \\ 
+\textbf{NOTE:} Please do NOT choose device 9 as the maximum gate voltage is \SI{5}{\volt}, and the gate drive voltage is designed to be \SI{12}{\volt} this year.
+
+\begin{framed}
+	\vspace{2em}
+  MOSFET No. 6 is selected because the $U_{ds}$ and $I_{cont}$ are well within spec, without being massively overrated. Devices 1-5 are all overrated for the calculated stresses, which would likely be unnecessarily costly and possibly large. Devices 8-10 are all underrated.
+  \vspace{2em}
+\end{framed}
+
+\fbox{MOSFET model No. : PHP18NQ11T\qquad} \hfill\fbox{\qquad / 4 pt.}
+
+\begin{table}[h!]
+        \centering
+        \begin{minipage}[t]{0.50\textwidth}
+            \caption{The list of offered MOSFET devices. The parameter $U_{ds}$ is the rated drain-source voltage, whereas the $I_{cont}$ stands for continuous drain-source current. All devices are in the TO-220 package (see Fig.~\ref{fig:TO220}).}
+            \centering
+            \footnotesize
+            \label{Tab:MOSFET}
+            \begin{tabular}{|l|l|l|l|l|l|}
+                \hline
+                \textbf{No.} & \textbf{Manufacturer} & \textbf{Product} & \textbf{\begin{tabular}[c]{@{}l@{}}$U_{ds,max}$ \\ (\si{\volt}) \end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}$I_{cont}$ \\ (\si{\ampere}) \end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}$R_{ds,on}$ @ \SI{25}{\degreeCelsius} \\ (\si{\milli\ohm}) \end{tabular}} \\
+                \hline
+                % \rowcolor highlights the next row!
+                1  & Infineon 			& IRFB5620PbF 	& 200 & 18 	 & 60      \\ \hline 
+                2  & Rohm               & RCX300N20     & 200 & 16.3 & 60	   \\ \hline
+                3  & Onsemi             & FDPF18N20FT-G & 200 & 10.8 & 120     \\ \hline
+                4  & Rohm               & RCX200N20     & 200 & 10.8 & 100     \\ \hline
+                5  & Onsemi             & FQPF630       & 200 & 6.3  & 340     \\ \hline
+                \rowcolor{blue!20}
+                6  & Nexperia           & PHP18NQ11T    & 110 & 13   & 80      \\ \hline
+                7 & Vishay              & SiHF530       & 100 & 10   & 160     \\ \hline
+                8 & ST					& STP16NF06     & 60  & 11   & 80      \\ \hline
+                9& Infineon        	    & IRLZ44NPBF    & 55  & 47   & 22      \\ \hline
+                \rowcolor{green!20}
+                10& Infineon        	& IRLB8743PbF   & 30  & 110  & 3.2     \\ \hline
+                
+            \end{tabular}
+            \normalsize
+        \end{minipage}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{TO220}
+    \caption{A semiconductor in a TO-220 case.}
+    \label{fig:TO220}
+\end{figure}
+
+\clearpage
+
+\subsection{Q15: Secondary Side Semiconductor Stresses} 
+Similarly as for the primary side, provide:
+\begin{enumerate}[label=\alph*)]
+    \item The maximum voltage across the secondary-side MOSFET $U_{Q,sec,max}$;
+    \item The maximum current flowing through the secondary-side MOSFET  $I_{Q,sec,max}$.
+\end{enumerate} 
+Similarly to the primary-side devices, consider a scaling of 1.5 for the maximum voltage stress. 
+
+Obtain the maximum voltage stress and maximum current by theoretical calculation first, then verify them by the simulation in the previous section. In your answer, indicate the working scenario from which you obtained $U_{Q,sec,max}$ and $I_{Q,sec,max}$. Then, considering the voltage safety of 1.5, give the final answer for the maximum voltage stress for both the primary and secondary sides.
+
+\begin{framed}
+  \vspace{2em}
+  The maximum voltage on the secondary side is the output voltage, which is designed for 12V in this case. With the safety factor, the $U_{Q,sec,max}$ should be 18V theoretically.
+
+    The secondary bridge sees the primary inductor current multiplied by the transformer turns ratio n = 4.17.
+    
+    \[
+    I_{Q,sec,max} = 4.17 \cdot 3.60 = 15.00\,\text{A}.
+    \]
+
+  These values were used in the simulation from the previous section and verified.
+  \vspace{2em}
+\end{framed}
+
+\fbox{$U_{secMOS,max} =$ 18V\qquad} \quad \fbox{$I_{secMOS,max}\ =$ 15.00 A\qquad } \hfill\fbox{\qquad / 4 pt.}
+
+
+\subsection{Q16: Secondary Side Semiconductor Selection} 
+Based on the obtained values from Q15, select one specific MOSFET device for your design from the offered lists in Table \ref{Tab:MOSFET}. 
+Briefly elaborate on why you chose exactly this model and highlight it in the Table, as it is exemplified for the first device. \\
+
+\begin{framed}
+    \vspace{2em}
+    Device no. 10 is selected due to its high current capacity and suitable voltage. Based on the 15.00 A calculated current, the only MOSFETs satisfying the requirement are 1, 2, 9 and 10. 9 is excluded (5V gate voltage), and options 1 and 2 have a massively overrated voltage. 
+  \vspace{2em}
+\end{framed}
+
+\fbox{MOSFET model No. : IRLB8743PbF\qquad} \hfill\fbox{\qquad / 4 pt.}
+
+\clearpage
+
+\section{Calculation of currents' average and rms values}
+In this section, you will obtain the Average and the RMS current values for the semiconductors of the DAB converter through calculation and simulation. The results have to be given with two digits after the decimal point using the given unit. 
+
+\textbf{NOTE}: Ignore the DC blocking capacitor during the calculation.
+
+\subsection{Q17: Calculation of the Primary Side MOSFET Current}
+
+Consider the worst-case operating conditions and provide:
+\begin{enumerate}[label=\alph*)]
+    \item The plot of the current waveform of one primary side MOSFET. Select one from 4 MOSFETs, and \textbf{do NOT obtain this current waveform by simulation}.
+    \item The primary side MOSFET's \textsc{rms} current $I_{Q,pri,rms}$;
+	\item The primary side MOSFET's average current $I_{Q,pri,avg}$;
+\end{enumerate}
+
+In your answer, indicate the results of your $I_{Q,pri,rms}$, $I_{Q,pri,avg}$.
+
+\begin{framed}
+  \vspace{2em}
+  The worst-case operating conditions occur at minimum input voltage 30V and nominal output power 50W, where the phase shift is largest ($\phi = 30.00^\circ = 0.5236$\,rad).
+
+We select MOSFET Q1 (high-side, leg A). Q1 conducts during $0 \leq \theta < \pi$, carrying the inductor current $i_L(\theta)$:
+\begin{equation}
+    i_{Q1}(\theta) = \begin{cases} i_L(\theta) & 0 \leq \theta < \pi \\ 0 & \pi \leq \theta < 2\pi \end{cases}
+\end{equation}
+
+The current waveform is plotted in figure \ref{fig:Q17}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.9\textwidth]{figures/Q17.png}
+    \captionof{figure}{Primary MOSFET Q1 current waveform (analytical) at $U_{in} = 30$\,V, $P_{out} = 50$\,W.}
+    \label{fig:Q17}
+\end{center}
+
+Within Q1's conduction interval, the current is piecewise-linear:
+\begin{itemize}
+    \item Segment 1 ($0 \leq \theta < \phi$): from $-I_2 = 0.40$\,A to $I_1 = 3.60$\,A
+    \item Segment 2 ($\phi \leq \theta < \pi$): from $I_1 = 3.60$\,A to $I_2 = -0.40$\,A
+\end{itemize}
+
+Using the piecewise-linear integration formulas $\int_{a \to b} x\,d\theta = \frac{\Delta\theta}{2}(a+b)$ and $\int_{a \to b} x^2\,d\theta = \frac{\Delta\theta}{3}(a^2 + ab + b^2)$:
+
+\begin{align}
+    I_{Q,pri,avg} &= \frac{1}{2\pi}\left[\frac{\phi}{2}(I_1 - I_2) + \frac{\pi - \phi}{2}(I_1 + I_2)\right] \nonumber \\
+    &= \frac{1}{2\pi}\left[\frac{0.5236}{2}(3.60 + 0.40) + \frac{\pi - 0.5236}{2}(3.60 - 0.40)\right] = 0.83\,\text{A}
+\end{align}
+
+\begin{align}
+    I_{Q,pri,rms} &= \sqrt{\frac{1}{2\pi}\left[\frac{\phi}{3}(I_2^2 - I_2 I_1 + I_1^2) + \frac{\pi - \phi}{3}(I_1^2 + I_1 I_2 + I_2^2)\right]} \nonumber \\
+    &= \sqrt{\frac{1}{2\pi}\left[\frac{0.5236}{3}(0.16 + 1.44 + 12.96) + \frac{2.618}{3}(12.96 - 1.44 + 0.16)\right]} = 1.42\,\text{A}
+\end{align}
+  \vspace{2em}
+\end{framed}
+
+\fbox{Calculation: $I_{Q,pri,rms} = 1.42$ \si{\ampere} \quad $I_{Q,pri,avg} =0.83$ \si{\ampere}} \quad\qquad
+\hfill\fbox{\qquad / 4 pt.}
+
+
+\subsection{Q18: PLECS Simulation of the Primary Side MOSFET Current} 
+Using the provided PLECS model given in Q11 and considering worst-case operating conditions, show the simulation waveforms in the following box and obtain the values for: 
+\begin{enumerate}[label=\alph*)]
+    \item The primary side MOSFET's \textsc{rms} current $I_{Q,pri,rms}$;
+	\item The primary side MOSFET's average current $I_{Q,pri,avg}$;
+\end{enumerate}
+
+
+\begin{framed}
+  \vspace{2em}
+  The PLECS simulation was run at worst-case conditions ($U_{in} = 30$\,V, $P_{out} = 50$\,W). The measured current through one primary-side MOSFET is shown in figure \ref{fig:Q18}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.9\textwidth]{figures/Q18-meas.png}
+    \captionof{figure}{PLECS simulation of primary MOSFET current with measurement data.}
+    \label{fig:Q18}
+\end{center}
+
+From the PLECS measurement tool (over one switching period):
+\begin{itemize}
+    \item $I_{Q,pri,avg} = 0.84$\,A
+    \item $I_{Q,pri,rms} = 1.43$\,A
+\end{itemize}
+
+These values are in good agreement with the analytical results from Q17 ($I_{Q,pri,avg} = 0.83$\,A, $I_{Q,pri,rms} = 1.42$\,A).
+  \vspace{2em}
+\end{framed}
+
+\fbox{Simulation: $I_{Q,pri,rms} =1.43$  \si{\ampere}  \quad $I_{Q,pri,avg} =0.84$  \si{\ampere}} 
+\hfill\fbox{\qquad / 4 pt.}
+
+
+\subsection{Q19: Calculation of the Secondary Side MOSFET Current}
+
+Consider the worst-case operating conditions and provide:
+\begin{enumerate}[label=\alph*)]
+    \item Plot the current waveform of the secondary side MOSFET. Select one from 4 devices, and do NOT obtain this current waveform by simulation.
+    \item The secondary side MOSFET's \textsc{rms} current $I_{Q,sec,rms}$;
+	\item The secondary side MOSFET's average current $I_{Q,sec,avg}$;
+\end{enumerate}
+
+In your answer, indicate the results of your $I_{Q,sec,rms}$, $I_{Q,sec,avg}$.
+
+\begin{framed}
+  \vspace{2em}
+  The worst-case conditions are the same as Q17: $U_{in,min} = 30$\,V, $P_{out,nom} = 50$\,W, $\phi = 30.00^\circ$.
+
+We select MOSFET Q5 (high-side, leg C, secondary bridge). Q5 conducts when $s_2 = +1$, i.e.\ during $\phi \leq \theta < \pi + \phi$, carrying the secondary winding current $n \cdot i_L(\theta)$:
+\begin{equation}
+    i_{Q5}(\theta) = \begin{cases} n \cdot i_L(\theta) & \phi \leq \theta < \pi + \phi \\ 0 & \text{otherwise} \end{cases}
+\end{equation}
+
+The current waveform is plotted in Figure~\ref{fig:Q19}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.7\textwidth]{figures/Q19.png}
+    \captionof{figure}{Secondary MOSFET Q5 current waveform (analytical) at $U_{in} = 30$\,V, $P_{out} = 50$\,W.}
+    \label{fig:Q19}
+\end{center}
+
+Within Q5's conduction interval, the secondary current ($n \cdot i_L$) is piecewise-linear:
+\begin{itemize}
+    \item Segment 1 ($\phi \leq \theta < \pi$): from $nI_1 = 15.00$\,A to $nI_2 = -1.67$\,A
+    \item Segment 2 ($\pi \leq \theta < \pi + \phi$): from $nI_2 = -1.67$\,A to $-nI_1 = -15.00$\,A
+\end{itemize}
+
+Using the same piecewise-linear integration formulas as Q17:
+
+\begin{align}
+    I_{Q,sec,avg} &= \frac{1}{2\pi}\left[\frac{\pi - \phi}{2}\,n(I_1 + I_2) + \frac{\phi}{2}\,n(I_2 - I_1)\right] \nonumber \\
+    &= \frac{1}{2\pi}\left[\frac{2.618}{2} \cdot 4.17 \cdot (3.20) + \frac{0.5236}{2} \cdot 4.17 \cdot (-4.00)\right] = 2.08\,\text{A}
+\end{align}
+
+\begin{align}
+    I_{Q,sec,rms} &= \sqrt{\frac{n^2}{2\pi}\left[\frac{\pi - \phi}{3}(I_1^2 + I_1 I_2 + I_2^2) + \frac{\phi}{3}(I_2^2 - I_2 I_1 + I_1^2)\right]} \nonumber \\
+    &= \sqrt{\frac{4.17^2}{2\pi}\left[\frac{2.618}{3}(12.96 - 1.44 + 0.16) + \frac{0.5236}{3}(0.16 + 1.44 + 12.96)\right]} = 5.93\,\text{A}
+\end{align}
+  \vspace{2em}
+\end{framed}
+
+\fbox{Calculation: $I_{Q,sec,rms} =5.93$  \si{\ampere} \quad $I_{Q,sec,avg} =2.08$  \si{\ampere}} \quad
+\hfill\fbox{\qquad / 4 pt.}
+
+
+\subsection{Q20: PLECS Simulation of the Secondary Side MOSFET Current} 
+Using the provided PLECS model given in Q11, consider worst-case operating conditions, show the simulation waveforms, and obtain the values for: 
+\begin{enumerate}[label=\alph*)]
+    \item The secondary side MOSFET's \textsc{rms} current $I_{Q,sec,rms}$;
+	\item The secondary side MOSFET's average current $I_{Q,sec,avg}$;
+\end{enumerate}
+\vspace{1cm}
+
+\begin{framed}
+  \vspace{2em}
+  The PLECS simulation was run at worst-case conditions ($U_{in} = 30$\,V, $P_{out} = 50$\,W). The measured current through one secondary-side MOSFET is shown in Figure~\ref{fig:Q20}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.9\textwidth]{figures/Q20-meas.png}
+    \captionof{figure}{PLECS simulation of secondary MOSFET current with measurement data.}
+    \label{fig:Q20}
+\end{center}
+
+From the PLECS measurement tool (over one switching period):
+\begin{itemize}
+    \item $I_{Q,sec,avg} = 2.08$\,A
+    \item $I_{Q,sec,rms} = 5.96$\,A
+\end{itemize}
+
+These values are in good agreement with the analytical results from Q19 ($I_{Q,sec,avg} = 2.08$\,A, $I_{Q,sec,rms} = 5.93$\,A). The slight difference in RMS values is due to non-ideal waveform effects captured in the simulation (e.g.\ finite switching transitions and the DC blocking capacitor).
+  \vspace{2em}
+\end{framed}
+
+\fbox{Simulation: $I_{Q,sec,rms} =5.96$ \si{\ampere}  \quad $I_{Q,sec,avg} =2.08$ \si{\ampere}} 
+\hfill\fbox{\qquad / 4 pt.}
+
+
+
+\clearpage
+
+
+\section{Semiconductor Losses and Thermal Design}
+
+Using your previous results, semiconductor losses can be calculated and compared with the provided MATLAB Loss Tool. The results using the worst case (provided by the Loss Tool) will be used to help you select appropriate heatsinks for your design. As in the other questions, results should be given with two digits after the decimal point in the unit indicated. The \href{https://application-notes.digchip.com/070/70-41484.pdf}{Infineon Application Notes} should be used as a guideline for questions Q21 to Q24.
+
+\phantomsection
+
+\subsection{Q21: Primary Side MOSFET Conduction Losses} 
+Using the datasheet of your selected MOSFET as well as the results from your simulations from Q19, calculate the MOSFET conduction losses at steady state under worst-operating conditions ($I_{max}$ and $U_{in,min}$). The MOSFETs are assumed to operate with a junction temperature of \SI{125}{\degreeCelsius}.
+
+
+\begin{framed}
+	\vspace{2em}
+The datasheet provides a normalized $R_{DS,on}$ curve as a function of junction temperature. The normalized value $R_{DS,on,norm}(T_J)$ is read directly from the graph at the operating temperature.
+ 
+\begin{equation}
+    R_{DS,on}(T_J) = R_{DS,on,max}(25^\circ\text{C}) \cdot R_{DS,on,norm}(T_J)
+\end{equation}
+ 
+Since the dead time is small, diode losses are neglected. The MOSFET conduction loss is:
+\begin{equation}
+    P_{C} = P_{C,M} = R_{DS,on,max}(25^\circ\text{C}) \cdot R_{DS,on,norm}(T_J) \cdot I_{D,rms}^2
+\end{equation}
+ 
+For the primary MOSFET (PHP18NQ11T) at $T_J = 125^\circ$C:
+\begin{align}
+    R_{DS,on,max}(25^\circ\text{C}) &= 80\,\text{m}\Omega \\
+    R_{DS,on,norm}(125^\circ\text{C}) &= 2.0 \quad\text{(from datasheet curve)} \\
+    R_{DS,on}(125^\circ\text{C}) &= 80\,\text{m}\Omega \times 2.0 = 160\,\text{m}\Omega
+\end{align}
+ 
+Using $I_{D,rms} = I_{Q,pri,rms} = 1.42$\,A from Q17:
+\begin{equation}
+    P_{C,pri} = 0.160\,\Omega \times 1.42^2 = 0.32\,\text{W}
+\end{equation}
+  \vspace{2em}
+\end{framed}
+
+\fbox{$P_{Q,pri,cond}\ = 0.32$ \qquad \si{\watt}} \qquad 
+\hfill\fbox{\qquad / 4 pt.}
+
+\subsection{Q22: Secondary Side MOSFET Conduction Losses} 
+Using the datasheet of your selected MOSFET as well as the results from your simulations from Q21, calculate the MOSFET conduction losses at steady state under worst-operating conditions ($I_{max}$ and $U_{in,min}$). The MOSFETs are assumed to operate at a junction temperature of \SI{125}{\degreeCelsius}.
+
+\begin{framed}
+	\vspace{2em}
+  For the secondary MOSFET (IRLB8743PbF) at $T_J = 125^\circ$C:
+\begin{align}
+    R_{DS,on,max}(25^\circ\text{C}) &= 3.2\,\text{m}\Omega \\
+    R_{DS,on,norm}(125^\circ\text{C}) &= 2.5 \quad\text{(from datasheet curve)} \\
+    R_{DS,on}(125^\circ\text{C}) &= 3.2\,\text{m}\Omega \times 2.5 = 8.0\,\text{m}\Omega
+\end{align}
+ 
+Using $I_{D,rms} = I_{Q,sec,rms} = 5.93$\,A from Q19:
+\begin{equation}
+    P_{C,sec} = 0.008\,\Omega \times 5.93^2 = 0.28\,\text{W}
+\end{equation}
+  \vspace{2em}
+\end{framed}
+
+\fbox{$ P_{Q,sec,cond}\ = 0.28$ \qquad \si{\watt}} \hfill\fbox{\qquad / 4 pt.}
+
+\subsection{Q23: Primary Side MOSFET Switching Losses} 
+Using again the datasheet and your previous simulation results, calculate the primary side MOSFET turn-on and turn-off losses $P_{T,on}, \,P_{T,off}$, at steady state under worst-case operating conditions, that is, the conditions resulting in higher switching losses. For that, iterate in your calculations and find the conditions that yield higher switching losses and comment them in your solution. \\ 
+
+\textbf{NOTE 1:} Remember that the converter is expected to always operate in ZVS, which will simplify your transistor switching losses calculations. In practice, if ZVS is lost in the operation, switching losses will increase.
+
+\textbf{NOTE 2:} You will need to obtain from simulation the \textbf{turn-off} current of the MOSFET.
+
+\textbf{NOTE 3:} Please consider the gate drive voltage as \SI{12}{\volt} and gate resistance as \SI{5}{\ohm} \\
+
+In your answer, explain how did you find the worst-case operating conditions and indicate which operating condition you got the results from.
+\begin{framed}
+	\vspace{2em}
+\textbf{ZVS Turn-On:} The DAB converter is designed to always operate in Zero Voltage Switching (ZVS). At turn-on, the body diode of the incoming MOSFET conducts first, clamping $V_{DS} \approx 0$. Therefore:
+\begin{equation}
+    P_{T,on} = 0
+\end{equation}
+ 
+\textbf{Turn-Off Losses:} At turn-off, the MOSFET channel is hard-switched off while carrying current.
+\begin{equation}
+    E_{off} = \frac{1}{2}\,V_{DS}\cdot I_D \cdot (t_{ru} + t_{fi})
+\end{equation}
+ 
+\textbf{1. Voltage Rise Time ($t_{ru}$):}
+\begin{align}
+    I_{G,off} &= \frac{U_{plateau}}{R_G} \\
+    t_{ru} &= \frac{(U_{DD} - I_{D,on}\cdot R_{DS,on})}{2\,I_{G,off}}(C_{GD1} + C_{GD2})
+\end{align}
+where $C_{GD1}$ and $C_{GD2}$ are the gate--drain capacitances at the initial and final voltage levels, read from the datasheet ($C_{rss}$).
+ \\
+ 
+\textbf{2. Current Fall Time ($t_{fi}$):} Read directly from the datasheet.
+ 
+\textbf{Worst-case conditions:} The input voltage only changes the voltage rise time. $U_{DD}$ and $I_{D,on}$ are the main factors. The worst case is at maximum input voltage, where $U_{DD}$ is highest, leading to the longest voltage rise time.
+ 
+At $U_{in,max} = 60$\,V, $P_{out} = 50$\,W: $\phi = 13.51^\circ$, $I_{D,on} = I_2 = 2.10$\,A.
+ 
+Datasheet values: $U_{plateau} = 5.0$\,V, $C_{GD1} = 500$\,pF, $C_{GD2} = 55$\,pF, $t_{fi} = 12$\,ns.
+ 
+\begin{align}
+    I_{G,off} &= 5.0 / 5.0 = 1.0\,\text{A} \\
+    V_{DS,swing} &= 60 - 0.160 \times 2.10 = 59.66\,\text{V} \\
+    t_{ru1} &= 59.66 \times 500\times10^{-12} / 1.0 = 29.83\,\text{ns} \\
+    t_{ru2} &= 59.66 \times 55\times10^{-12} / 1.0 = 3.28\,\text{ns} \\
+    t_{ru} &= (t_{ru1} + t_{ru2})/2 = 16.56\,\text{ns}
+\end{align}
+ 
+\begin{align}
+    E_{off} &= \frac{1}{2}\times 59.66 \times 2.10 \times (16.56 + 12)\times10^{-9} = 1.79\,\mu\text{J} \\
+    P_{T,off} &= E_{off}\cdot f_{sw} = 1.79\times10^{-6}\times 80\times10^3 = 0.14\,\text{W}
+\end{align}
+
+Total primary bridge switching losses (4 devices): $4 \times 0.14 = 0.57$\,W.
+  \vspace{2em}
+\end{framed}
+
+\fbox{$P_{Q,pri,on}\ = 0.00$ \qquad \si{\watt}} \quad
+\fbox{$P_{Q,pri,off}\ = 0.14$ \qquad \si{\watt}} \quad
+\hfill\fbox{\qquad / 8 pt.}
+
+\subsection{Q24: Secondary Side MOSFET Switching Losses} 
+Using again the datasheet and your previous simulation results, calculate the secondary side MOSFET turn-on and turn-off losses $P_{T,on}, \,P_{T,off}$, at steady state under worst-case operating conditions, that is, the conditions resulting in higher switching losses. For that, iterate in your calculations and find the conditions that yield higher switching losses and comment them in your solution. \\ 
+
+\textbf{NOTE 1:} Remember that the converter is expected to always operate in ZVS, which will simplify your transistor switching losses calculations. In practice, if ZVS is lost in the operation, switching losses will increase.
+
+\textbf{NOTE 2:} You will need to obtain from simulation the \textbf{turn-off} current of the MOSFET.
+
+\textbf{NOTE 3:} Please consider the gate drive voltage as \SI{12}{\volt} and gate resistance as \SI{5}{\ohm} \\
+
+In your answer, explain how did you find the worst-case operating conditions and indicate which opearating condition you got the results from.
+\begin{framed}
+	\vspace{2em}
+  \textbf{ZVS Turn-On:} Same as the primary side, $P_{T,on} = 0$.
+ 
+\textbf{Worst-case conditions:} The current fall time is mainly affected by the current level. The worst case is at minimum input voltage, where the current is highest, leading to the longest current fall time.
+ 
+At $U_{in,min} = 30$\,V, $P_{out} = 50$\,W: $\phi = 30.00^\circ$, $I_{D,on} = 15.10$\,A (from simulation).
+ 
+Datasheet values: $U_{plateau} = 3.15$\,V, $C_{GD1} = 700$\,pF, $C_{GD2} = 200$\,pF, $t_{fi} = 36$\,ns.
+ 
+\begin{align}
+    I_{G,off} &= 3.15 / 5.0 = 0.63\,\text{A} \\
+    V_{DS,swing} &= 30 - 0.008 \times 15.10 = 29.88\,\text{V} \\
+    t_{ru1} &= 29.88 \times 700\times10^{-12} / 0.63 = 33.20\,\text{ns} \\
+    t_{ru2} &= 29.88 \times 200\times10^{-12} / 0.63 = 9.49\,\text{ns} \\
+    t_{ru} &= (t_{ru1} + t_{ru2})/2 = 21.34\,\text{ns}
+\end{align}
+ 
+\begin{align}
+    E_{off} &= \frac{1}{2}\times 29.88 \times 15.10 \times (21.34 + 36)\times10^{-9} = 12.94\,\mu\text{J} \\
+    P_{T,off} &= E_{off}\cdot f_{sw} = 12.94\times10^{-6}\times 80\times10^3 = 1.03\,\text{W}
+\end{align}
+
+Total secondary bridge switching losses (4 devices): $4 \times 1.03 = 4.14$\,W.
+% \begin{figure}[h!]
+%       \centering
+%       \includegraphics[width=0.8\linewidth]{figures/q24.png}
+%       \caption{Primary Turn-Off Current \& Effective Voltage vs Input Voltage}
+%       \label{fig:24}
+%   \end{figure}
+  
+    \vspace{2em}
+\end{framed}
+
+\fbox{$P_{Q,sec,on}\ = 0.00$ \qquad \si{\watt}} \quad
+\fbox{$P_{Q,sec,off}\ = 1.03$ \qquad \si{\watt}}
+\hfill\fbox{\qquad / 8 pt.}
+
+
+\subsection{Q25: Semiconductor Efficiency} 
+At this time, the losses of the semiconductors are known, calculate the efficiency $\eta$ of your converter with the nominal power, when only semiconductor losses are considered. Please note that there will be other losses in your converter that will appear during the following stages of the design. You already have losses due to discharge resistor calculated in Q10.  Nevertheless, semiconductor losses are dominant factor and are a good indication of the overall converter performance.
+
+\begin{framed}
+  \vspace{2em}
+  Only the semiconductor conduction and switching losses are considered, relative to the nominal output power. For both stages, the worst-case conditions are used, which are not the same for the first and the second stage.
+ 
+\begin{align}
+    P_{semic,losses} &= P_{C,pri,total} + P_{T,pri,total} + P_{C,sec,total} + P_{T,sec,total} \\
+    &= (4\times0.32) + (4\times0.14) + (4\times0.28) + (4\times1.03) \\
+    &= 1.30 + 0.57 + 1.13 + 4.14 = 7.14\,\text{W}
+\end{align}
+ 
+\begin{equation}
+    \eta = 1 - \frac{P_{semic,losses}}{P_{nom}} = 1 - \frac{7.14}{50} = 85.73\,\%
+\end{equation}
+  \vspace{2em}
+\end{framed}
+
+\fbox{$\eta$ = 85.73\% \qquad} \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q26: Loss tool}
+Modify the converter data input parameters in the provided loss tool in MATLAB and run it to acquire the losses for the different values of $U_{in}$ and $P_{out}$ (the loss tool already includes these values and performs the necessary simulations). Read the comments in the code carefully to obtain valid results.\\
+
+From these results, identify the nominal operating point and compare it with your results; It may be different from your calculation since the losses are calculated with the pessimistic approximation of switching losses. Additionally, give a brief explanation for why there are more or fewer losses for different operating conditions.
+\begin{framed}
+The MATLAB Loss Tool was configured with the following converter parameters: $n = 4.17$, $L = 26.04\,\mu$H, $f_{sw} = 80$\,kHz, primary MOSFET: PHP18NQ11T ($R_{DS,on} = 80$\,m$\Omega$ at 25\textdegree C), secondary MOSFET: IRLB8743PbF ($R_{DS,on} = 3.2$\,m$\Omega$ at 25\textdegree C), gate drive voltage 12\,V, gate resistance 5\,$\Omega$, and junction temperature 125\textdegree C. Dead-time effects are included in the simulation.
+
+The resulting loss breakdown and efficiency curves are shown in Figure~\ref{fig:Q26}.
+
+\begin{center}\captionsetup{type=figure}
+    \includegraphics[width=0.85\textwidth]{figures/matlab-loses-with-deadtime.pdf}
+    \captionof{figure}{Semiconductor power losses and efficiencies achieved for different operating points.}
+    \label{fig:Q26}
+\end{center}
+
+At the nominal operating point ($U_{in,nom} = 50$\,V, $P_{out} = 50$\,W), the Loss Tool reports a semiconductor efficiency of approximately 96--97\,\%, with total losses around 1.5--2\,W. The switching losses (blue bars) are relatively small because ZVS eliminates turn-on losses; the remaining switching losses come from turn-off transitions. MOSFET conduction losses (green bars) dominate at higher power levels.
+
+Compared to the hand calculations in Q21--Q24, the Loss Tool yields somewhat higher losses due to the pessimistic approximation of switching energies (linearly scaled with current from datasheet values).
+
+Regarding the trends across operating points:
+\begin{itemize}
+    \item At lower input voltages, the phase shift increases, leading to higher peak and RMS currents. This raises both conduction losses and turn-off switching losses. For example, at $P_{out} = 50$\,W the efficiency drops from $\approx$97\,\% at $U_{in} = 60$\,V to $\approx$94\,\% at $U_{in} = 30$\,V.
+    \item At higher input voltages, the required phase shift is smaller, resulting in lower circulating currents and reduced losses, thus improving efficiency.
+    \item At reduced output power ($P_{out} = 10$\,W), the absolute losses are lower ($\approx$1.2--2.5\,W), but the efficiency drops significantly (82--89\,\%) because these losses represent a larger fraction of the small output power. Switching losses become the dominant loss mechanism at light load.
+\end{itemize}
+\end{framed}
+
+\hfill\fbox{\qquad / 4 pt.}
+
+\newpage
+\textit{\textbf{NOTE}: You may consider not using a heatsink for the transistor and/or diode. Nevertheless, your decision should be based on your calculations and factors considered (i.e., temperature margin).}
+
+\subsection{Q27: Primary side heatsink selection} 
+To choose a proper heatsink, answer the following questions. For the calculations, assume a maximum ambient temperature of $\vartheta_a=\SI{40}{\degreeCelsius}$, whereas the semiconductor junction temperature should not exceed $\vartheta_j=\SI{135}{\degreeCelsius}$. \\
+
+\textbf{NOTE:} There is already a thermal resistance from the junction to the case of the semiconductor. This can be found on the MOSFETs' data sheets.\\
+\textbf{NOTE:} Since the MOSFETs have an exposed drain on the backside, a thermally conductive insulating (TIM) sheet is required for electrical isolation. The thermal resistance of the TIM sheet is assumed to be \SI{3}{\degreeCelsius\per\watt}.\\
+
+\vspace{0.4em}
+\begin{enumerate}[label=\alph*)]
+	\item Considering the output of the previous questions, determine the worst case operation condition for the primary side MOSFET in terms of power losses $\left.P_{Q,pri}\right|_{wc}$. 
+	\item Calculate the maximum allowed heatsink thermal resistance $R_{th,Q,pri,c-a}$ (where $_{c-a}$ indicates case to ambient).
+	\item Based on b), choose a heatsink from the selection provided in Table~\ref{tab:HS}, their profile is also displayed in Fig.~\ref{fig:Heatsinks}. Don't forget to highlight your selection in \colorbox{blue!20}{blue}, as in Table~\ref{Tab:MOSFET}.
+	\item Once the heatsink is selected, give the expected maximum junction temperature.
+\end{enumerate}
+
+\vspace{0.4em}
+
+\begin{framed}
+	\vspace{2em}
+  \textbf{a) Total power loss per primary MOSFET:}
+ 
+The worst-case operation for the primary MOSFET occurs at $U_{in,max}$ where switching losses dominate.
+\begin{equation}
+    \left.P_{Q,pri}\right|_{wc} = P_{C,pri} + P_{T,off,pri} = 0.32 + 0.14 = 0.47\,\text{W}
+\end{equation}
+ 
+\textbf{b) Junction temperature without heatsink:}
+ 
+Assuming a direct path to ambient through the package and TIM ($R_{th,JA} = 60\,^\circ$C/W, $R_{TIM} = 3\,^\circ$C/W):
+\begin{equation}
+    T_J = T_{amb} + \left.P_{Q,pri}\right|_{wc}\cdot(R_{th,JA})
+    = 40 + 0.47\times(60) = 68.05\,^\circ\text{C}
+\end{equation}
+ 
+Since $T_J = 68.05\,^\circ\text{C} < 135\,^\circ\text{C}$ with a margin of $66.95\,^\circ$C, no additional heatsink is required.
+ 
+\textbf{c) Heatsink selection:} No heatsink needed.
+ 
+\textbf{d) Expected maximum junction temperature:} $\vartheta_{j,max} = 68.05\,^\circ$C.
+	\vspace{1em}
+  \vspace{2em}
+\end{framed}
+
+\fbox{$\left.P_{Q,pri}\right|_{wc}\ =0.47$ \qquad \si{\watt}} \quad \fbox{$R_{th,Q,pri,c-a}\ =$ N/A \qquad \si{\kelvin\per\watt}} \\
+
+
+\fbox{\textsc{mosfet} heatsink model No. : N/A, not needed \qquad } 
+\quad \fbox{$\vartheta_{Q,pri,j,max}$= 68.05 $^{\circ}C$}
+\hfill\fbox{\qquad / 8 pt.}
+
+\vspace{1em}
+\subsection{Q28: Secondary side heatsink selection} Similar to the primary side, a secondary side heatsink has to be selected. Assuming the same thermal constraints, answer the following questions:
+
+\textbf{NOTE:} There is already a thermal resistance from the junction to the case of the semiconductor. This can be found on the MOSFETs' data sheets.\\
+\textbf{NOTE:} Since the MOSFETs have an exposed drain on the backside, a thermally conductive insulating (TIM) sheet is required for electrical isolation. The thermal resistance of the TIM sheet is assumed to be \SI{3}{\degreeCelsius\per\watt}.\\
+
+\vspace{0.1em}
+\begin{enumerate}[label=\alph*)]
+	\item Considering the output of the Loss Tool, determine the worst case operation condition for the diode in terms of losses $\left.P_{Q,sec}\right|_{wc}$. 
+	\item Calculate the maximum allowed heatsink thermal resistance $R_{th,Q,sec,c-a}$.
+	\item Select a suitable heatsink from the selection provided in Table~\ref{tab:HS} (this time highlight it in \colorbox{green!20}{green}).
+	\item Give the expected maximum junction temperature.
+\end{enumerate}
+
+\begin{framed}
+	\vspace{2em}
+  \textbf{a) Total power loss per secondary MOSFET:}
+\begin{equation}
+    \left.P_{Q,sec}\right|_{wc} = P_{C,sec} + P_{T,off,sec} = 0.28 + 1.03 = 1.32\,\text{W}
+\end{equation}
+ 
+\textbf{b)} Without a heatsink ($R_{th,JA} = 62\,^\circ$C/W):
+\begin{equation}
+    T_J = 40 + 1.32\times(62) = 121.61\,^\circ\text{C}
+\end{equation}
+ 
+The margin is only $13.39\,^\circ$C, which is very small. A heatsink is added to ensure safe operation across all conditions.
+ 
+Maximum allowed heatsink thermal resistance (using $R_{th,JC} = 1.11\,^\circ$C/W from datasheet):
+\begin{equation}
+    R_{th,c-a} < \frac{\vartheta_{j,max} - \vartheta_a}{\left.P_{Q,sec}\right|_{wc}} - R_{th,JC} - R_{TIM}
+    = \frac{135 - 40}{1.32} - 1.11 - 3.0 = 68.06\,^\circ\text{C/W}
+\end{equation}
+ 
+\textbf{c)} Ohmite FA-T220-25E ($R_{th} = 4.70\,^\circ$C/W, No.~2) is selected, which provides sufficient margin while being compact and cost-effective.
+ 
+\textbf{d) Expected maximum junction temperature:}
+\begin{equation}
+    \vartheta_j = \vartheta_a + \left.P_{Q,sec}\right|_{wc}\cdot(R_{th,JC} + R_{TIM} + R_{th,hs})
+    = 40 + 1.32\times(1.11 + 3.0 + 4.70) = 51.60\,^\circ\text{C}
+\end{equation}
+ 
+Margin: $135 - 51.60 = 83.40\,^\circ$C.
+  \vspace{2em}
+\end{framed}
+
+\fbox{$\left.P_{Q,sec}\right|_{wc}\ = 1.32$ \qquad \si{\watt}} \quad \fbox{$R_{th,Q,sec,c-a}\ = 68.06$ \qquad \si{\kelvin\per\watt}} \quad \\
+
+\fbox{\textsc{mosfet} heatsink model No. : FA-T220-25E\qquad } 
+\quad \fbox{$\vartheta_{Q,sec,j,max}$= 51.60\qquad $^{\circ}C$}
+\hfill\fbox{\qquad / 8 pt.}
+
+\vspace{2em}
+\begin{table}[H]
+\caption{List of the offered heatsinks.}
+\centering
+\label{tab:HS}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{No.} & \textbf{Manufacturer} & \textbf{Product} & \textbf{$R_{th}$ (\si{\kelvin\per\watt})} & \textbf{Figure} \\ \hline
+1$^\dag$   & Ohmite                & FA-T220-64E      & 3.00     & \ref{subfig:Ohmite-FA}               \\ \hline
+\rowcolor{green!20}
+2$^\dag$   & Ohmite                & FA-T220-25E      & 4.70     & \ref{subfig:Ohmite-FA}               \\ \hline
+3$^\dag$   & Ohmite                & EA-T220-51E      & 7.50     & \ref{subfig:Ohmite-EA}               \\ \hline
+4$^\dag$   & Ohmite                & EA-T220-38E      & 10.40    & \ref{subfig:Ohmite-EA}               \\ \hline
+5          & Ohmite                & OMNI-220-18-25-1C& 3.50     & \ref{subfig:Ohmite-EA}               \\ \hline
+6$^\dag$   & Ohmite                & OMNI-220-18-50-2C& 7.00     & \ref{subfig:Ohmite-EA}               \\ \hline
+\end{tabular}
+\end{table}
+$\dag$: You can use this heatsink for 2 devices.
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+	\centering
+	\includegraphics[height=35mm]{figures/Ohmite-FA.jpg}
+	\caption{Ohmite FA-T220-xxE}
+	\label{subfig:Ohmite-FA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+	\centering
+	\includegraphics[height=35mm]{figures/Ohmite-EA.jpg}
+	\caption{Ohmite EA-T220-xxE}
+	\label{subfig:Ohmite-EA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+	\centering
+	\includegraphics[height=35mm]{figures/693-xxx.png}
+	\caption{Wakefield 693-xxx}
+	\label{subfig:Wakefield-693-xxx}
+\end{subfigure}
+\hfill
+\caption{Available heatsinks. Images taken from the manufacturer websites.}
+\label{fig:Heatsinks}
+\end{figure}
+
+
+\newpage
+\section{Report 1 Summary}
+Fill out the table below with your results as well as your chosen devices:
+
+\begin{framed}
+\begin{center}\captionsetup{type=table}
+	\label{Tab:Specs_calculated}
+	\captionof{table}{Calculated parameter values, selected components and efficiency.}
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Property} & \textbf{Value} & \textbf{Unit} \\
+      \hline
+        $N$            & 4.17 & ---               \\ \hline
+        $C_{in}$       & 700 & \si{\micro\farad} \\ \hline
+		$L$            & 26.04 & \si{\micro\henry} \\ \hline
+		$C_{DCBLOCK}$  & 15.20 & \si{\micro\henry} \\ \hline        
+		$C_{out}$ & 152.72 & \si{\micro\farad} \\ \hline
+		Primary side MOSFET No.   & PHP18NQ11T & --- \\ \hline
+		Secondary side MOSFET No. & IRLB8743PbF & --- \\ \hline
+	   	$\left.\eta\right|_{nom}$ & 85.73 & \% \\ \hline
+		Primary side MOSFET heatsink No. (if present)   &  & --- \\ \hline
+		Secondary side MOSFET heatsink No. (if present) & Ohmite FA-T220-25E & --- \\ \hline
+    \end{tabular}
+\end{center}
+\end{framed}
+\hfill\fbox{\textbf{Total: \qquad\quad / 125 pt.}}
+
+
+\end{document}

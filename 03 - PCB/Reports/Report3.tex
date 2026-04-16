@@ -1,0 +1,921 @@
+\documentclass{PELsmallreport}
+\usepackage[table]{xcolor} 
+
+\usepackage{array}        
+
+\graphicspath{{gfx/}}
+\bibliography{Bibliography.bib}
+
+\setAuthorOne{{Loris Bregy 379329}}
+\setAuthorTwo{{Rubie Luo 423142}}
+
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\vfill
+
+
+
+
+\clearpage
+\section{Overview}
+In this third part, the project addresses the schematic and PCB design of the Dual Active Bridge (DAB) converter according to the specifications assigned to your group. \textbf{Fill out Table \ref{Tab:Specs}} with the parameters assigned to your group. In this report, you will complete the selection of all necessary components and populate the provided schematic and PCB layout using Altium Designer. The concept of the complete schematic of the DAB converter is illustrated in Fig. \ref{fig:concept}. \\
+
+The list of available SMD capacitors, SMD resistors, that can be used for your design is provided in the Appendix section. The use of components not listed in the Appendix is allowed \textbf{if and only if} authorized by a TA or explicitly stated in the instructions in this report.\\
+
+To provide your answers and explanations, use the framed boxes below each question. \textbf{In case multiple units are employed to realize the same circuit component, append additional frame boxes in the answers, and add numbers to the corresponding designators (e.g., in case of multiple parallel input capacitors, denote them as }$C_{in,1}$, $C_{in,2}$\textbf{, etc...).} Please note a maximum limit of \textbf{four components} in series or parallel when targeting a specific design value.\\
+
+A project template for Altium Designer will be provided. It should be noted that the schematic sheet has been divided into several blocks; according to the block name, you are asked to complete the placement of the components. All the used components have been included in the datasheet.
+Consider what follows before proceeding further: 
+\begin{itemize}
+    \item Before proceeding with the report, according to Fig. \ref{fig:concept}, populate the power-stage part of the schematic diagram with the components in the bottom of the schematic. 
+    For the semiconductor devices, add the part number of the selected devices in the comment of the device model. 
+    \item While proceeding from \textbf{Q1 to Q40}, the values of passive components should be put in the comment as well.
+    \item While proceeding from \textbf{Q1 to Q40}, it is suggested to populate the schematic diagram step-by-step.\\
+\end{itemize}
+
+By following the steps outlined in this report, you will be able to prepare and manufacture the Dual Active Bridge (DAB) converter PCB. Note that you may need to create custom footprints for certain components. When doing so, carefully consult the component datasheets; as a general rule, ensure the pad hole diameter is 1.2 times the diameter of the component lead pins. \\
+
+Note: Installation guideline of the Alitum Designer can be found in \href{https://wiki.epfl.ch/altium-designer}{\textbf{LINK}}.
+
+\begin{table}[H]
+\caption{Given parameters and design requirements for the DAB converter.}
+\centering
+\label{Tab:Specs}
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Property} & \textbf{Value} & \textbf{Unit} \\
+      \hline
+      $P_\mathrm{out,nom}$ & 50 & \si{\watt} \\ \hline
+      $V_\mathrm{in,nom}$ & 50 & \si{\volt} \\ \hline
+      $V_\mathrm{in,min}$ & 30  & \si{\volt} \\ \hline
+      $V_\mathrm{in,max}$ & 60 & \si{\volt} \\ \hline  
+      $V_\mathrm{out}$ &  & \si{\volt} \\ \hline
+      $\Delta V_\mathrm{out,pp,rel}$ & 2 & \% \\ \hline
+      $f_\mathrm{sw}$ & & \qty{}{\kHz} \\ \hline
+      $V_\mathrm{aux,out} $ & \qty{18}{} & \qty{}{\V} \\ \hline
+      $P_\mathrm{aux,out} $ & \qty{5}{} & \qty{}{\W} \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\linewidth]{gfx/Concept.pdf}
+    \caption{Circuit diagram of the DAB converter.}
+    \label{fig:concept}
+\end{figure}
+
+\newpage
+\clearpage
+
+
+% \section{Selection of the input and output capacitors}
+% \subsection{Qx: Calculation of Volt-second Stress} 
+% \begin{framed}
+% 	\vspace{2em}
+% 	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+% 	\vspace{2em}
+% \end{framed}
+
+% \fbox{$\lambda$ = \qquad\qquad Wb} \hfill\fbox{\qquad / 2 pt.}
+
+\section{Power Stage}
+\subsection{Q1: Selection of the input electrolytic capacitors }
+According to the calculation in Report 1, select an input electrolytic capacitor from below list (Table \ref{tab:inputcap}).
+\begin{table}[!h]
+\centering
+\caption{Aluminum electrolytic capacitors }
+\label{tab:inputcap}
+\begin{tabular}{ccc}
+	\toprule
+	\textbf{Part number} & \textbf{Capacitance}     & \textbf{Rated Voltage DC}   \\
+    \toprule
+    39D507G030FL6 & 500 uF & 30 VDC \\
+    MAL215236109E3 & 10 uF & 400 VDC \\
+    UHW2A681MHD & 680 uF & 100 VDC\\
+	\toprule
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\fbox{Selected input electrolytic capacitor: \quad } \quad  \fbox{$C_\text{in}$=\quad F }\quad  \fbox{$V_\text{rated-C,in}$=\quad V }\hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q2: Selection of the input ceramic capacitor}
+Aluminum electrolytic capacitors exhibit inductive behavior at high frequencies (typically above 10 kHz) due to their Equivalent Series Inductance (ESL). This characteristic significantly diminishes their effectiveness in filtering high-frequency voltage ripples. Consequently, ceramic capacitors are commonly connected in parallel to compensate for this limitation.
+
+The muRata GRM31CZ72A475KE11L and TDK C5750X7S2A226M280KB have been specified as potential input ceramic capacitors. However, it is crucial to account for the DC bias effect, as the effective capacitance of most ceramic capacitors drops substantially under applied voltage. Based on the requirements established in Report 1, please calculate the necessary number of parallel capacitors after verifying the capacitance-voltage characteristics in the respective datasheet.
+
+Note: The TDK C5750X7S2A226M280KB uses a 2220 package. Since its price is eight times that of the muRata GRM31CZ72A475KE11L, please prioritize the use of the muRata component for the input capacitor bank.
+
+\fbox{$C_\text{in,ceramic,min}$: \quad F} \quad \fbox{Input capacitor part number: \quad} \quad  \fbox{$C_\text{selected,@60Vdc}$=\quad F }\quad  \fbox{Number of parallel capacitor: \quad }\hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q3: Selection of the input discharge resistor}
+According to the calculation in Report 1, select the input discharge resistor.\\
+
+\fbox{Selected input discharge resistor: \quad } \quad  \fbox{Package for input discharge resistor:  \quad }\quad \hfill\fbox{\qquad / 1 pt.}
+
+
+\subsection{Q4: Selection of the DC blocking capacitor}
+
+The muRata GRM31CZ72A475KE11L or TDK C5750X7S2A226M280KB has been specified for use as the DC-blocking capacitor. It is critical to account for the power dissipation across these components. Please consult the datasheet to determine the Equivalent Series Resistance (ESR) at your specific operating frequency. Based on this value, estimate the power loss per capacitor (assuming a parallel configuration if multiple units are used). \\
+
+\fbox{Capacitor part number: \quad} \quad \fbox{ESR: \quad @ \quad KHz} \quad \fbox{Number of parallel capacitor: \quad }\quad \fbox{Loss per capacitor: \quad W }\hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q5: Selection of the output capacitor}
+According to the calculation in Report 1, select the output capacitor from the available SMD capacitor (see Appendix). Again, you need check the datasheet to get the capacitance at DC-bias voltage.
+
+Note: It is not necessary to match the calculated value exactly, as long as the selection of the capacitance higher than the calculated value, the selection should be good. Try to use fewer capacitor here. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{Selected output capacitor: \quad } \quad  \fbox{Number of parallel capacitor: \quad }\quad \fbox{$C_\text{selected,@Vout}$=\quad F }\quad  \fbox{$V_\text{rated-C,out}$=\quad V }\quad \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q6: Extract the gate charge ($Q_g$) for selected MOSFETs}
+Indicate the part number of the MOSFETs you selected in report 1. Then, check their datasheets, specifically, the graph of "Typical Gate Charge vs.Gate-to-Source Voltage". Extract and provide the gate charge $Q_\mathrm{g}$ for both primary and secondary devices when the gate-drive voltage is at 12 V, and indicate how you extracted them in the framed box. \\
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}\\
+
+    \noindent 
+    \begin{minipage}[c]{0.48\linewidth} 
+        \centering 
+        \includegraphics[width=0.8\linewidth]{gfx/QgVsVgs.pdf}
+        \captionof{figure}{Typical gate charge vs. gate-to-source voltage of primary MOSFET.}
+    \end{minipage}%
+    \hfill 
+    \begin{minipage}[c]{0.48\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{gfx/QgVsVgs.pdf}
+        \captionof{figure}{Typical gate charge vs. gate-to-source voltage of secondary MOSFET.}
+    \end{minipage}
+	\vspace{2em}
+\end{framed}
+
+\fbox{MOSFET, pri.: \quad } \quad 
+\fbox{$Q_{\text{g,pri}}$ = \quad nC } \quad \fbox{MOSFET, sec.: \quad } \quad \fbox{$Q_{\text{g,sec}}$ = \quad nC } \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q7: Extract the internal gate resistance ($R_{\text{g,int}}$) for selected MOSFETs}
+Check the datasheets of the selected MOSFETs, then extract the internal gate resistance $R_{\text{g,int}}$. Only in case the value is not provided by the manufacturer, you can assume a value of $2 \Omega$.\\.
+
+\fbox{$R_{\text{g,int,pri}}$ = \quad $\Omega$ }  \quad \fbox{$R_{\text{g,int,sec}}$ = \quad $\Omega$ } \hfill\fbox{\qquad / 1 pt.}
+
+\newpage
+
+\section{Gate Driver on the Primary Side}
+There are two typical solutions to drive a half-bridge:\\
+1. Using two single-channel gate drivers to drive two devices independently;\\
+2. Using a dual-channel gate driver based on bootstrap technology. \\
+
+The first solution provides more flexibility but usually needs an extra isolated DC power supply. In this course, a dual-channel gate driver is used. The typical circuit diagram of a half-bridge gate driver and half-bridge MOSFET is shown in Fig. \ref{fig:TypicalDiagramofHBGateDriver}.\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/CircuitDiagramGD.jpg}
+    \caption{Typical application schematic of a dual-channel gate driver with bootstrap technique. }
+    \label{fig:TypicalDiagramofHBGateDriver}
+\end{figure}
+
+In this project, we ask you to use the half-bridge gate driver UCC27288 from Texas Instruments. Its surrounding components should be calculated and selected according to your choice of MOSFETs. In this section, follow questions Q8 to Q15 to design the primary side gate driver circuit.\\
+
+\textbf{Note}: The datasheet of the UCC27288 provides a detailed design procedure. Read it carefully at this \href{https://www.ti.com/lit/ds/symlink/ucc27288.pdf}{\textbf{LINK}}. In this project, the gate driving voltage is set as 12V.
+
+\subsection{Q8: Calculation of the bootstrap capacitor}
+Refer to section 8.2.2.1 of the UCC27288 datasheet, and calculate the capacitance of the bootstrap capacitor following the step-by-step procedure. Report calculation procedure in the framed box, and calculated values in the answer boxes. Then, choose the closest standard capacitance value (see the Appendix), and report selected capacitor and its voltage rating in the answer boxes.\\
+\textbf{Note:} In this calculation, you can consider the forward voltage drop over the diode $D_{\text{Boot}}$ to be 0.9 V; 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$\Delta V_\text{HB}$ = \quad V} \quad \fbox{$Q_\text{TOTAL} = \quad C$} \quad \fbox{$C_{\text{boot,min}}$ = \quad F } \\
+\fbox{$C_\text{boot,selected}$ = \quad F} \quad \fbox{$V_\text{Cboot,rated} $ = \quad V} \hfill \fbox{\qquad / 3 pt.}
+
+\subsection{Q9: Selection of the VDD capacitor}
+Refer to section 8.2.2.1 of the UCC27288 datasheet, and calculate the required VDD capacitor. Then, choose the closest standard capacitance value (see the Appendix). Report selected capacitor and its voltage rating in the answer boxes.
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$C_\text{VDD,selected}$ = \quad F} \quad \fbox{$V_\text{CVDD,rated} $ = \quad V} \hfill \fbox{\qquad / 2 pt.}
+
+\subsection{Q10: Selection of the bootstrap series resistor}
+The series resistance $R_\text{boot}$ will limit the peak current at the bootstrap diode during start-up, but it should also be carefully selected as it introduces a time constant with the bootstrap capacitor given by
+\begin{equation}
+    \tau = R_\text{boot}C_\text{boot}.
+\end{equation}
+
+This time constant is related to the start-up time, which influences the load dv/dt. In this project, the selected $R_\text{boot}$ should satisfy  
+\begin{equation}
+    3 R_\text{boot}C_\text{boot} < 10 D_\text{min}/f_\text{sw}.
+\end{equation}
+where $D_\text{min}$ is the minimal duty cycle of the low-side device during the soft start. In this project course, $D_\text{min}$ is set as 0.05. This will ensure that the capacitor can be charged sufficiently at the minimum duty cycle in 10 switching periods. 
+
+Additionally, the bootstrap resistor chosen must be able to withstand high power dissipation during the first charging sequence of the bootstrap capacitor. This energy and average power can be estimated by
+\begin{equation}
+    E_{boot} = \frac{1}{2}C_{boot}V_{boot}^2, \quad P_{R(boot)} =E_{boot} \cdot f_{sw}
+\end{equation}
+
+In this specific project course, we suggest that $R_{boot}$ be in the range of 1 $\Omega$ to 10 $\Omega$. Choose a proper package for this resistor.\\
+
+\fbox{$R_{boot}$ = \quad $\Omega$} \quad \fbox{$P_{R(boot)}$ = \quad W} \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q11: Calculate the voltage stress and peak current over the bootstrap diode}
+When the high-side device is on, the bootstrap diode will be reverse-biased. The selection of the bootstrap diode should consider the voltage stress when the diode is reverse-biased, and peak current through the diode during the start-up charging.\\
+
+In this project course, the diode ES2C will be used as the bootstrap diode.\\
+
+\fbox{$V_\text{Dboot,peak}$ = \quad V} \quad\fbox{$I_\text{Dboot,peak}$ = \quad A} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q12: Selection of the external gate resistor}
+In gate drivers for high-frequency converters, parasitic inductance and parasitic capacitance can cause voltage and current oscillations on the gate of the power MOSFETs. These oscillations can cause the breakdown of the device and disturb adjacent circuits. External gate resistors are typically used to slow down the turn-on and turn-off of the devices, thus mitigating these oscillations. Refer to Section 8.2.2.4, select the external gate resistor, and calculate the source and sink current of the gate driver (the symbols are indicated in the datasheet). In this project course, we suggest that the external gate resistor is in the range of 5 $\Omega$ to 10 $\Omega$. \\
+
+Note: In the practical experimental test, you should capture waveform of the gate-source voltage. If there are obvious oscillations which may result in fault switching on, i.e., the amplitude of the oscillations higher than he turn-on threshold, the resistor should be increased. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{g}$ = \quad $\Omega$} \quad \fbox{$I_\text{OHH}$ = \quad A}\quad \fbox{$I_\text{OLH}$ = \quad A}\quad \fbox{$I_\text{OHL}$ = \quad A}\quad \fbox{$I_\text{OLL}$ = \quad A}\hfill\fbox{\qquad / 2 pt.}
+
+
+\subsection{Q13: Selection of the external gate-source resistor}
+The gate-source resistor (often called a pull-down resistor for N-channel devices) is a crucial safety component in MOSFET circuits. It prevents the MOSFET from turning on accidentally when the control signal is disconnected or undefined. 
+
+For most power electronics applications (e.g., motor drives, DC-DC converters), the standard value lies between 5 kΩ and 15 kΩ. \\
+
+\fbox{$R_\text{gs}$ = \quad $\Omega$} \quad \fbox{$P_\text{Rgs}$ = \quad W}\hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q14: Estimate the power losses of the gate driver}
+Refer to section 8.2.2.3 of the datasheet to calculate the loss components in the gate driver device. Report calculation procedure in the framed box. Then, sum them to obtain the estimated total loss of the gate driver and report it below. 
+
+\textbf{Note:} The gate driver internal pull up/down resistor can be calculated as (\ref{eq:gatedriverinternalres}). The average value of pull-up and pull-down resistor,$R_\text{GD-R}$, is $4.1 \Omega$ ,
+\begin{equation}
+    \begin{split}
+        &\text{High-side pull-up resistor:}\quad &&R_\text{HOH} = V_\text{HOH}/I_\text{HO} &&= 0.42\text{V}/100\text{mA} = 4.2 \Omega\\
+        &\text{High-side pull-down resistor:}\quad &&R_\text{HOL} = V_\text{HOL}/I_\text{HO}&&= 0.40\text{V}/100\text{mA} = 4.0 \Omega\\
+        &\text{Low-side pull-up resistor:}\quad &&R_\text{LOH} = V_\text{LOH}/I_\text{LO}&&= 0.42\text{V}/100\text{mA} = 4.2 \Omega\\
+        &\text{Low-side pull-down resistor:}\quad &&R_\text{LOL} = V_\text{LOL}/I_\text{LO}&&= 0.40\text{V}/100\text{mA} = 4.0 \Omega\\
+    \end{split}
+    \label{eq:gatedriverinternalres}
+\end{equation}
+
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$P_{driver}$ = \quad W} \quad \hfill\fbox{\qquad / 3 pt.}
+
+
+\subsection{Q15: Calculate maximum allowed power dissipation in the gate driver device}
+Refer to section 8.2.2.3 of the datasheet and calculate the maximum allowed power dissipation in the gate driver device. Here, the ambient temperature is set as $50 \celsius$. \\
+
+\fbox{$P_{max}$ = \quad W} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\newpage
+
+\section{Gate Driver on the Secondary Side}
+As mentioned, the design of the gate driver circuit depends on the MOSFET. Therefore, the design for the gate driver on the secondary will be different from that of the primary side. 
+
+\subsection{Q16: Calculation of the bootstrap capacitor}
+Refer to section 8.2.2.1 of the UCC27288 datasheet, and calculate the capacitance of the bootstrap capacitor following the step-by-step procedure. Report calculation procedure in the framed box, and calculated values in the answer boxes. Then, choose the closest standard capacitance value (see the Appendix), and report selected capacitor and its voltage rating in the answer boxes.\\
+\textbf{Note:} In this calculation, forward voltage drop over the diode, $D_{\text{Boot}}$, is about 0.9 V. VDD is 12 V.
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$\Delta V_\text{HB}$ = \quad V} \quad \fbox{$Q_\text{TOTAL} = \quad C$} \quad \fbox{$C_{\text{boot,min}}$ = \quad F } \\
+\fbox{$C_\text{boot,selected}$ = \quad F} \quad \fbox{$V_\text{Cboot,rated} $ = \quad V} \hfill \fbox{\qquad / 3 pt.}
+
+\subsection{Q17: Selection of the VDD capacitor}
+Refer to section 8.2.2.1 of the UCC27288 datasheet, and calculate the required VDD capacitor. Then, choose the closest standard capacitance value (see the Appendix). Report selected capacitor and its voltage rating in the answer boxes.
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$C_\text{VDD,selected}$ = \quad F} \quad \fbox{$V_\text{CVDD,rated} $ = \quad V} \hfill \fbox{\qquad / 2 pt.}
+
+\subsection{Q18: Selection of the bootstrap series resistor}
+The series resistance $R_\text{boot}$ will limit the peak current at the bootstrap diode during start-up, but it should also be carefully selected as it introduces a time constant with the bootstrap capacitor given by
+\begin{equation}
+    \tau = R_\text{boot}C_\text{boot}.
+\end{equation}
+
+This time constant is related to the start-up time, which influences the load dv/dt. In this project, the selected $R_\text{boot}$ should satisfy  
+\begin{equation}
+    3 R_\text{boot}C_\text{boot} < 10 D_\text{min}/f_\text{sw}.
+\end{equation}
+where $D_\text{min}$ is set to 0.05.
+
+Additionally, the chosen bootstrap resistor must be able to withstand high power dissipation during the first charging sequence of the bootstrap capacitor. This energy and average power can be estimated by
+\begin{equation}
+    E_{boot} = \frac{1}{2}C_{boot}V_{boot}^2, \quad P_{R(boot)} =E_{boot} \cdot f_{sw}
+\end{equation}
+
+In this specific project course, we suggest that $R_{boot}$ be in the range of 1 $\Omega$ to 10 $\Omega$. Choose a proper package for this resistor.\\
+
+\fbox{$R_{boot}$ = \quad $\Omega$} \quad \fbox{$P_{R(boot)}$ = \quad W} \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q19: Calculate the voltage stress and peak current over the bootstrap diode}
+When the high-side device is on, the bootstrap diode will be reverse-biased. The selection of the bootstrap diode should consider the voltage stress and peak current through the diode during the start-up charging.\\
+
+In this project course, the ES2C diode will be used as the bootstrap diode.\\
+
+\fbox{$V_\text{Dboot,peak}$ = \quad V} \quad\fbox{$I_\text{Dboot,peak}$ = \quad A} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q20: Selection of the external gate resistor}
+In gate drivers for high-frequency converters, parasitic inductance and parasitic capacitance can cause voltage and current oscillations on the gate of the power MOSFETs. These oscillations can cause the breakdown of the device and disturb adjacent circuits. External gate resistors are typically used to slow down the turn-on and turn-off of the devices, thus mitigating these oscillations. Refer to Section 8.2.2.4, select the external gate resistor, and calculate the source and sink current of the gate driver. In this project course, we suggest that the external gate resistor is in the range of 5 $\Omega$ to 10 $\Omega$. \\
+
+Note: In the practical experimental test, you should capture waveform of the gate-source voltage. If there are obvious oscillations which may result in fault switching on, i.e., the amplitude of the oscillations higher than he turn-on threshold, the resistor should be increased. 
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{g}$ = \quad $\Omega$} \quad \fbox{$I_\text{OHH}$ = \quad A}\quad \fbox{$I_\text{OLH}$ = \quad A}\quad \fbox{$I_\text{OHL}$ = \quad A}\quad \fbox{$I_\text{OLL}$ = \quad A}\hfill\fbox{\qquad / 2 pt.}
+
+
+\subsection{Q21: Selection of the external gate-source resistor}
+The gate-source resistor (often called a pull-down resistor for N-channel devices) is a crucial safety component in MOSFET circuits. It prevents the MOSFET from turning on accidentally when the control signal is disconnected or undefined. 
+
+For most power electronics applications (Motor drives, DC-DC converters), the standard value lies between 5 kΩ and 15 kΩ. \\
+Select a reasonable resistance value $R_\text{gs}$ and calculate the expected power dissipation $P_\text{Rgs}$. 
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{gs}$ = \quad $\Omega$} \quad \fbox{$P_\text{Rgs}$ = \quad W}\hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q22: Estimate the power losses of the gate driver}
+Refer to section 8.2.2.3 of the datasheet to calculate the loss components in the gate driver device. Report the calculation procedure in the framed box as outlined in the datasheet. Then, sum them to obtain the estimated total loss of the gate driver and report it below. 
+\medskip
+\textbf{Note:} The gate driver internal pull up/down resistor can be calculated as in \eqref{eq:gatedriverinternalres}. The average value of the pull-up and pull-down resistors, $R_\text{GD-R}$, is $4.1  \:\Omega$ since
+\begin{equation}
+    \begin{split}
+        &\text{High-side pull-up resistor:}\quad &&R_\text{HOH} = V_\text{HOH}/I_\text{HO} &&= 0.42\text{V}/100\text{mA} = 4.2 \: \Omega\\
+        &\text{High-side pull-down resistor:}\quad &&R_\text{HOL} = V_\text{HOL}/I_\text{HO}&&= 0.40\text{V}/100\text{mA} = 4.0  \:\Omega\\
+        &\text{Low-side pull-up resistor:}\quad &&R_\text{LOH} = V_\text{LOH}/I_\text{LO}&&= 0.42\text{V}/100\text{mA} = 4.2  \:\Omega\\
+        &\text{Low-side pull-down resistor:}\quad &&R_\text{LOL} = V_\text{LOL}/I_\text{LO}&&= 0.40\text{V}/100\text{mA} = 4.0  \:\Omega\\
+    \end{split}
+    \label{eq:gatedriverinternalres}
+\end{equation}
+
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$P_{driver}$ = \quad W} \quad \hfill\fbox{\qquad / 3 pt.}
+
+\subsection{Q23: Calculate maximum allowed power dissipation in the gate driver device}
+Refer to section 8.2.2.3 of the datasheet and calculate the maximum allowed power dissipation in the gate driver device. Here, the ambient temperature is to be set as $40 \celsius$. \\
+\fbox{$P_{max}$ = \quad W} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q24: Calculate PWM signals low-pass filter for both primary and secondary side}
+In order to filter the noise induced by the parasitic inductance and capacitance of the cable connection between the power stage and the controller, a first-order low-pass filter (LPF) is suggested, as shown in Fig. \ref{fig:LPF}. To filter out the noise while maintaining the main signal intact, the cut-off frequency of the low-pass filter could be set approximately to 50 times the switching frequency. In addition, it should be considered that the maximum current that can be drawn from the circuit at the input of the low-pass filter is 2 mA (hint: the maximum current is limited by the resistor). The complex-valued transfer function is expressed as a function of frequency f in \eqref{eq:LPF_transferfunc} ($j$ is the imaginary unit, $R_\text{LPF}$ and $C_\text{LPF}$ are the resistor and the capacitor of the LPF, respectively). Design the low-pass filter and plot the transfer function (i.e., the Bode plot) of this filter, also indicating with vertical lines your switching frequency and the designed cut-off frequency.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.4\linewidth]{gfx/LPF.jpg}
+    \caption{First-order low pass filters for the PWM signals.}
+    \label{fig:LPF}
+\end{figure}
+\begin{equation}
+    \frac{v_\text{out,LPF} (f)}{v_\text{in,LPF}(f)} = \frac{1}{j(2\pi f)R_\text{LPF}C_\text{LPF} + 1}
+    \label{eq:LPF_transferfunc}
+\end{equation}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}\\
+
+    \centering 
+    \includegraphics[width=0.8\linewidth]{gfx/bode}
+\end{framed}
+\fbox{$R_{HI}$ = \quad $\Omega$} \quad \fbox{$C_{HI}$ = \quad F} \quad \fbox{$R_{LI}$ = \quad $\Omega$} \quad \fbox{$C_{LI}$ = \quad F}\quad \fbox{$f_{cut off}$ = \quad Hz}\hfill\fbox{\qquad / 2 pt.}
+
+
+\newpage
+\section{Current Measurement}
+Current sensing is necessary to protect the hardware from over-current damage and to precisely control how power is delivered to the load. In this project, current sensing is used only for safety and protection via the digital controller, i.e., the digital signal processor (DSP). A sensing circuit is thus needed to convert the electrical quantity being measured into a form that the micro-controller can read. 
+
+In this course, the \textbf{INA201AIDR} from Texas Instruments and a shunt resistor are used for current measurements. The typical circuit is shown in Fig.\ref{fig:ina201}. When the current amplitude needs to be acquired by the DSP, the "OUT" pin of the IC should be connected to one of the inputs of the analog-to-digital converter (ADC) of the digital controller. In this case, the information of the amplitude of the current can be used for both control and protection purposes in the control software executed on the DSP. When only an over-current alert is needed (i.e., a digital signal for protection), the "OUT" pin can be connected to "CMPin" via a voltage divider, then compared with an internal 0.6 V reference through the internal comparator in the INA20X. The alert threshold can be configured using the voltage divider.
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{gfx/CurrentSensing.jpg}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{gfx/OCDetect.jpg}
+    \end{subfigure}
+    \caption{Typical application circuit of the INA201 and shunt resistor. On the left, the analog signal representing the current being measured is acquired by the digital controller (uC) through one of the analog-to-digital (ADC) inputs. On the right, the current measurement is used only for protection; therefore, the measurement is fed to the comparator through a voltage divider, and ultimately read by one of the GPIO pins (configured as a digital input) of the micro-controller. }
+    \label{fig:ina201}
+\end{figure}
+
+In this project, the DC input current and output current should be sensed and measured with the digital controller, while the DAB inductor current should only be monitored to avoid over-current. This means that if an over-current event occurs in the inductor, the comparator should output a digital "high" value and send a signal to the digital controller to shut down the PWM output.\\   
+
+\textbf{Note}: There is a detailed design example in the datasheet of the INA201. Please read it carefully at this \href{https://www.ti.com/lit/ds/symlink/ina200.pdf}{\textbf{LINK}}.
+
+\textbf{Note}: The supply voltage for the INA201, $V_s$, is set to 3.3 V.
+
+\textbf{Note}: Generally, it is a good engineering practice to have the digital signals for fault detection as "active low" (i.e., the signal is in state "high" when the protection is not needed, while it is in state "low" when the protection is needed). In this project, instead, we use the "active high" logic to simplify the circuit. 
+
+\subsection{Q25: Estimate common mode voltage over the the current-sense amplifier}
+Refer to Fig. \ref{fig:concept}. According to the position of the primary and secondary shunt resistors and current-sense amplifiers, estimate the common-mode (CM) voltage stress across the current-sense amplifiers at the primary and secondary side. \\
+
+Note: Common-mode voltage ($V_\text{CM,pri(sec)}$) is the average voltage present on both inputs of a differential circuit (such as an op-amp) relative to a common reference point, usually ground.\\
+
+\fbox{$V_\text{CM,pri}$ = \quad V} \quad \fbox{$V_\text{CM,sec}$ = \quad V}\hfill\fbox{\qquad / 1 pt.}
+
+
+\subsection{Q26: selection of shunt resistors}
+To sense the input and output current, the "OUT" pin needs to connect to the ADC input of the digital controller. Considering that the allowable input range for the ADC of the selected digital controller ranges from 0 V to 3 V, the voltage of the "OUT" pin should be below 3 V. Since the voltage gain of the INA201 is 50 V/V, the voltage across the shunt resistor should be below 60 mV.  
+
+To ensure that the voltage of the  shunt resistors are not exceeding 50 mV, a 40\% margin should be considered. Therefore, the selection of the shunt resistor should follow the equation below. The list of the available shunt resistors can be found in the Appendix.
+\begin{equation}
+    1.4 \cdot R_\text{shunt,pri,max} \cdot I_\text{in,max} \leq 60 \text{mV}, \qquad \qquad 1.4 \cdot R_\text{shunt,sec,max}  \cdot I_\text{out,max} \leq 60 \text{mV}
+\end{equation}
+This equations represent the upper bounds for the resistance values. Besides, the resistors should not be much smaller because this will reduce the voltage range representing the current signals.
+For sake of simplicity, the shunt resistor for the inductor current can be selected using the same criterion. 
+
+For the used digital controller, TMS320F28335, the resolution for the ADC is 12 bit. The digital value of the input analog voltage at ADC terminal can be derived by (\ref{eq:ADC}). And it should be noted that all fractional values are truncated. Combine the selected shunt resistor and voltage gain of the INA201, calculate the digital value (DV) get from controller for the rated input and output current, and report them in the answer boxes.
+\begin{equation}
+    \text{Digital Value}=2^{12} \cdot \frac{\text{Input Analog Voltage}-0}{3}
+    \label{eq:ADC}
+\end{equation}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{shunt,pri}$ = \quad $\Omega$} \quad \fbox{$P_\text{Rshunt,pri}$ = \quad W} \quad \fbox{\text{DV}$_\text{I,rate,in}$ = \quad }\\
+\fbox{$R_\text{shunt,sec}$ = \quad $\Omega$} \quad \fbox{$P_\text{Rshunt,sec}$ = \quad W} \quad \fbox{\text{DV}$_\text{I,rate,out}$ = \quad }\\
+\fbox{$R_\text{shunt,ac}$ = \quad $\Omega$} \quad \fbox{$P_\text{Rshunt,ac}$ = \quad W} \quad \hfill\fbox{\qquad / 4 pt.}
+
+
+
+\subsection{Q27: Filter design for input and output current sensing}
+To filter the switching frequency noise when sensing the input and output DC current, it is suggested to add a low pass filter as shown in Fig.\ref{fig:filter}.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{gfx/input filter.png}
+    \caption{Circuit diagram of input filter applied to a component of the INA20x series.}
+    \label{fig:filter}
+\end{figure}
+
+Decide a reasonable cut-off frequency of this input filter according to the switching frequency, usually the cut-off frequency is 1/20 to 1/10 of the switching frequency, and then select the corresponding $R_\text{filter}$ and $C_\text{filter}$.\\
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$f_{cut-off,pri}$ =   \quad Hz} \quad \fbox{$R_\text{filter,pri}$ = \quad $\Omega$} \quad \fbox{$C_\text{filter,pri}$ = \quad F} \quad \\
+\fbox{$f_{cut-off,sec}$ =   \quad Hz} \quad \fbox{$R_\text{filter,sec}$ = \quad $\Omega$} \quad \fbox{$C_\text{filter,sec}$ = \quad F} \quad \hfill\fbox{\qquad / 2 pt.}
+
+
+
+\subsection{Q28: Inductor current monitoring circuit for protection}
+In this project, the current of the DAB inductor needs to be monitored. When there is an over-current fault, a digital fault signal should be generated by the current sensing circuit and sent to the digital controller to shut down the PWM.
+
+The INA201 current-sense amplifier includes a comparator and an internal 0.6 V voltage reference. Refer to section 7.3.3 to understand the operating principle of the over-current protection.\\
+
+The design of the voltage divider should consider the following equation:
+\begin{equation}
+    I_\text{L,alert,threshold} = \frac{0.6\text{V} \cdot (R_\text{divider,1} + R_\text{divider,2})}{R_\text{shunt,ac}\cdot\text{Gain}\cdot R_\text{divider,2}}  \: , 
+\end{equation}
+where Gain is the voltage gain of the INA201, $I_\text{L,alert,threshold}$ is the inductor over-current threshold (which is set to 140\% of the calculated maximum inductor current). Here, we suggest that $R_\text{divider,2}$ is fixed to 10 k$\Omega$. And $R_\text{divider,1}$ uses a potentiometer in series with a resistor. The maximum resistance of the potentiometer is 10kOhm.\\
+
+The over current detection circuit is shown in Fig.~\ref{fig:ina201} (right figure). Additionally, refer to Fig.~\ref{fig:filter}, adding a filter in the over current detection circuit as well. It should be noted that to keep switching-frequency information, the cut-off frequency of the low-pass filter is 20 times higher than the switching frequency. It should also be noted that the "RESET" pin is connected to a push button, which is normally tied to 3.3V, meaning that the fault signal will be latched. To reset the signal, push the button to have the "RESET" pin connected to ground.
+
+To protect the IC, two diodes are used in this circuit. In this project, diode ES2C is asked to be used.
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$I_\text{L,alert,threshold}$ = \quad A}\quad \fbox{$R_\text{divider-1}$ = \quad $\Omega$}\quad \fbox{$R_\text{divider-2}$ = \quad $\Omega$}\hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q29: Calculate the current-limiting resistor of the LED}
+Refer to the right figure in Fig. \ref{fig:ina201}, a green LED in series with a resistor is connected between the "CMPout" pin and the Vs supply pin. When the inductor current is below the alert level, the "CMPout" pin is LOW, and the green LED will be ON to represent a normal working status. When the inductor current is above the alert threshold level, "CMPout" pin is HIGH, and the green LED will be OFF. To limit the current through the LED, a resistor is needed.
+
+Here is the \href{https://www.kingbrightusa.com/images/catalog/spec/wp710a10lgd.pdf}{\textbf{LINK}} of the datasheet of the LED. Select the proper limiting resistor to limit the current through the LED is around 2 mA. And calculate the power consumption of the LED circuit.\\ 
+\fbox{$R_\text{LED}$=  \quad $\Omega$} \quad \fbox{$P_\text{LED-circuit}$=  \quad W}  \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q30: Estimate the power consumption of one INA201-based sensing circuit}
+Calculate the maximum power consumption of the sensing circuit as $P_\text{max,INA201} = V_{s} \cdot I_{Q_{max}} + V_{s} \cdot I_{sc}$, where $V_s$ is the supply voltage, $I_{Q_{max}}$ is the maximum quiescent current, and $I_{sc}$ is short circuit output current corresponding to supply voltage. Carefully extract the values for $I_{Q_{\text{max}}}$ and $I_{sc}$ from the datasheet based on your operating $V_s$ to complete the calculation.\\
+\fbox{$P_\text{max,INA201}$=  \quad W} \quad \hfill\fbox{\qquad / 2 pt.}
+
+\newpage
+\section{Voltage Measurement}
+To sense the input and output DC voltage via the ADC of the digital controller, a voltage divider is used in this project. The voltage divider scales down the measured voltage, which is then filtered and buffered with an operational amplifier in voltage-follower configuration (i.e., unitary gain) before being connected to an ADC input of the DSP via the corresponding connector. 
+
+Fig.\ref{fig:vsense} shows the typical circuit diagram of this voltage sensing circuit that will be used in this project. To protect the op-amp from over voltage, a diode is used between the position input and VCC. In this project, diode ES2C is used.\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.4\linewidth]{gfx/vsense.jpg}
+    \caption{Typical DC voltage sensing circuit for the voltage $V_\text{in(out)}$.}
+    \label{fig:vsense}
+\end{figure}
+
+\textbf{Note:} The operational amplifier MCP6241 is used to implement the voltage follower.\\
+
+\subsection{Q31: Design the voltage divider for input voltage sensing}
+Design the voltage divider in the voltage sensing circuit to ensure the voltage $v_\text{sense}$ is below 3.0 V to respect the voltage limits of the downstream circuit. In doing this, a 10\% margin should be kept on the maximum voltage. 
+This constraint is described by the equation below. 
+\begin{equation}
+    1.1 V_\text{max}\frac{R_\text{vsense,2}}{R_\text{vsense,1}+R_\text{vsense,2}}\leq3.0\text{V}
+\end{equation}
+In addition, it should be considered that the power dissipation on the resistor should not be too high. Moreover, the design of the low-pass filter can be realized by considering a target cut-off frequency of at least 1/10 of the switching frequency, calculated as
+\begin{equation}
+    f_{cut-off}=\frac{1}{2\pi C_\text{vsense}(R_\text{vsense,1}//R_\text{vsense,2})}
+\end{equation}
+Report the design for the primary voltage sensing (namely, the resistance and capacitance values selected from the Appendix, and the calculated power dissipation at maximum voltage) and the range of $v_\text{sense,pri}$ considering an input voltage from 0 to 60 V. And also considering the 12bit ADC of the used controller and the designed voltage divider, calculate the voltage sensing resolution. 
+\textbf{Note: the cut-off frequency will determine the limit for the bandwidth of the control that will be implemented in the next report.}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{vsense,1,pri}$=  \quad $\Omega$} \quad \fbox{$P_\text{vsense,1,pri}$ = \quad W} \quad \fbox{$R_\text{vsense,2,pri}$=  \quad $\Omega$} \quad \fbox{$P_\text{vsense,2,pri}$ = \quad W}\quad \\
+\fbox{$C_\text{Vsense,pri}$ = \quad F} \quad  \fbox{$V_\text{sense,pri}:$ from \quad V \quad to \quad V} \quad  \fbox{$V_\text{resolution,pri}:$  \quad V } \quad\hfill\fbox{\qquad / 3 pt.}
+
+\subsection{Q32: Design the voltage divider for output voltage sensing}
+Similarly to the previous question, design the voltage divider for the output voltage sensing, and report the design values in the answer boxes. Additionally, report the $V_\text{sense,sec}$ corresponding to $V_\text{out,rated}$ in the answer box. 
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$R_\text{vsense,1,sec}$=  \quad $\Omega$} \quad \fbox{$P_\text{vsense,1,sec}$ = \quad W} \quad \fbox{$R_\text{vsense,2,sec}$=  \quad $\Omega$} \quad \fbox{$P_\text{vsense,2,sec}$ = \quad W}\quad \\
+\fbox{$C_\text{Vsense,sec}$ = \quad F} \quad  \fbox{$V_\text{sense,sec}=$ \quad V } \quad\hfill\fbox{\qquad / 3 pt.}
+
+\subsection{Q33: Estimate the power consumption for the voltage follower}
+The loss of the voltage follower circuit using the MCP6241 includes two parts: static power consumption and load power. In this application, the output of the circuit is connected to the digital isolation buffer (implemented in the controller board) by a connector, where the input impedance is high; thereby, the load current from the voltage follower is negligible, and therefore the load power can be neglected.
+
+Refer to the note in Q30, estimate the power loss for the voltage follower circuit.\\
+\fbox{$P_{MCP6241,static}$ = \quad W} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\newpage
+
+\section{Power Supply for the ICs}
+The gate driver, sensing circuit, and other ICs need a power supply to work. 
+In this project, the ICs on the high-voltage input side are powered by the main input supply. The ICs on the output side are instead powered by the transformer's auxiliary winding. However, the voltage from the main input and transformer's auxiliary winding cannot be applied to the ICs directly because it needs to be regulated at the required value; therefore, voltage regulation circuits are needed.
+
+\subsection{Q34: Estimate power consumption of 3.3V on the primary and secondary side}
+The 3.3V power supply on the primary side needs to provide power for three INA201-based sensing circuits (one for DC input current and two for inductor current monitoring), one input voltage sensing circuit and two LED lighting circuits. Please calculate the overall power consumption of these circuits at the primary side. \\
+
+As for the secondary side, the voltage regulation circuit needs to drive one voltage sensing circuit and one current sensing circuit.  Please calculate the overall power consumption of these circuits at the secondary side.
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$P_\text{pri,3.3V}$ = \quad W} \quad \fbox{$P_\text{sec,3.3V}$ = \quad W} \quad \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q35: Estimate load current and power consumption of 3.3V-LDO on the primary and secondary side}
+To power the INA201 and operational amplifier with 3.3 V, two stage of DC-DC conversions are needed, one for the primary side and one for the secondary side. In this project, IC AZ1117IH-3.3TRG1 is asked to be used. The circuit for the use of AZ1117IH-3.3TRG1 is shown in Fig.~\ref{fig:3V3}. Here, one more LED is used. Combine the calculated power consumption on the 3.3V in the last question, calculate the load current of the 3.3V-LDO IC. And assuming power conversion efficiency of 60\%, calculate the input power requirement for the 3.3V-LDO IC.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/3v3.png}
+    \caption{Example of the usage of the AZ1117IH-3.3TRG1 power conversion IC.}
+    \label{fig:3V3}
+\end{figure}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$I_\text{pri,3.3V}$ = \quad A} \quad \fbox{$I_\text{sec,3.3V}$ = \quad A} \quad
+\fbox{$P_\text{pri,3.3V,in}$ = \quad W} \quad \fbox{$I_\text{sec,3.3V,in}$ = \quad W} \quad \hfill\fbox{\qquad / 2 pt.} \\
+
+
+
+\subsection{Q36: Estimate power consumption of 12V on the primary and secondary side}
+The 12V power supply on the primary side needs to provide power for two gate driver circuits, one 3.3V-LDO IC which convert 12V to 3.3V, and one LED circuit. Please calculate the overall power consumption and load current of 12V power supply at the primary side. \\
+
+Similarly, the 12V power supply on the secondary side needs to provide power for two gate driver circuits, one LDO circuit which converter 12V to 3.3V, and one LED circuit. Please calculate the overall power consumption and load current of 12V power supply at the secondary side.
+
+\textbf{Note:} In the practical design, the selected voltage regulation IC should provide stable 12V output, and out power and current capability should be higher than the calculated values and 50\% margin should be considered. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$P_\text{pri,12V}$ = \quad W} \quad \fbox{$I_\text{pri,12V}$ = \quad A} \quad \fbox{$P_\text{sec,12V}$ = \quad W} \quad  \fbox{$I_\text{sec,12V}$ = \quad A} \hfill\fbox{\qquad / 2 pt.}
+
+
+\subsection{Q37: Auxiliary power supply for the ICs on the primary side}
+On the primary side, the power for the auxiliary circuit is taken from the main input. To efficiently regulate the main input voltage (30V-60V) to a 12 V output for the auxiliary circuits, the DC-DC module 173951275 from Würth Elektronik is used in this project. The circuit for the use of 173951275 is shown in Fig. \ref{fig:aux}. To see if this power module works properly, a LED is used here (same as before, \href{https://www.kingbrightusa.com/images/catalog/spec/wp710a10lgd.pdf}{\textbf{LINK}}). Calculate the LED current limiting resistor (resistance and power). Furthermore, to reduce output voltage ripple, select two appropriate capacitors from the Appendix based on the module's datasheet requirements.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/auxPowerSupply.png}
+    \caption{Example of the usage of the 173951275 power-conversion module.}
+    \label{fig:aux}
+\end{figure}
+
+\fbox{$R_{LED,1}$ = \quad $\Omega$}  \quad \fbox{$P_{RLED,1}$ = \quad $\Omega$}  \quad \fbox{$C_{out1,Pri,12V}$ = \quad F} \quad \fbox{$C_{out2,Pri,12V}$ = \quad F}\quad  \hfill\fbox{\qquad / 2 pt.}
+
+
+\subsection{Q38: Calculate minimum block voltage for the diode rectifier}
+To power the ICs on the secondary side, an extra winding is added to the transformer, which has been designed in Report 2. The voltage from the transformer cannot be applied to the ICs directly since it is AC voltage. Therefore, a diode rectifier is needed. In this project, the full-bridge rectifier, LMB14S-TP, is asked to be used.\\
+
+Using the transformer's turns ratio get from report 2, calculate the repetitive peak reverse voltage ($V_{RRM}$) across the rectifier diodes when the system is stable at the rated output voltage.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/auxPowerSupply.png}
+    \caption{Example of the usage of the 173951275 power-conversion module.}
+    \label{fig:aux}
+\end{figure}
+
+\fbox{$V_\text{RRM}$ = \quad V} \quad \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q39: Selection of capacitance for the diode rectifier circuit}
+To obtain a stable DC voltage after the rectifier, capacitors are needed. Assuming the voltage ripple is 1\% and the load current, $I_\text{load,aux}$, is 0.3 A for this auxiliary circuit, calculate the filter capacitor and find the closest standard value. To protect the follower LDO IC from over voltage damage, a zener diode, 1N4750A-TR, is placed in parallel with the output.
+
+The minimal capacitance can be calculated by 
+\begin{equation}
+    C_\text{min}=\frac{I_\text{load,aux}}{2\cdot f_\text{sw}\cdot V_\text{ripple}}
+\end{equation}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$C_{rectifier(min)}$ = \quad F} \quad \fbox{$C_{rectifier(select)}$ = \quad F} \quad \fbox{$V_{rated-C}$ = \quad V} \quad \hfill\fbox{\qquad / 1 pt.}
+
+\subsection{Q40: Calculate the load current for LDO-12V on the secondary side}
+On the secondary side, to regulate the output from the rectifier to 12V to power the secondary-side gate drivers, an extra LDO is needed. In this project course, the UA78L12ACDR is suggested. Refer to section 8.2 of the datasheet \href{https://www.ti.com/lit/ds/symlink/ua78l.pdf}{(LINK)}, select the input and output capacitors. And check if the current capability of this IC is higher than the calculated load current on the 12-V on the secondary side.\\ 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\fbox{$C_\text{LDO-12V,in}$ = \quad F} \quad  \fbox{$C_\text{LDO-12V,out}$ = \quad F} \quad  \hfill\fbox{\qquad / 1 pt.}
+
+% \subsection{Q27: Calculate the load current for LDO-5V}
+% To power the INA310x and operational amplifier on the secondary side, a LP2985-50DBVR will be used. Select the input and output capacitances, and calculate the load current for this LDO. \\ 
+% \begin{framed}
+% 	\vspace{2em}
+% 	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+% 	\vspace{2em}
+% \end{framed}
+% \fbox{$I_\text{LDO-5V}$ = \quad A} \quad  \fbox{$C_\text{LDO-5V,in}$ = \quad A} \quad  \fbox{$C_\text{LDO-5V,out}$ = \quad A} \quad  \hfill\fbox{\qquad / 1 pt.}
+
+
+\newpage
+\section{Schematic and PCB}
+In this project, main input and output connector will be provided in the template. Below connector with a specific pin map should be used, which is the interface between the power board and controller. The connector will be provided in the Alitum Designer Template. PWM channel 1 and channel 2 should be used for the primary side; PWM channel 3 and channel 4 should be used for the secondary side; ADC A0 and A1 is used for output voltage and output current sensing. ADC A2 and A3 is used for input voltage and input current sensing. $\text{ECAP2}_\text{ISO}$ is for inductor current over current detection circuit. $\text{GPIO15}_\text{ISO}$ is connected to a red LED; $\text{CS1}_\text{ISO}$, and $\text{CS2}_\text{ISO}$ are connected to two green LEDs. To limit the current of 2mA, resistor is needed.  
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/PinMap.png}
+    \caption{Interfacing connector between the power board and control board.}
+    \label{fig:pinmap}
+\end{figure}
+
+
+\subsection{Q41: Create the footprints}
+Please design the footprints for the transformer, inductor, and input electrolytic capacitor, and then report the figures of the footprint in the framed box. Use the measurement tool to show the relevant geometric dimensions of the footprint as in the exemplary figure below. 
+\begin{framed}
+	\vspace{1em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}\\
+    \includegraphics[width=0.4\linewidth]{gfx/footprint.png}\\
+\end{framed}
+\hfill\fbox{\qquad / 6 pt.}
+
+\subsection{Q42: Schematic layout}
+
+Follow the instructions below to finalize your Altium Designer schematic. Once complete, export the schematic as a PDF for TA review.
+\begin{itemize}
+\medskip
+\item Finish the connection between the components; include capacitance and resistance values in the parameters/comments, as shown in below figure. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{gfx/example.png}
+    \label{fig:placeholder}
+\end{figure}
+\medskip
+\item Place test points in the schematic. The provided model of test point has two connection terminals, which must be connected to the desired signal and to the corresponding ground. Place Test-Points to measure the following signals:
+\begin{itemize}
+    \item The drain-source voltage of all low-side devices.
+    \item The gate-source voltage of all low-side devices.
+    \item The voltage across the three shunt resistors.
+    \item All PWM signals from the digital controller.
+    \item 12V and 3.3V on the both primary and secondary side.
+    \item Auxiliary voltage ($V_\text{aux}$).  
+    \item Output of the inductor current monitoring circuit.
+    \item Output of the voltage and current measurement circuit.
+\end{itemize}
+\medskip
+\item Place the heatsinks for the MOSFETs. Choose the correct footprints, coherently with the models chosen in report 1. Leave their mounting connection terminals floating.
+
+\item Place 4 M3 mounting holes.
+
+\end{itemize}
+
+\hfill\fbox{\qquad / 5 pt.}
+
+
+
+\subsection{Q43: Bill of materials (BOM)}
+With the help of the Altium Report Manager, generate the Bill of Materials (BOM) needed to build your converter and include it below.
+This report-type document provides a list of all the required components for design realization.\\
+
+In case your design requires the use of additional components not listed in the Appendix section, highlight them and be sure to provide
+the following information in tabular form:\\
+• Manufacturer Part Number;\\
+• Supplier Part Number (e.g., Digikey, Mouser, etc...);\\
+• Supplier Link;\\
+• Quantity (n.b., check that the needed quantity is available in stock, and that it is possible to order the exact amount needed);\\
+• Unit Price (in CHF);\\
+• Total Price (in CHF).\\
+Refer, if possible, to a single supplier for all your additional required components. The Appendix provides some constraints for the
+additional components that can be allowed in your design.\\
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.\\}
+	\vspace{2em}
+\end{framed}
+\hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q44: Minimal copper width for current-carrying tracks}
+Prior to routing your PCB, determine the minimal copper width needed for the current-carrying tracks. The copper thickness is fixed to
+35 $\mu$m(1 OZ), whereas the current density is limited to 35 A/mm$^2$, to limit the copper temperature rise to roughly 10 degrees. Based on this information and the rated current, calculate your current-carrying track width and proceed with it for the power stage.
+
+
+\textbf{Note}: it is clear that this width must be applied only to the connections that carry high current, not to every trace in the PCB. 
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.\\ Example of the footprint}
+	\vspace{2em}
+\end{framed}
+\fbox{$w_\text{cu,pri}$= \quad mm } \quad \fbox{$w_\text{cu,sec}$= \quad mm } \hfill\fbox{\qquad / 2 pt.}
+
+\subsection{Q45: PCB layout}
+Before manufacturing the PCB of the designed converter, it is necessary to check that the connections and component placement were
+done correctly. For this purpose, route your PCB, following the guidelines given below.
+
+For this course, the PCB prototype is limited to 2 layers. It is not allowed to exceed the maximum size set by the provided template.
+
+For best performance, partition the PCB by physically grouping components:
+
+\begin{itemize}
+\item Power circuitry (MOSFET, inductor, input and output capacitors, input and output terminals, etc...);
+\item Gate driving circuit.
+\end{itemize}
+
+Looking into \href{https://jlcpcb.com/blog/pcb-design-rules-best-practices}{\textbf{Link}}. This guide is a technical resource for the entire design process, which covers the essential rules for schematics, layout, and manufacturing that every engineer and hobbyist needs to know for a successful design.
+
+The rules for PCB layout has been set in the Altium Template. Auto-routing is not allowed. 
+
+Route in the following order:
+
+\begin{itemize}
+\item Power stage (MOSFET, diode, coupled inductor...) to have the minimum physical loop on the board, as this loop will be the source
+of interference.
+
+\item Auxiliary measurement and control circuits. To avoid problems that are difficult to solve later, it is strongly suggested to follow closely the layout guidelines provided in the datasheet of the integrated circuits.\\
+\end{itemize}
+You can use vias to connect tracks on the two sides of the PCB. \\
+
+Place the mounting holes near the corners of the board to ensure good mechanical stability.\\
+
+Verify that the heatsinks are properly aligned with the MOSFETs.\\
+
+Annotate the PCB silkscreen with all the required information (e.g., connector polarities, component identifiers, etc...).\\
+
+Run a design rule check in Altium Designer, and correct all the errors. \\
+
+Include below a 2D and 3D view of the top and bottom layers of your final PCB layout.\\
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.\\ Example of the footprint}
+	\vspace{2em}
+\end{framed}
+\hfill\fbox{\qquad / 5 pt.}
+
+\clearpage
+
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+
+This section contains the list of available components that can be used in your design, and some specification requirements for additional components.  
+
+\subsection*{List of available SMD capacitors}
+\addcontentsline{toc}{subsection}{List of available SMD capacitors}
+
+The list of available SMD Ceramic Capacitors is given in Table~\ref{tab:List_of_Cap}.
+Refer to these values for your design. \\
+For information about the power ratings of different SMD ceramic capacitors, refer to Table~\ref{tab:Ceramic_cap_power_rating}. 
+
+\begin{table}[H]
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Power ratings of different SMD ceramic capacitors packages, empirically determined considering a temperature rise of \SI{25}{\celsius} rise above the ambient temperature (Source: Johanson Dielectrics).}
+	\label{tab:Ceramic_cap_power_rating}
+    \begin{tabular}{l|c|c|c|c}
+    \hline
+    Package (Imperial/Metric) & 1206/3216   & 1210/3225   & 1812/4532   & 2512/6332   \\
+    Power Rating             & \SI{80}{\milli \watt}     & \SI{200}{\milli \watt}    & \SI{400}{\milli \watt}    & \SI{900}{\milli \watt} \\
+    \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\captionsetup{justification=centering}
+	\caption{List of available SMD Ceramic Capacitors}
+	\label{tab:List_of_Cap}
+    \include{List_of_Available_Components/List_of_Cap}
+\end{table}
+
+% \begin{table}[]
+%     \centering
+%     \label{tab:my_label}
+%     \include{List_of_Available_Components/List_of_Cap_2}
+% \end{table}
+\clearpage
+
+
+\subsection*{List of available SMD resistors}
+\addcontentsline{toc}{subsection}{List of available SMD resistors}
+
+The SMD Resistors can be chosen from  Table~\ref{tab:SMD_Resistors}. This table includes both SMD resistor kits and individual resistor values.  \\
+For the resistance codes of the Stackpole Electronics Kits it is possible to refer to Fig.\ref{fig:Stackpole_Electronics_Code}. \\
+
+\begin{table}[H]
+\centering
+\captionsetup{justification=centering}
+\caption{List of available SMD Resistors (Individual and Kits).}
+\label{tab:SMD_Resistors}
+\include{List_of_Available_Components/List_of_Res}
+\end{table}
+
+\begin{center}
+\includegraphics[scale=0.6]{gfx/Stackpole_Electronics_Resistor_Code.png}
+\captionof{figure}{Resistor Code for Stackpole Electronics Kits.}
+\label{fig:Stackpole_Electronics_Code}
+\end{center}
+
+\subsection*{List of available shunt resistors}
+\begin{table}[H]
+\centering
+\captionsetup{justification=centering}
+\caption{List of available SMD Current-Shunt Resistors.}
+\label{tab:SMD_Resistors}
+\include{List_of_Available_Components/List_of_Shunt}
+\end{table}
+
+
+\subsection*{Rules for additional components}
+\addcontentsline{toc}{subsection}{List of available current sensing resistors}
+
+\addcontentsline{toc}{subsection}{Rules for additional components}
+
+
+Only the following components can be authorized:
+\begin{itemize}
+    \item Input and Output capacitors;
+    \item Auxiliary circuit Limiting Resistor;
+    \item Gate Resistor. \\
+\end{itemize}
+
+Note also that: Additional \textbf{SMD} components are limited to the package \textbf{1206 or bigger};
+
+To this purpose, the group is asked to provide in Q43 the following information in tabular form:
+\begin{itemize}
+    \item Manufacturer Part Number;
+    \item Supplier Part Number (e.g., Digikey, Mouser, etc...);
+    \item Supplier Link;
+    \item Quantity (n.b., check that the needed quantity is available in stock, and that it is possible to order the exact amount needed);
+    \item Unit Price (in CHF);
+    \item Total Price (in CHF).
+\end{itemize}
+Refer, if possible, to a single supplier for all your additional required components.
+\end{document}

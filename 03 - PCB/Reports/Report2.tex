@@ -1,0 +1,1436 @@
+\documentclass{PELsmallreport}
+
+\graphicspath{{gfx/}}
+\bibliography{Bibliography.bib}
+
+\setAuthorOne{{Loris Bregy 379329}}
+\setAuthorTwo{{Rubie Luo 423142}}
+
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\vfill
+
+
+
+
+\clearpage
+\section{Transformer -- Design Specifications and Constraints}
+
+
+
+
+
+
+
+
+The second part of the project deals with the design and realization 
+of the magnetic components (i.e., the transformer and the inductor) of the DAB converter, according to the specifications and requirements from Report 1. 
+The schematic to be considered for this report is shown in Figure \ref{fig:schematic}. 
+\textbf{Fill out Table \ref{Tab:Specs}} with the parameters assigned to your group and calculated in the previous Report. 
+\\
+
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[scale=1]{gfx/DAB_magnetics_schematics_v2.pdf}
+    \caption{Schematics of the DAB converter for this report, highlighting the separation of the transformer and the inductor that will be designed separately in this report. Compared to Report 1, a winding of $N_\mathrm{aux}$ is also added to power the auxiliary circuits at the secondary side. More details about these aspects will come in the next reports. } 
+    \label{fig:schematic}
+\end{figure}
+
+
+One of the most important choices for the design of inductors and transformers is the selection of the material for the magnetic core. 
+For all the groups in this class, the operating frequency of the converter are above \qty{10}{\kHz}. 
+For such frequencies, materials known as ferrites are typically employed, while other materials are available for lower operating frequencies. 
+Here, only the N87 ferrite material from TDK (\href{https://www.tdk-electronics.tdk.com/download/528882/990c299b916e9f3eb7e44ad563b7f0b9/pdf-n87.pdf}{datasheet pdf}) is considered. 
+\\
+
+
+Another important guideline to follow for this project is that \textbf{the design of the transformer and the inductor are to be pursued separately}. 
+In other words, \textbf{the transformer is designed to have maximum coupling} (i.e., with the lowest leakage and highest magnetizing inductance possible), while \textbf{the inductor is designed to obtain the desired inductance $L$} as calculated in Report 1. 
+The transformer will be discussed first. 
+In addition to what has been discussed in Report 1, the transformer will have to include an additional winding to power the secondary-side auxiliary circuitry. 
+The auxiliary winding will be then connected in the next Report to a diode rectifier to generate a DC voltage $V_\mathrm{aux,out}$ 
+(reported in Table \ref{Tab:Specs} together with the power requirement $P_\mathrm{aux,out}$). 
+\\
+
+
+To successfully complete the second part of the project, it is \textbf{essential} to go through the corresponding lecture slides before starting to work on the report. 
+To provide your answers and explanations, use the framed boxes below each question. 
+For the questions where no box for explanations is provided, it is sufficient to write only the solution to the question without providing any additional reasoning steps. 
+The design processes in this part of the project are \textbf{iterative}. 
+You will (most likely) need to go back and rethink your previous decisions whenever you find out that some constraints are broken or yield operating conditions that are unfeasible or undesirable. 
+You are asked \textbf{not} to report every iteration \textbf{nor} to provide a written account of all the iterations. 
+\textbf{Report only} your final design choices taking care of checking that they comply with \textbf{all} the constraints given in the previous and following steps.
+Regarding the results of analytical calculations, please provide them with two digits after the decimal point in the unit provided in the solution box. Use the framed boxes below each question to insert your answers and explanations. 
+Keep them concise and use the symbols indicated in Figure \ref{fig:schematic} (if a symbol is not present, define it). 
+\\
+
+\begin{table}[H]
+\caption{Given parameters and design requirements for the DAB converter.}
+\centering
+\label{Tab:Specs}
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Property} & \textbf{Value} & \textbf{Unit} \\
+      \hline
+      $P_\mathrm{out,nom}$ & 50 & \si{\watt} \\ \hline
+      $V_\mathrm{in,nom}$ & 50 & \si{\volt} \\ \hline
+      $V_\mathrm{in,min}$ & 30  & \si{\volt} \\ \hline
+      $V_\mathrm{in,max}$ & 60 & \si{\volt} \\ \hline  
+      $V_\mathrm{out}$ & 12 & \si{\volt} \\ \hline
+      $\Delta V_\mathrm{out,pp,rel}$ & 2 & \% \\ \hline
+      $f_\mathrm{sw}$ & 80 & \qty{}{\kHz} \\ \hline
+      $V_\mathrm{aux,out} $ & \qty{18}{} & \qty{}{\V} \\ \hline
+      $P_\mathrm{aux,out} $ & \qty{5}{} & \qty{}{\W} \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+
+
+
+\newpage
+\subsection{Q1: Calculation of Volt-second Stress} 
+Volt-second stress (also known as peak flux-linkage) is the peak-to-peak value of the integral of the voltage applied to the transformer over a positive half cycle. 
+This value is independent of the transformer design.  
+You can consider constant input and output voltages during the positive half cycle. 
+Evaluate the volt-second stress at the primary side under the worst-case condition (i.e., the highest value). 
+\\
+
+\begin{framed}
+The worst-case volt-second stress occurs at maximum input voltage $V_\mathrm{in,max} = 60\,\mathrm{V}$, since $\lambda_1 \propto V_\mathrm{in}$.
+For a full-bridge DAB, the primary winding sees a $\pm V_\mathrm{in}$ square wave at 50\% duty cycle (lecture slides). Integrating over one positive half-period:
+\begin{equation}
+    \lambda_1 = V_\mathrm{in,max} \cdot \frac{T_\mathrm{sw}}{2} = 60\,\mathrm{V} \times \frac{12.5\,\upmu\mathrm{s}}{2} = 375\,\upmu\mathrm{Wb}
+\end{equation}
+\end{framed}
+
+\begin{framed}
+The worst-case volt-second stress occurs at $V_\mathrm{in,max}=60\,\mathrm{V}$, since $\lambda_1\propto V_\mathrm{in}$.
+For a full-bridge DAB, the primary voltage is a $\pm V_\mathrm{in}$ square wave at 50\% duty cycle (lecture slides).
+Integrating over one positive half-period:
+\begin{equation}
+    \lambda_1 = V_\mathrm{in,max}\cdot\frac{T_\mathrm{sw}}{2} = 60\,\mathrm{V}\times\frac{12.5\,\upmu\mathrm{s}}{2} = 375\,\upmu\mathrm{Wb}
+\end{equation}
+\end{framed}
+
+\fbox{$\lambda_1$ = $375\,\upmu$Wb} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+\subsection{Q2: Estimation of Loss Coefficient} 
+
+The Kg method used in this project requires the calculation of the core loss coefficient $K_\mathrm{fe}$.
+The manufacturer of the core material (namely, TDK) provides the data reported in Table~\ref{tab:core_loss_data} that gives us a first estimate of the volumetric loss at \qty{80}{\celsius} as \\
+\begin{equation}
+    p_\mathrm{vol} = K_\mathrm{b} \cdot \left( \frac{f}{f_\mathrm{base}}\right)^{\alpha} \cdot \left( \frac{B_\mathrm{pk}}{B_\mathrm{base}}\right)^{\beta}
+    \label{eq:Kfe}
+\end{equation}
+where $f$ is the operating frequency, $B_\mathrm{pk}$ is the peak operating magnetic flux, $f_\mathrm{base}$ is the base frequency, $B_\mathrm{base}$ is the base peak magnetic flux, and $\alpha$ and $\beta$ are the Steinmetz parameters. 
+
+Calculate the $K_\mathrm{fe}$ coefficient using the row of Table~\ref{tab:core_loss_data} with the nearest base frequency to your operating frequency.   
+\\
+\textbf{Note}: This relation assumes sinusoidal excitation on a toroidal core, but it is a reasonable estimation for your project. 
+
+
+\begin{table}[!h]
+    \centering
+    \caption{Core loss data from the manufacturer of material N87. }
+    \label{tab:core_loss_data}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    $f_\mathrm{base} \: (\mathrm{kHz})  $ & $\alpha \: (\,) $ & $\beta$  \: (\,) & $K_\mathrm{b} (\mathrm{kW}/\mathrm{m^3})$ & $B_\mathrm{base} \: (\mathrm{mT}) $  \\
+    \hline
+    25 kHz            & 1.44    & 2.93  & 67.48 &  200              \\
+    \hline
+    50 kHz            & 1.72    & 2.66  & 23.51 &  100              \\
+    \hline
+    100 kHz           & 1.72    & 2.68  & 61.15 &  100              \\
+    \hline
+    200 kHz           & 1.839   & 2.57  & 30 &  50               \\            
+    \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+\begin{framed}
+Using the 100\,kHz row of Table~\ref{tab:core_loss_data} (nearest to $f_\mathrm{sw}=80\,\mathrm{kHz}$): $f_\mathrm{base}=100\,\mathrm{kHz}$, $\alpha=1.72$, $\beta=2.68$, $K_b=61.15\,\mathrm{kW/m^3}$, $B_\mathrm{base}=100\,\mathrm{mT}$. Absorbing frequency and base-flux dependence (from \eqref{eq:Kfe}):
+\begin{equation}
+    K_\mathrm{fe} = K_b \cdot \!\left(\frac{f_\mathrm{sw}}{f_\mathrm{base}}\right)^{\!\alpha} \cdot \frac{1}{B_\mathrm{base}^{\beta}} = 61.15\!\times\!10^3 \cdot \!\left(\frac{80}{100}\right)^{\!1.72} \cdot \frac{1}{(0.1)^{2.68}} = 19.94\,\mathrm{W/(cm^3 \cdot T^{2.68})}
+\end{equation}
+\end{framed}
+
+\fbox{$K_\mathrm{fe}$ = $19.94\,\mathrm{W/(T^{2.68}\,cm^3)}$} \hfill\fbox{\qquad / 1 pt.}
+
+% OLD VERSION: 
+% To estimate the core loss coefficient, it is possible to use an empirical formula derived from Steinmetz equation and given in Equation \ref{eq:Kfe}. 
+% For the selected material you can use $\upalpha = 1.5$ and density $D=\qty{0.00485}{\kg / \cm^3}$. 
+% % Notice that the design should consider the worst-case operating point. 
+% \begin{equation}
+%     K_\mathrm{fe} = 0.262 \cdot 10^{-3} \cdot f^{\upalpha} \cdot D 
+%     \label{eq:Kfe}
+% \end{equation}
+
+% \fbox{$K_\mathrm{fe}$ = \qquad\qquad $\mathrm{W}/\mathrm{T}^{\beta} \mathrm{cm}^3$} \hfill\fbox{\qquad / 1 pt.}
+
+
+
+\subsection{Q3: Total Current Stress} 
+Assuming a worst-case RMS current  $I_{\mathrm{w,aux,RMS}} = \qty{0.8}{\A}$ in the auxiliary winding, calculate the total RMS current stress $I_{\mathrm{tot}}$ in the transformer (see the slides). 
+\\
+
+\fbox{$I_{\mathrm{tot}}$ = $4.32\,\mathrm{A}$} \hfill\fbox{\qquad / 1 pt.}
+
+
+
+
+\subsection{Q4: Window Utilization Factor} 
+Besides the conductors in the windings, the core window area is also occupied by non-conductive materials. 
+Make an estimation of the window utilization factor $K_\mathrm{u}$, also known as \textit{fill factor}, to have a starting point for your design. 
+Be aware that this is only a first reference for yourself, and that once the core sample is wound, you will be able to improve this estimate for the next design iteration. \\
+
+\fbox{$K_\mathrm{u}$ = $0.30$} \hfill\fbox{\qquad / 1 pt.}
+
+
+
+\subsection{Q5: Estimation of Loss Budget} 
+Set a reasonable target efficiency for your design and calculate your allowed losses  $P_\mathrm{tot}$ considering the nominal output power. 
+Be aware that this is only a first estimate, and you will be able to improve it in the next iterations. \\
+
+\begin{framed}
+A target efficiency $\eta = 95\%$ is chosen (lecture slides suggest 90--98\% for well-designed converters at this power level). The total allowed loss budget is:
+\begin{equation}
+    P_\mathrm{tot} = P_\mathrm{out,nom} \cdot \frac{1-\eta}{\eta} = 50 \cdot \frac{0.05}{0.95} = 2.63\,\mathrm{W}
+\end{equation}
+\end{framed}
+
+\fbox{$P_\mathrm{tot}$ = $2.63\,\mathrm{W}$} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+\newpage
+\section{Transformer -- Core Selection with Kg Method}
+
+
+As suggested in the slides, one of the most commonly used methods to design a transformer is the $K_\mathrm{g}$-method modified for AC applications to take into account both core and copper losses and to minimize them. 
+This method is usually referred to as the $K_\mathrm{gfe}$ method. 
+More details can be found in the slides or in the book \textit{Fundamentals of Power Electronics} by Erickson and Maksimovic, Springer. 
+\\
+
+Magnetic core manufacturers provide a vast variety of core shapes and sizes (examples are shown in Figure \ref{fig:core_shapes}). 
+In this course, a preselection of suitable cores is given in Table \ref{tab:availablematerial}. 
+The geometrical $K_\mathrm{gfe}$ factor for each of the available cores is also calculated, considering the geometrical dimensions given in the datasheets and $\beta = 2.7$ (average value for ferrites).
+You are requested to choose one of the available cores in Table \ref{tab:availablematerial} for your design.
+
+
+\begin{table}[!h]
+\centering
+\caption{Available core materials and core shapes. }
+\label{tab:availablematerial}
+\begin{tabular}{lcccc}
+	\toprule
+	\textbf{Core shape} & \textbf{N87 core} & \textbf{Coil former}     & \textbf{Yoke Clamp}     &    $K_\mathrm{gfe} \; [cm^5]$  \\
+	\toprule
+	E20/10/6  	& B66311G0000X187 & B66206B1110T001 & B66206A2010X000 &     0.0019\\
+	E25/13/7   	& B66317G0000X187 & B66208X1010T001 & B66208A2010X000 &     0.0044\\
+	E30/15/7   	& B66319G0000X187 & B66232B1114T001 & B66232A2010X000 &     0.0049 \\
+	E32/16/9   	& B66229G0000X187 & B66230A1114T001 & B66230A2010X000 &     0.0090\\
+	ETD34/17/11 & B66361G0000X187 & B66362X1014T001 & B66362A2000X000 &     0.0120\\
+	ETD39/20/13 & B66363G0000X187 & B66364B1016T001 & B66364A2000X000 &     0.0197\\
+	ETD44/22/15 & B66365G0000X187 & B66366B1018T001 & B66366A2000X000 &     0.0290\\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+\begin{figure}[ht]
+    \centering
+      \subfloat[ETD shape,]{
+    	\begin{minipage}[c][1\width]{
+    	  0.30\textwidth}
+    	   \centering
+    	   \includegraphics[width=1\textwidth]{gfx/etd.jpg}
+    	\end{minipage}} 	
+     \qquad
+      \subfloat[EE shape.]{
+    	\begin{minipage}[c][1\width]{
+    	   0.30\textwidth}
+    	   \centering
+    	   \includegraphics[width=1\textwidth]{gfx/ee.jpg}
+    	\end{minipage}}
+    \caption{Exemplary core shapes. }
+    \label{fig:core_shapes}
+\end{figure}
+
+
+
+\subsection{Q6: Maximum Value of Peak Flux Density} 
+To avoid core saturation, the maximum peak flux density $B_\mathrm{pk,max}$ must be constrained to a value much lower than the saturation value of flux density for the selected core material (here, N87) at any time during operation. 
+The selection of this value is a trade-off between the use of the core (i.e., volume) and core losses. 
+The magnetization curves of the available core material N87 are in \href{https://www.tdk-electronics.tdk.com/download/528882/990c299b916e9f3eb7e44ad563b7f0b9/pdf-n87.pdf}{this datasheet}. 
+To serve as a constraint in the following steps, select the maximum value of the peak flux density $B_{pk,max}$. 
+\\
+
+\fbox{$B_\mathrm{pk,max}$ = $0.30\,\mathrm{T}$} \hfill\fbox{\qquad / 1 pt.}
+
+\noindent From the N87 datasheet magnetization curves at $100\,^\circ\mathrm{C}$: $B_\mathrm{sat}=390\,\mathrm{mT}$. A design limit of $B_\mathrm{pk,max}=300\,\mathrm{mT}$ is selected to stay well below saturation and limit core losses.
+
+
+
+
+\subsection{Q7: Minimum $K_\mathrm{gfe}$} 
+Copper resistivity can be considered constant at $\rho = 1.724\cdot 10^{-6} \, \Omega \, \mathrm{cm}$. 
+Considering again $\beta = 2.7$, calculate the minimum required $K_\mathrm{g}$-factor $K_\mathrm{gfe,min}$ for your specific conditions. 
+
+
+\textbf{{Note:}} while performing the calculations, be very careful to use the correct units. \\ 
+
+\begin{framed}
+With $\beta=2.7$, the loss coefficient in the cm-unit system:
+\begin{equation}
+    K_\mathrm{fe} = K_b(f_\mathrm{sw}/f_\mathrm{base})^\alpha/B_\mathrm{base}^\beta/10^6
+    = 61.15\!\times\!10^3\cdot(80/100)^{1.72}/(0.1)^{2.7}/10^6 = 20.88\,\mathrm{W/(cm^3\cdot T^{2.7})}
+\end{equation}
+Minimum $K_\mathrm{gfe}$ from the $K_\mathrm{gfe}$ method (lecture slides / Erickson \& Maksimovic),
+all quantities in cm-unit system ($\rho=1.724\!\times\!10^{-6}\,\Omega\,\mathrm{cm}$):
+\begin{equation}
+    K_\mathrm{gfe,min} = \frac{\rho\lambda_1^2 I_\mathrm{tot}^2 K_\mathrm{fe}^{2/\beta}}{4K_u P_\mathrm{tot}^{(\beta+2)/\beta}}\times10^8
+    = \frac{1.724\!\times\!10^{-6}\cdot(3.75\!\times\!10^{-4})^2\cdot(4.317)^2\cdot(20.88)^{2/2.7}}{4\cdot0.3\cdot(2.63)^{4.7/2.7}}\times10^8 = 6.64\!\times\!10^{-4}\,\mathrm{cm}^5
+\end{equation}
+All cores satisfy this constraint; selection is driven by winding fit (see Q8).
+\end{framed}
+
+\fbox{$K_\mathrm{gfe,min}$ = $6.64\!\times\!10^{-4}\,\mathrm{cm}^5$} \hfill\fbox{\qquad / 3 pt.}
+
+\subsection{Q8: Selection of the Core} 
+Indicate which core shape from Table \ref{tab:availablematerial} you want to use for your design, considering the calculated minimum $K_\mathrm{gfe}$. 
+As a first attempt, you can choose whatever core has a $K_\mathrm{gfe}$ bigger than the needed one.
+Bigger cores will reduce the power density of your converter, which is undesirable.  
+Be aware that your core size also influences the current density and the losses, which will be analyzed in the following questions. 
+Likely, you will need to iterate on your answer to meet all the constraints. 
+\\
+
+\fbox{Core shape: ETD34/17/11 (N87)}  \hfill\fbox{\qquad / 3 pt.}
+
+\noindent The ETD34 is chosen because smaller cores (E20--E32) do not provide sufficient window area to accommodate the required wire cross-sections at $J_w^* = 4\,\mathrm{A/mm}^2$, while larger cores (ETD39, ETD44) would unnecessarily increase the converter volume.
+
+
+
+
+\subsection{Q9: Verification of the Peak Flux Density} 
+Using the formula presented in the slides, check that the expected $\Delta B$ (peak ac flux density, peak-to-average) in your operating conditions is not exceeding the $B_\mathrm{pk,max}$ selected in Q6. 
+This will ensure that saturation never occurs in nominal conditions.
+Information on the geometrical dimensions of the selected cores can be found in the provided files.
+\\
+
+\begin{framed}
+The loss-optimal flux density for ETD34 (lecture slides, cm-unit system, $\beta=2.7$):
+\begin{equation}
+    B_\mathrm{opt} = \!\left[\frac{\rho\lambda_1^2 \mathrm{MLT}\,I_\mathrm{tot}^2}{2\beta K_u W_A A_c^3 K_\mathrm{fe} l_m}\times10^8\right]^{\!1/(\beta+2)}
+    = \!\left[\frac{1.724\!\times\!10^{-6}(3.75\!\times\!10^{-4})^2(6.05)(4.317)^2}{2(2.7)(0.3)(1.22)(0.971)^3(20.88)(7.86)}\times10^8\right]^{\!1/4.7}
+    = 84.8\,\mathrm{mT}
+\end{equation}
+With $N_1=25$ (see Q10), the actual peak flux density (lecture slides):
+\begin{equation}
+    \Delta B = \frac{\lambda_1}{2 N_1 A_c} = \frac{3.75\!\times\!10^{-4}}{2\times25\times0.971\!\times\!10^{-4}} = 77.2\,\mathrm{mT} \ll B_\mathrm{pk,max}=300\,\mathrm{mT}\quad\checkmark
+\end{equation}
+\end{framed}
+
+\fbox{$\Delta B$: $77.2\,\mathrm{mT}$}  \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+\subsection{Q10: Required Number of Turns } 
+Calculate the required turn ratio of the main and auxiliary windings and report it below. 
+Then, using the formula presented in the slides, calculate the desired number of turns on the primary side to minimize total losses. 
+Moreover, considering the transformer ratio required for your design, calculate the number of turns needed for the secondary and auxiliary windings. 
+Make sure that each winding is composed of an integer number of turns.
+Then, calculate the \textbf{actual} resulting turn ratios and report them below, also checking that this rounding does not make the turn ratio deviate significantly (anyhow, you will be asked to check this again later with a more detailed procedure). 
+
+
+\textbf{Note:} while performing the calculations, be careful to use the correct units. 
+\\
+
+\begin{framed}
+Required turns ratio: $n=V_\mathrm{in,nom}/V_\mathrm{out}=50/12=4.17$ (Report~1 specs).
+Auxiliary ratio: $n_\mathrm{aux}=V_\mathrm{aux}/V_\mathrm{in,nom}=18/50=0.360$.
+
+Optimal primary turns (lecture slides, $B_\mathrm{opt}=84.8\,\mathrm{mT}$, $A_c=0.971\,\mathrm{cm}^2$):
+\begin{equation}
+    N_{1,\mathrm{opt}} = \frac{\lambda_1}{2B_\mathrm{opt}A_c}
+    = \frac{3.75\!\times\!10^{-4}}{2\times0.0848\times0.971\!\times\!10^{-4}} \approx 22.8
+\end{equation}
+Rounding to $N_1=25$: $N_2=\lfloor25/4.17\rceil=6$, $N_\mathrm{aux}=\lfloor0.36\times25\rceil=9$.
+Actual: $n=25/6=4.1\overline{6}$ (0.08\% error), $n_\mathrm{aux}=9/25=0.360$ (0\% error).
+\end{framed}
+
+\fbox{Calculated $n = 4.17$} \qquad \fbox{Calculated $n_\mathrm{aux} = 0.360$}  \\
+\fbox{$N_\mathrm{pri} = 25$} \qquad \fbox{$N_\mathrm{sec} = 6$} \qquad \fbox{$N_\mathrm{aux} = 9$}  \qquad  \hfill \fbox{\qquad / 3 pt.} 
+\\
+\fbox{Actual $n = 25/6 = 4.167$ ($-0.08\%$ error)} \qquad \fbox{Actual $n_\mathrm{aux} = 9/25 = 0.360$ ($0\%$ error)}  \\
+
+
+\subsection{Q11: Magnetizing Inductance} 
+The magnetizing inductance of the transformer (referred to the primary side) must be sufficiently high to avoid influencing the ideal DAB operation. 
+Calculate the minimum magnetizing inductance $L_\mathrm{m,MIN}$ to be 10 times higher than your DAB inductor $L$.
+Then, compute the expected value of the magnetizing inductance $L_\mathrm{m}$. 
+To do this, you can use the inverse of the formula for computing  the number of turns. 
+If $L_\mathrm{m}$ is smaller than $L_\mathrm{m,MIN}$, you need to reconsider your choices and go back to the previous steps. 
+
+\begin{framed}
+$L_\mathrm{m,MIN} = 10\,L = 10\times26.04\,\upmu\mathrm{H} = 260\,\upmu\mathrm{H}$.
+
+The magnetizing inductance uses the ungapped ETD34/N87 inductance factor $A_L = 2600\,\mathrm{nH}$ (from TDK datasheet), with $N_1 = 25$:
+\begin{equation}
+    L_m = A_L \cdot N_1^2 = 2600\,\mathrm{nH} \times 25^2 = 1625\,\upmu\mathrm{H} = 1.625\,\mathrm{mH} \gg 260\,\upmu\mathrm{H}\quad\checkmark
+\end{equation}
+\end{framed}
+
+\fbox{$L_\mathrm{m,MIN}$ = $0.26\,\mathrm{mH}$}  \qquad \qquad
+\fbox{$L_\mathrm{m}$ = $1.625\,\mathrm{mH}$}  \hfill\fbox{\qquad / 2 pt.}\\
+
+
+
+\subsection{Q12: Check Turn Ratio for Output Port} 
+In Report 1, you were asked to plot the output power capability of the DAB as a function of the input voltage, considering the ideal turn ratio. 
+The turn ratio that you obtained in the previous questions might deviate from the ideal one, since only integer numbers of turns can be realized. 
+Therefore, you are tasked with plotting the output power capability (as in Report 1, in the answer box) considering the turn ratio that you intend to realize (Q10); provide also the minimum power transfer $P_\mathrm{real,min}$ in the worst-case condition.
+To ensure that the converter has sufficient regulation capability, make sure that the realized turn ratio does not decrease the margin you took from Report 1 by more than 5 W. 
+
+\begin{framed}
+Maximum power at $\varphi = \pi/2$ (from lecture slides, no $\pi$ factor since the maximum is at $\varphi = \pi/2$):
+\begin{equation}
+    P_\mathrm{max}(V_\mathrm{in}) = \frac{n_\mathrm{real}\,V_\mathrm{in}\,V_\mathrm{out}}{8\,f_\mathrm{sw}\,L}
+\end{equation}
+At $V_\mathrm{in,min}=30\,\mathrm{V}$: $P_\mathrm{max} = 4.1\overline{6}\times30\times12\,/\,(8\times80\times10^3\times26.04\times10^{-6}) = 90.0\,\mathrm{W}$.
+This exceeds $P_\mathrm{out,nom}+5\,\mathrm{W}=55\,\mathrm{W}$ by a large margin $\checkmark$. A plot equivalent to Report~1 Fig.\ is not reproduced here.
+\end{framed}
+
+\fbox{$P_\mathrm{real,min}$ = $90.0\,\mathrm{W}$}  \hfill\fbox{\qquad / 3 pt.}\\
+
+
+
+\subsection{Q13: Check Turn Ratio for Auxiliary Port} 
+Considering the turn ratio that you intend to realize (Q10), calculate the voltage $V_\mathrm{aux,true}$ of the auxiliary port. 
+Now, compare this with the nominal value $V_\mathrm{aux,out}$ and make sure the difference is below \qty{15}{\percent}. 
+If not, you need to reconsider your choices and improve the turn ratio.  
+
+\textbf{Note}: you can consider the nominal output voltage and ignore any non-ideality of the components of the converter (e.g., the voltage drop on the rectifier diodes). 
+
+\begin{framed}
+$V_\mathrm{aux,true} = (N_\mathrm{aux}/N_1)\,V_\mathrm{in,nom} = (9/25)\times50 = 18.0\,\mathrm{V}$. Deviation: $(18.0-18.0)/18.0 = 0\% < 15\%$ $\checkmark$
+\end{framed}
+
+\fbox{$V_\mathrm{aux,real}$ = $18.0\,\mathrm{V}$ ($0\%$ deviation)}  \hfill\fbox{\qquad / 1 pt.}\\
+
+
+
+
+
+
+
+
+\newpage
+\section{Transformer -- Wire Selection}
+
+The following step in the transformer design is to select a suitable wire.
+Different aspects need to be considered in this choice. 
+Increasing the wire cross section would reduce the resistance but, at the same time, requires a higher utilization factor (for the winding area) or a larger core. 
+In addition, the high-frequency operation leads to a significant impact of the skin effect on the effective AC resistance. 
+In the following tables, you will find a list of the available wires. 
+You might consider to slightly revise the target fill factor (Q4) depending on your wire choice. 
+
+\begin{table}[H]
+\centering
+\caption{Available magnet wires.}
+\label{tab:availablewiresBare}
+\begin{tabular}{cccccccc}
+	\toprule
+	Wire number & M1 & M2 & M3 & M4 & M5 & M6 & M7 \\
+	\midrule
+	Conductor diameter ($\mathrm{mm}$) & 0.65 & 0.9 & 1.0 & 1.2 & 1.54 & 1.6 & 1.8 \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Available Litz wires (the diameter of a single conductor is 0.2 mm).}
+\label{tab:availablewiresLitz}
+\begin{tabular}{ccccc}
+	\toprule
+	Wire number & L1 & L2 & L3 & L4 \\
+	\midrule
+    Number of strands  & 25 & 35 & 45 & 80 \\
+	Total Conductive Area ($\mathrm{mm}^2$)  & 0.78 & 1.10 & 1.41 & 2.51 \\
+    External Diameter ($\mathrm{mm}$) & 1.53 & 1.8 & 2.06 & 2.8 \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+\subsection{Q14: Skin Depth} 
+To develop a sense of the specific weight of the skin effect on your design, evaluate the skin depth in millimeters.
+
+\begin{framed}
+The skin depth in copper (lecture slides; copper is non-magnetic, $\mu_r=1$):
+\begin{equation}
+    \delta = \sqrt{\frac{\rho_\mathrm{Cu}}{\pi f_\mathrm{sw} \mu_0}}
+    = \sqrt{\frac{1.724\!\times\!10^{-8}}{\pi\times80\!\times\!10^3\times4\pi\!\times\!10^{-7}}} = 0.234\,\mathrm{mm}
+\end{equation}
+Threshold for $F_R\approx1$: bare wire $d < 4\delta=0.94\,\mathrm{mm}$; Litz strand $d < 2\delta=0.47\,\mathrm{mm}$.
+\end{framed}
+
+\fbox{$ \delta = 0.234\,\mathrm{mm}$} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+
+\subsection{Q15: Allocation of the Winding Window} 
+Taking into account the RMS current expected in each winding, the number of turns, and the total current calculated in the first section, calculate the fraction $\upalpha_\mathrm{w}$ of the winding area that should be allocated to each of your windings. 
+
+\begin{framed}
+The primary RMS current $I_{1,\mathrm{RMS}}$ is obtained from the DAB piecewise-linear current waveform at the worst-case operating point $V_\mathrm{in,min}=30\,\mathrm{V}$ (largest phase shift, highest current). The DAB power equation gives the phase shift $\varphi$:
+\begin{equation}
+    P = \frac{V_1 V_2' \,\varphi(\pi-\varphi)}{2\pi^2 f_\mathrm{sw} L} \quad\Rightarrow\quad \varphi = \frac{\pi - \sqrt{\pi^2 - 8\pi^2 f_\mathrm{sw} L P / (V_1 V_2')}}{2} = 30.0^\circ
+\end{equation}
+The current waveform is piecewise-linear over a half-period $[0,\pi]$, with switching instants $i_0 = 0.405\,\mathrm{A}$ and $i_\varphi = 3.604\,\mathrm{A}$. The RMS is computed by integrating $i^2(\theta)$ analytically over each linear segment:
+\begin{equation}
+    I_{1,\mathrm{RMS}} = \sqrt{\frac{1}{\pi}\int_0^{\pi} i^2(\theta)\,\mathrm{d}\theta} = 2.015\,\mathrm{A}
+\end{equation}
+The secondary RMS current follows from the turns ratio: $I_{2,\mathrm{RMS}} = n\,I_{1,\mathrm{RMS}} = 4.167\times2.015 = 8.394\,\mathrm{A}$. The auxiliary RMS current $I_\mathrm{aux}=0.8\,\mathrm{A}$ is given in Q3.
+
+The window fraction is proportional to each winding's contribution to the total current stress $I_\mathrm{tot}$ (lecture slides): $\alpha_j = N_j I_{j,\mathrm{RMS}}\,/\,(N_1 I_\mathrm{tot})$. Since primary and secondary carry equal ampere-turns ($n I_2 = I_1$), $\alpha_\mathrm{pri} = \alpha_\mathrm{sec}$:
+\begin{align}
+    \alpha_\mathrm{pri} = \alpha_\mathrm{sec} &= I_{1,\mathrm{RMS}}/I_\mathrm{tot} = 2.015/4.317 = 0.467\\
+    \alpha_\mathrm{aux} &= n_\mathrm{aux}\,I_\mathrm{aux}/I_\mathrm{tot} = 0.360\times0.8/4.317 = 0.067
+\end{align}
+\end{framed}
+
+\fbox{$ \upalpha_\mathrm{w,pri} = 0.467$} \quad \fbox{$\upalpha_\mathrm{w,sec} = 0.467$} \quad \fbox{$\upalpha_\mathrm{w,aux} = 0.067$} \hfill\fbox{\qquad / 2 pt.}
+
+
+\subsection{Q16: Winding Area and Mean Length of Turns}
+Considering the selected core, report the available winding area and the mean length of turns (MLT).
+
+\textbf{Note}: to verify that you picked the correct data, you can calculate $K_\mathrm{gfe}$ and compare it to the one in Table \ref{tab:availablematerial}. 
+
+
+\fbox{$ A_\mathrm{w} = 1.22\,\mathrm{cm}^2$}  \qquad  \fbox{$ MLT = 6.05\,\mathrm{cm}$}\hfill\fbox{\qquad / 2 pt.}
+
+\noindent Values from the ETD34/17/11 coil former datasheet (B66362X1014T001). Cross-check: $K_\mathrm{gfe} = A_c^2 W_A / (MLT \cdot l_m) = (0.971)^2 \cdot 1.22 / (6.05 \cdot 7.86) = 0.0120\,\mathrm{cm}^5$ matches Table~\ref{tab:availablematerial}~$\checkmark$
+
+
+
+
+
+
+
+\subsection{Q17: Maximum Wire Cross-Section}
+Considering the dimensions of the selected core and the allocated fraction for each wire winding, calculate the maximum wire cross-section that would fit in the available space. 
+
+\begin{framed}
+Maximum conductor cross-section per winding (lecture slides): $A_{w,j,\mathrm{max}} = \alpha_j\,K_u\,W_A\,/\,N_j$:
+\begin{align}
+    A_{w,\mathrm{pri,max}} &= 0.467\times0.3\times1.22\,/\,25 = 0.00683\,\mathrm{cm}^2 = 0.683\,\mathrm{mm}^2\\
+    A_{w,\mathrm{sec,max}} &= 0.467\times0.3\times1.22\,/\,6 = 0.02847\,\mathrm{cm}^2 = 2.847\,\mathrm{mm}^2\\
+    A_{w,\mathrm{aux,max}} &= 0.067\times0.3\times1.22\,/\,9 = 0.00271\,\mathrm{cm}^2 = 0.271\,\mathrm{mm}^2
+\end{align}
+\end{framed}
+
+\fbox{$ A_\mathrm{w,pri,max} = 0.00683\,\mathrm{cm}^2$} \quad \fbox{$A_\mathrm{w,sec,max} = 0.02847\,\mathrm{cm}^2$} \quad \fbox{$A_\mathrm{w,aux,max} = 0.00271\,\mathrm{cm}^2$} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+\subsection{Q18: Target Current Density} 
+Densely packed multi-layer windings cannot dissipate heat as effectively as wires in free-air. 
+In fact, there is a trade-off between copper losses, temperature rise, and power density. 
+Considering the typical values provided in the slides, select a current density constraint as a starting point for your design. 
+In the following steps of the design or prototyping process, you might adjust this constraint and re-iterate your design to change your design point with respect to the above-mentioned trade-off. 
+Note that, due to discrete wire gauges, it will not be possible to exactly match the selected value. \\
+
+\fbox{$J_\mathrm{w}^*$ = $400\,\mathrm{A/cm}^2$ ($4\,\mathrm{A/mm}^2$)} \hfill\fbox{\qquad / 1 pt.}
+
+\noindent Selected from the range 3--6\,A/mm$^2$ given in the lecture slides for densely wound transformers.
+
+
+
+
+\subsection{Q19: Required Conductor Area} 
+Considering the target current density defined in Q18 and the RMS current expected in your windings according to the simulations performed in Report 1, evaluate the total conductive areas $A_\mathrm{TC}$ needed to satisfy your requirements. 
+Compare this area with the maximum available in the core you selected (see the answer from previous question). 
+If the available area is smaller than the needed one, go back and select a bigger core (Q8). 
+Be aware that the core selection will also be influenced by the answers to the next questions.  
+Note that if the needed area is only slightly bigger than the maximum available one, you can choose to proceed with your selected core; however, if the area is barely sufficient, the utilization factor that you will calculate in a following question (Q21) could determine that your design is not feasible.  
+\\
+
+\begin{framed}
+Required conductor area $A_\mathrm{TC} = I_{j,\mathrm{RMS}}/J_w^*$ (lecture slides), worst-case RMS currents at $V_\mathrm{in,min}$ (Report~1):
+\begin{align}
+    A_\mathrm{TC,pri} &= 2.015\,/\,400 = 0.00504\,\mathrm{cm}^2 < 0.00683\,\mathrm{cm}^2 \quad\checkmark\\
+    A_\mathrm{TC,sec} &= 8.394\,/\,400 = 0.02099\,\mathrm{cm}^2 < 0.02847\,\mathrm{cm}^2 \quad\checkmark\\
+    A_\mathrm{TC,aux} &= 0.800\,/\,400 = 0.00200\,\mathrm{cm}^2 < 0.00271\,\mathrm{cm}^2 \quad\checkmark
+\end{align}
+All required areas fit within the available window of ETD34 at $K_u=0.3$.
+\end{framed}
+
+\fbox{$ A_\mathrm{TC,pri} = 0.00504\,\mathrm{cm}^2$} \quad \fbox{$A_\mathrm{TC,sec} = 0.02099\,\mathrm{cm}^2$} \quad \fbox{$A_\mathrm{TC,aux} = 0.002\,\mathrm{cm}^2$} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+\subsection{Q20: Wire Selection} 
+Select the wires for your windings from the available wires in Table \ref{tab:availablewiresBare} and Table \ref{tab:availablewiresLitz}. 
+In the answer box, indicate the wire of your choice with the label given in the tables and provide the current density you expect with that wire. 
+\\
+
+\textbf{Notes}:
+\begin{itemize}
+    \item For Magnet Wires (Table \ref{tab:availablewiresBare}), you can neglect the thickness of the isolation layer, i.e., you can assume that the diameter of the wire is the diameter of the conductor. 
+    \item For litz Wires (Table \ref{tab:availablewiresLitz}), the total conductive area is given in the Table. 
+    \item Your technology choice (magnet wire or litz wire) will affect your losses and the size of your transformer; you may want to reconsider your choice after calculating AC losses in a following question (Q23).  
+    \item Once again, consider the target current density from Q18 and the expected RMS current from Report 1, and use the expected total conductor area as a guideline. 
+    \item Due to the limited number of wires available, you may not be able to obtain exactly your target current density; choose a reasonably-close value considering the wire technology of your choice. 
+    \item Check that the area needed for your selected winding is smaller than the maximum available one; otherwise, reconsider your core choice (Q8). 
+    \item If you cannot satisfy the requirements with the available wires, you are allowed to parallel the windings. 
+    Only in this case, write the number of parallels and a letter x before the wire reference in the answer box. 
+    For example, "2xM7" means two wires of type M7 in parallel. 
+\end{itemize}
+
+
+
+
+
+
+
+\begin{framed}
+\textbf{Primary (L1 Litz):} $A_\mathrm{TC}=0.504\,\mathrm{mm}^2$, strand $d=0.2\,\mathrm{mm}<2\delta=0.47\,\mathrm{mm}\Rightarrow F_R=1$. $A=0.785\,\mathrm{mm}^2>A_\mathrm{TC}$. $J=2.015/0.785=2.57\,\mathrm{A/mm}^2$.
+
+\textbf{Secondary (L4 Litz):} $A_\mathrm{TC}=2.099\,\mathrm{mm}^2$, strand $d=0.2\,\mathrm{mm}<2\delta\Rightarrow F_R=1$. $A=2.513\,\mathrm{mm}^2>A_\mathrm{TC}$. $J=8.394/2.513=3.34\,\mathrm{A/mm}^2$.
+
+\textbf{Auxiliary (M1 bare):} $A_\mathrm{TC}=0.200\,\mathrm{mm}^2$, $d=0.65\,\mathrm{mm}<4\delta=0.94\,\mathrm{mm}\Rightarrow F_R=1$. $A=0.332\,\mathrm{mm}^2>A_\mathrm{TC}$. $J=0.8/0.332=2.41\,\mathrm{A/mm}^2<J_w^*$ (acceptable, discrete gauge).
+\end{framed}
+
+\fbox{Selected wire 1: L1 Litz ($A=0.785\,\mathrm{mm}^2$, $\varnothing_\mathrm{eff}=1.53\,\mathrm{mm}$)} \quad 
+\fbox{$J_\mathrm{w,pri,selected} = 257\,\mathrm{A/cm}^2$}  \\ 
+\fbox{Selected wire 2: L4 Litz ($A=2.513\,\mathrm{mm}^2$, $\varnothing_\mathrm{eff}=2.80\,\mathrm{mm}$)} \quad 
+\fbox{$J_\mathrm{w,sec,selected} = 334\,\mathrm{A/cm}^2$} \\ 
+\fbox{Selected wire aux: M1 bare ($d=0.65\,\mathrm{mm}$, $A=0.332\,\mathrm{mm}^2$)} \quad 
+\fbox{$J_\mathrm{w,aux,selected} = 241\,\mathrm{A/cm}^2$}
+\hfill\fbox{\qquad / 4 pt.}\\
+
+
+
+
+
+
+
+\subsection{Q21: Window Utilization Factor} 
+Considering the core and wires you selected, calculate the current window utilization factor $K_\mathrm{u,real}$ to verify whether the core window area is overly packed before proceeding to the actual realization of the transformer. 
+Compare it with your initial estimate in Q4. 
+
+\begin{framed}
+\begin{equation}
+    K_{u,\mathrm{real}} = \frac{N_1A_\mathrm{pri}+N_2A_\mathrm{sec}+N_\mathrm{aux}A_\mathrm{aux}}{W_A}
+    =\frac{25(0.785)+6(2.513)+9(0.332)}{122\,\mathrm{mm}^2}=\frac{37.70}{122}=0.309
+\end{equation}
+Slightly above initial estimate $K_u=0.30$ but physically feasible; initial estimate was conservative.
+\end{framed}
+
+\fbox{$K_\mathrm{u,real}$ = $0.309$} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Transformer -- Evaluation of Losses}
+
+
+\subsection{Q22: DC Winding Resistance} 
+Give a reasonable expected temperature $T_\mathrm{w}$ for your windings.
+Calculate the DC winding resistances $R_\mathrm{DC}$ of the designed windings using the MLT (extracted from the datasheet), $A_\mathrm{w}$ (from selected wires, using the total conductive area), the resistivity of copper ($\rho = 1.724 \cdot 10^{-6} \Omega \, \mathrm{cm}$), and the temperature coefficient for copper $\upalpha_\mathrm{T} = 0.003862 \mathrm{K}^{-1}$. 
+
+\begin{framed}
+Winding temperature estimate: $T_w = 80\,^\circ\mathrm{C}$ (conservative). Copper resistivity at $T_w$:
+\begin{equation}
+    \rho_T = \rho_{20}[1+\alpha_T(T_w-20)] = 1.724\!\times\!10^{-8}[1+0.003862\times60] = 2.124\!\times\!10^{-8}\,\Omega\,\mathrm{m}
+\end{equation}
+DC resistance $R_\mathrm{DC} = \rho_T N\,\mathrm{MLT}/A_\mathrm{cond}$ (lecture slides), $\mathrm{MLT}=0.0605\,\mathrm{m}$:
+\begin{align}
+    R_\mathrm{DC,pri} &= 2.124\!\times\!10^{-8}\times25\times0.0605\,/\,(0.785\!\times\!10^{-6}) = 40.9\,\mathrm{m\Omega}\\
+    R_\mathrm{DC,sec} &= 2.124\!\times\!10^{-8}\times6\times0.0605\,/\,(2.513\!\times\!10^{-6}) = 3.07\,\mathrm{m\Omega}\\
+    R_\mathrm{DC,aux} &= 2.124\!\times\!10^{-8}\times9\times0.0605\,/\,(0.332\!\times\!10^{-6}) = 34.8\,\mathrm{m\Omega}
+\end{align}
+\end{framed}
+
+\fbox{$T_\mathrm{w}$ = $80\,^\circ\mathrm{C}$} \quad 
+\fbox{$R_\mathrm{DC,pri}$ = $40.9\,\mathrm{m}\Omega$} \quad 
+\fbox{$R_\mathrm{DC,sec}$ = $3.07\,\mathrm{m}\Omega$} \quad 
+\fbox{$R_\mathrm{DC,aux}$ = $34.8\,\mathrm{m}\Omega$} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+\subsection{Q23: AC Winding Resistance} 
+Calculate the AC winding resistance $R_\mathrm{AC}$ considering only the skin effect (i.e., neglecting proximity effects and other phenomena). 
+If your skin depth is lower than the diameter of your wire, the ratio between AC and DC resistance---known as $F_\mathrm{R}$ factor---can be approximated as 
+\begin{equation}
+    F_\mathrm{R} \approx \frac{d_\mathrm{w}}{4\delta} 
+\end{equation}
+(this formula can be found in the book "High frequency magnetic components" by M. K. Kazimierczuk, page 190 for the second edition). 
+If this condition is not met, then you can reasonably assume a uniform current density (again, neglecting proximity effects). 
+\textbf{Note}: in the case of a litz wire, you can consider the diameter of the strand. 
+
+\begin{framed}
+Skin depth $\delta=0.234\,\mathrm{mm}$ (Q14). $F_R$ evaluated per winding:
+\begin{itemize}
+    \item Primary (L1 Litz, strand $d=0.2\,\mathrm{mm}<2\delta=0.47\,\mathrm{mm}$): $F_R=1$, $R_\mathrm{AC,pri}=R_\mathrm{DC,pri}=41.2\,\mathrm{m\Omega}$.
+    \item Secondary (L4 Litz, strand $d=0.2\,\mathrm{mm}<2\delta$): $F_R=1$, $R_\mathrm{AC,sec}=3.07\,\mathrm{m\Omega}$.
+    \item Auxiliary (M1 bare, $d=0.65\,\mathrm{mm}<4\delta=0.94\,\mathrm{mm}$): uniform current distribution ($F_R=1$), $R_\mathrm{AC,aux}=34.8\,\mathrm{m\Omega}$.
+\end{itemize}
+\end{framed}
+
+\fbox{$R_\mathrm{AC,pri}$ = $41.2\,\mathrm{m}\Omega$} \quad \fbox{$R_\mathrm{AC,sec}$ = $3.07\,\mathrm{m}\Omega$} \quad \fbox{$R_\mathrm{AC,aux}$ = $34.8\,\mathrm{m}\Omega$} \hfill\fbox{\qquad / 4 pt.}
+
+\noindent All $F_R = 1.0$: Litz strand $d=0.2\,\mathrm{mm} < 2\delta=0.47\,\mathrm{mm}$; M1 bare $d=0.65\,\mathrm{mm} < 4\delta=0.94\,\mathrm{mm}$.
+
+
+
+
+
+
+\subsection{Q24: DC and AC Copper Losses} 
+Calculate the total DC copper losses $P_\mathrm{Cu,DC}$ and AC copper losses $P_\mathrm{Cu,AC}$ arising due to Joule effect in the windings. 
+Perform the calculation considering the nominal power at both the minimum and maximum input voltage. 
+Calculate the percentage of AC copper losses relative to the nominal output power. 
+This gives you the expected efficiency drop due to the winding losses. 
+
+\begin{framed}
+RMS currents from the DAB angle-domain model (same formulation as Report~1).
+Since $F_R=1$ for all windings, $P_\mathrm{Cu,DC}=P_\mathrm{Cu,AC}$.
+Worst case is $V_\mathrm{in,min}=30\,\mathrm{V}$ (largest phase shift $\delta=30^\circ$, highest current).
+\end{framed}
+
+With minimum input voltage ($V_\mathrm{in}=30\,\mathrm{V}$, $I_1=2.015\,\mathrm{A}$, $I_2=8.394\,\mathrm{A}$):
+\fbox{$P_\mathrm{Cu,DC}$ = $0.406\,\mathrm{W}$} and \fbox{$P_\mathrm{Cu,AC}$ = $0.406\,\mathrm{W}$}, which corresponds to \fbox{$0.81\%$ of the output power.}\\
+
+With maximum input voltage ($V_\mathrm{in}=60\,\mathrm{V}$, $I_1=1.186\,\mathrm{A}$, $I_2=4.940\,\mathrm{A}$):
+\fbox{$P_\mathrm{Cu,DC}$ = $0.155\,\mathrm{W}$} and \fbox{$P_\mathrm{Cu,AC}$ = $0.155\,\mathrm{W}$}, which corresponds to \fbox{$0.31\%$ of the output power.}\\
+
+\noindent All $F_R=1$, so $P_\mathrm{Cu,DC} = P_\mathrm{Cu,AC}$. Winding RMS currents from the DAB angle-domain model (Report~1). Worst case at $V_\mathrm{in,min}$ (largest phase shift, highest current).
+
+\hfill\fbox{\qquad / 3 pt.}\\
+
+
+
+
+
+\subsection{Q25: Estimation of Core Losses and Core Temperature} 
+Using the plot of the loss density provided in the core material's data sheet (\href{https://www.tdk-electronics.tdk.com/download/528882/990c299b916e9f3eb7e44ad563b7f0b9/pdf-n87.pdf}{N87}), estimate the core losses $P_\mathrm{core}$ of the designed transformer. 
+The core volume can be found in the datasheet of the core shape you selected. 
+Then, calculate the core losses as a percentage of the nominal output power.
+In addition, estimate the temperature rise of your transformer's core, considering an ambient temperature of \qty{40}{\celsius}. 
+You can find values for the thermal resistance $R_\mathrm{th}$ and the temperature rise limit of different materials in the provided documents. 
+Make sure that the temperature rise $\Delta T$ above ambient is reasonable and, more importantly, compatible with the material; if this is not the case, review your core and wire selection.
+
+\begin{framed}
+Steinmetz equation with N87 datasheet parameters (100\,kHz row; $\Delta B = 77.2\,\mathrm{mT}$, $V_e = 7.63\,\mathrm{cm}^3 = 7.63\!\times\!10^{-6}\,\mathrm{m}^3$):
+\begin{equation}
+    P_\mathrm{core} = K_b\!\left(\frac{f_\mathrm{sw}}{f_\mathrm{base}}\right)^\alpha\!\left(\frac{\Delta B}{B_\mathrm{base}}\right)^\beta\!V_e= 61.15\!\times\!10^3\cdot(0.8)^{1.72}\cdot(0.772)^{2.68}\times7.63\!\times\!10^{-6} = 0.159\,\mathrm{W}
+\end{equation}
+Temperature rise using $R_\mathrm{th}=20\,\mathrm{K/W}$ (TDK ETD34 thermal document) and $T_\mathrm{amb}=40\,^\circ\mathrm{C}$:
+\begin{equation}
+    \Delta T = (P_\mathrm{Cu,worst}+P_\mathrm{core})\,R_\mathrm{th} = (0.406+0.159)\times20 = 11.3\,\mathrm{K}
+\end{equation}
+$T_\mathrm{core} = 40+11.3 = 51.3\,^\circ\mathrm{C} \ll 120\,^\circ\mathrm{C}$ (N87 limit) $\checkmark$
+\end{framed}
+
+\fbox{$P_\mathrm{core}$ = $0.159\,\mathrm{W}$} which corresponds to \fbox{$0.32\%$ of the output power.} \\ \fbox{$\Delta T$ = $11.3\,\mathrm{K}$ $\Rightarrow$ $T_\mathrm{core}=51.3\,^\circ\mathrm{C} \ll 120\,^\circ\mathrm{C}$ $\checkmark$} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+
+\subsection{Q26: Overall losses} 
+For the worst-case operating condition, calculate the total losses (copper and core) expected in your transformer and compare them with the loss budget you defined in Q5. 
+
+\begin{framed}
+Worst case is $V_\mathrm{in,min}=30\,\mathrm{V}$ (highest copper losses):
+\begin{equation}
+    P_\mathrm{loss} = P_\mathrm{Cu,AC,worst} + P_\mathrm{core} = 0.406 + 0.159 = 0.565\,\mathrm{W}
+\end{equation}
+$P_\mathrm{loss}/P_\mathrm{out} = 0.565/50 = 1.13\%$. Well within the budget $P_\mathrm{tot}=2.63\,\mathrm{W}$ (21\% of budget used $\checkmark$).
+\end{framed}
+
+\fbox{$P_\mathrm{loss}$ = $0.565\,\mathrm{W}$ (worst-case at $V_\mathrm{in}=30\,\mathrm{V}$)}  \hfill\fbox{\qquad / 3 pt.}
+
+\noindent $P_\mathrm{loss} = P_\mathrm{Cu,AC} + P_\mathrm{core} = 0.406 + 0.159 = 0.565\,\mathrm{W} \ll P_\mathrm{tot} = 2.63\,\mathrm{W}$ (21\% of budget). $\checkmark$
+
+
+
+
+
+
+
+
+\newpage
+\section{Transformer -- Design Summary}
+\subsection{Q27: DAB transformer Design} 
+Fill \Cref{tab:trafo_summary} with your design results. 
+Do not forget to include the appropriate units.
+
+
+
+\begin{framed}
+\begin{table}[H]
+\centering
+\caption{Design summary of the transformer}
+\label{tab:trafo_summary}
+\begin{tabular}{|c|c|p{2.5cm}|}
+	\multicolumn{3}{c}{\textbf{Electrical Specifications}}\\
+	\hline
+	Primary current & $I_{\mathrm{w,pri},\mathrm{RMS}}$ & $2.02\,\mathrm{A}$ \\
+	\hline
+	Secondary current & $I_{\mathrm{w,sec},\mathrm{RMS}}$ & $8.39\,\mathrm{A}$ \\
+	\hline
+	Auxiliary current & $I_{\mathrm{w,aux},\mathrm{RMS}}$ & $0.80\,\mathrm{A}$ \\
+    \hline
+    Magnetizing inductance & $L_\mathrm{m}$ & $1625\,\upmu\mathrm{H}$ \\
+	\hline
+	\multicolumn{3}{c}{\textbf{Core specifications}}\\
+	\hline
+	Core shape & - & ETD34/17/11 \\
+	\hline
+	Coil former & - & B66362X1014T001 \\
+	\hline
+	Core material & - & N87 \\
+	\hline
+	Max flux density & $\Delta B$ & $77.2\,\mathrm{mT}$ \\
+	\hline
+	\multicolumn{3}{c}{\textbf{Winding Specifications}}\\
+	\hline
+	Primary wire diameter & $\varnothing$ & $1.53\,\mathrm{mm}$ (L1 Litz) \\
+	\hline
+	Number of turns for primary & $N_\mathrm{pri}$ & 25 \\
+	\hline
+	Secondary wire diameter & $\varnothing$ & $2.80\,\mathrm{mm}$ (L4 Litz) \\
+	\hline
+	Number of turns for secondary wire & $N_\mathrm{sec}$ & 6 \\
+	\hline
+	  Auxiliary wire diameter & $\varnothing$ & $0.65\,\mathrm{mm}$ (M1 bare) \\
+	\hline
+	Number of turns for auxiliary wire & $N_\mathrm{aux}$ & 9 \\
+	\hline
+	\multicolumn{3}{c}{\textbf{Losses and temperature rise (worst-case)}}\\
+	\hline
+	Core losses &  $P_\mathrm{core}$ & $0.159\,\mathrm{W}$ \\
+	\hline
+	Winding losses & $P_\mathrm{Cu,AC}$ & $0.406\,\mathrm{W}$ \\
+	\hline
+	Total transformer losses & $P_\mathrm{loss}/P_\mathrm{out}$ & $1.13\,\%$ \\
+	\hline
+	Expected Temperature rise & $\Delta T$ & $11.3\,\mathrm{K}$ \\
+	\hline
+\end{tabular}
+\end{table}
+\end{framed}
+
+\hfill\fbox{\qquad / 1 pt.}\\
+
+
+
+
+
+
+
+
+\subsection{Q28: Overall Efficiency of the Converter}  
+Taking into account the results of the Loss Tool of Report 1, estimate the best-case and worst-case efficiency of your DAB converter for the nominal output power considering the transformer losses estimated theoretically in the previous questions. 
+
+\begin{framed}
+Semiconductor losses from Report~1 Loss Tool graph (read at $P_\mathrm{out}=50\,\mathrm{W}$): $P_\mathrm{semi}(30\,\mathrm{V})=1.40\,\mathrm{W}$, $P_\mathrm{semi}(50\,\mathrm{V})=2.50\,\mathrm{W}$, $P_\mathrm{semi}(60\,\mathrm{V})=2.07\,\mathrm{W}$.
+
+Transformer losses at each operating point: $P_\mathrm{tf}=P_\mathrm{Cu,AC}+P_\mathrm{core}$. $P_\mathrm{Cu,AC}$ is computed from the DAB RMS current model; $P_\mathrm{core}=0.159\,\mathrm{W}$ is constant.
+
+\begin{center}\begin{tabular}{ccccccc}\toprule
+$V_\mathrm{in}$ (V) & $P_\mathrm{semi}$ (W) & $I_1$ (A) & $P_\mathrm{Cu,AC}$ (W) & $P_\mathrm{core}$ (W) & $P_\mathrm{tf}$ (W) & $\eta$ (\%) \\\midrule
+30 & 1.40 & 2.013 & 0.405 & 0.159 & 0.564 & 96.22 \\
+50 & 2.50 & 1.067 & 0.130 & 0.159 & 0.289 & 94.72 \\
+60 & 2.07 & 1.186 & 0.155 & 0.159 & 0.314 & 95.45 \\\bottomrule
+\end{tabular}\end{center}
+\end{framed}
+
+\fbox{$\eta_{\mathrm{DAB,best}} = 96.22\,\%$ at $V_\mathrm{in}=30\,\mathrm{V}$}\qquad \fbox{$\eta_{\mathrm{DAB,worst}} = 94.72\,\%$ at $V_\mathrm{in}=50\,\mathrm{V}$} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+\newpage
+\section{Transformer -- Building Procedure}
+
+
+
+
+
+\subsection{Q29: Wiring of the Transformer} 
+Based on the theoretical calculations done above, choose:  
+\begin{itemize}
+    \item 1x Coil former \textbf{! Careful: Pins are easy to bend and break! The main structure is made of plastic, don't push clamps too hard!}
+    \item 2x Core halves \textbf{! Careful: Very fragile! Do not drop or scratch!}
+    \item 2x Yokes
+\end{itemize}
+Then, follow these steps:
+\begin{itemize}
+    \item Proceed with these items to the assembly station, and prepare the coil former. 
+    \item Carefully consider the following notes before proceeding:
+    \begin{itemize}
+        \item Since an inductor will be added in series later on to obtain the desired inductance value for the DAB, the transformer should have the smallest leakage inductance, which is determined by the relative position (and geometry) of the windings. Closer windings will have lower leakage inductance.
+        \item Therefore, the windings can be interleaved to mitigate the proximity effects, i.e., reducing the winding losses. This is suggested to avoid significant overheating of the transformer (remember that proximity effects have been neglected in the previous calculations, so the temperature increase will be higher than predicted).
+        \item While the insulating varnish of the windings is sufficient for the operating voltage of the converter, you can consider adding some layers of kapton tape; this will ensure that the isolation is guaranteed even if you accidentally scratch the isolating varnish, but your transformer will run much hotter because the tape will hinder the heat exchange.
+    \end{itemize}
+    
+     
+    \item Plan the length, the direction, and the layers of the windings before starting to wind. Consider that interleaving means wiring all three windings at the same time.
+    Leave some margin at the end of each side of the windings to make the following steps easier. 
+    Mark the beginning and end of each of your windings to help you connecting them appropriately.
+    \item Wind the appropriate number of turns for your primary and your two secondaries using the selected wire. 
+    \item Insert a single core half into the coil former, making sure not to scratch the insulating layer of the wires.
+    \item Insert the second core half into the other side of the coil former, making sure not to scratch the insulating layer of the wires. 
+    \item Use the yokes to hold the transformer together. It might be required to use a bit of force; use the provided tools and be careful not to break the cores. 
+\end{itemize}
+
+When the assembly is completed, add a picture of the fully assembled transformer in the answer box.
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+\subsection{Q30: Verifying the Wiring Directions} 
+Using the LCR meter as a supply connected to the terminals of the primary winding, verify the winding direction of the secondary windings by following the steps below:
+\begin{itemize}
+    \item Remove the insulation layer from the wire ends. 
+    If you are using bare wire, you need to scratch the varnish with sandpaper or scissors' blades. 
+    If you are using Litz wires, you need to terminate them using a soldering bath (keep the wire inside the bath for 5 to 20 seconds according to the size of your wire).
+    \item Set the frequency on the LCR meter to 10 kHz;
+    \item Mark the terminal of the primary winding connected to the high potential of the LCR;
+    \item Measure the voltage across the secondary winding;
+    \item If the voltage is in phase with the primary voltage, mark it as the positive terminal; otherwise, mark it as the negative terminal.
+    \item Repeat the procedure in the previous two points for the auxiliary winding.
+\end{itemize}
+Provide a picture of the transformer with the markings on the windings. 
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+\hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+\subsection{Q31: Soldering} 
+Solder the windings to the respective pins of the coil former and provide a picture of the final soldered transformer. 
+
+\textbf{Note}: Make sure to solder the winding terminals to the intended pins (a suggestion is provided in Figure \ref{soldering suggestion}).
+
+\textbf{Note}: You need to remove the insulation layer from the wire ends before soldering. 
+If you are using bare wire, you need to scratch the varnish with sandpaper or scissors' blades. 
+If you are using Litz wires, you need to terminate them using a soldering bath (keep the wire inside the bath for 5 to 20 seconds according to the size of your wire). 
+
+
+Be aware that the wire can get very hot. \textbf{Do not burn your fingers!!!}
+\\
+
+Add a picture in the answer box after completing the soldering process.
+
+\begin{figure}[htb]
+   \centering
+   \includegraphics[width=0.7\textwidth]{gfx/coilformer.pdf}
+
+    \caption{Suggested exemplary connection of the windings on the coil former (on the left) and the corresponding PCB footprint (on the right). This is only an example and, therefore, your coil former might be different. }
+\label{soldering suggestion}
+\end{figure}
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+
+\newpage
+\section{Transformer --  Prototype Measurement}
+
+
+
+\subsection{Q32: Open-Circuit Test with LCR Meter} 
+To estimate the magnetizing inductance, perform an open-circuit test using the LCR Meter. 
+Keep both secondary windings open and measure the inductance on the primary winding (using Ls mode). 
+Show a picture of your measurement setup in the answer box and report the inductance value with the appropriate unit.
+
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+ 
+\end{framed}
+\fbox{$L_\mathrm{m}= \qquad\qquad\qquad $} at \fbox{$f= \qquad kHz$}  \hfill \fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+
+
+
+\subsection{Q33: Short-Circuit Test with LCR Meter} 
+To estimate your leakage inductance and the total winding resistance, perform a short-circuit test using the LCR Meter. 
+Short circuit both secondary windings using wires or clips, and measure the inductance and resistance (Ls-Rs mode) on the primary winding. 
+Show a picture of your measurement setup in the answer box. 
+Compare the inductance value with your desired DAB inductance to ensure that your leakage inductance is smaller. 
+If the constraint is not fulfilled, rewind your transformer by keeping the windings closer to each other. 
+Then, compare the measured resistance with the one you estimated in Q25. 
+\textbf{Note}: The value you measure is the combined effect of your primary-side winding resistance and all the other winding resistances reflected at the primary side.  
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$L_\mathrm{leak,tot,pri}= \qquad \upmu \mathrm{H}$}  \qquad \fbox{$R_\mathrm{s,tot,pri}= \qquad \Omega$} at \fbox{$f= \qquad \mathrm{kHz}$}    \hfill \fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+\subsection{Q34: Open-Circuit test with a Frequency Response Analyzer} 
+Validate the measurements in the previous open-circuit test by using the provided frequency response analyzer (Omicron Bode 100). 
+Keep both secondary windings open and measure the inductance (Impedance Analysis/One-Port/Ls) on the primary winding. 
+Provide a screenshot showing the measured inductance for a frequency range from 100 Hz to 1 MHz. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+ 
+\end{framed}
+\hfill \fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+\subsection{Q35: Short-Circuit Test with Frequency Response Analyzer} 
+Validate the measurements in the previous short-circuit test by using the provided frequency response analyzer (Omicron Bode 100). 
+Short Circuit both secondary windings and measure the inductance and resistance (Impedance Analysis/One-Port/Ls+Rs) on the primary winding. 
+Provide a screenshot showing both the measured inductance and the measured resistance for a frequency range from 100 Hz to 1 MHz. Note the effect of frequency on your resistance. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+ 
+\end{framed}
+\hfill \fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Q36: Saturation Measurement} 
+Using the power choke meter (DPG10-1000B), execute the saturation test and provide the results below. 
+Follow these steps: 
+\begin{itemize}
+    \item Keep the secondary windings open.
+    \item Connect both the Force and Sense cables to the power choke meter and to the terminals of the primary.
+    \item Once connected, cover with the provided Plexiglas box.
+    \item \textbf{DO NOT TOUCH IT until the end of the measuring process. You could get seriously injured!}
+    \item In the control software: 
+    \begin{itemize}
+        \item Set the maximum voltage to 60 V;
+        \item Set the maximum pulse duration to 200 $\upmu \mathrm{s}$ (increase it if necessary);
+        \item Set the maximum current to the maximum magnetizing current rounded \textbf{up} to the nearest integer. 
+    \end{itemize}  
+    \item Start the measurement.
+\end{itemize}
+
+Verify that your core is not saturating, write the maximum value of the magnetizing current $I_\mathrm{m,peak}$ below, and provide the curves of both the incremental and the secant inductance in the answer box, along with a picture of the measuring setup. 
+In addition, provide a concise reason for why you believe the core is not saturating.  
+
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+
+\fbox{$I_\mathrm{m,peak}= \qquad \mathrm{A}$}
+
+\hfill\fbox{\qquad / 4 pt.}
+
+
+
+
+
+
+\subsection{Q37: Magnetizing Current and Voltage Ratio Check} 
+Using the provided hardware setup and assisted by a TA, you will excite your transformer at the operating frequency and maximum output voltage. 
+Report the oscilloscope acquisition of primary voltage, secondary voltages, and magnetizing current in the box below, along with a photo of the test setup. Check that the voltage ratios from the primary to the secondaries are correct. 
+\textbf{Note}: keep the test as short as possible. 
+
+
+
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\hfill \fbox{\qquad / 4 pt.}
+
+
+
+
+
+\subsection{Q38: Core Heat-Run Test} 
+You are tasked with performing a heat-run test using the setup used for the preceding question. The objective is to validate your design with respect to core losses. Follow these steps: 
+\begin{itemize}
+    \item Wait for the core to return to room temperature from your last test.
+    \item Take a thermal photo of the core at room temperature.
+    \item Start the excitation of the core and closely monitor the temperature closely for at least 10 minutes. Stop the test immediately if the temperature is too high and fix your design.
+    \item After thermal steady-state is reached, take another thermal photo of the core.  
+\end{itemize}
+
+Report the thermal images of the test in the box below. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\hfill \fbox{\qquad / 4 pt.}
+
+
+
+
+
+
+
+
+
+\subsection{Q39: Conduction Heat-Run Test} 
+You are tasked with executing a heat-run test following these steps:
+\begin{itemize}
+    \item Take a DC power supply, connect it to your primary windings, and set it up in current mode with the current limit set to your expected worst-case primary RMS current increased by at least 10\% (to account for part of the inevitable frequency effects). 
+    \item Repeat the same procedure for the secondary windings. \textbf{Make sure} that the cables you use for the connection can withstand your secondary current and are well connected to the power supply; otherwise, the cables could overheat and \textbf{burn} (use at least 1 $\mathrm{mm}^2$ cross-section for 10 A; use at least 1.5 $\mathrm{mm}^2$ cross-section for 15 A). If any current limit exceeds 9 A, contact a TA. 
+    \item Repeat the same procedure for the auxiliary windings. In this case, you can avoid increasing the RMS value since the provided one for the design is already very conservative. 
+    \item Take an initial thermal image of the transformer.
+    \item Activate the power supplies and keep monitoring your transformer closely. 
+\end{itemize}
+Provide a picture of the test-setup as well as two thermal images: one prior to the test and one after 15 minutes. 
+Indicate the maximum temperature in the answer boxes below, together with the value of the currents in the test. 
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+
+\fbox{$T_{0}$= \qquad $^{\circ}C$} \quad \fbox{$T_\mathrm{15min}$ = \qquad $^{\circ}C$} \\ \fbox{$I_\mathrm{pri,test}$ = \qquad A ( \% margin)} \quad \fbox{$I_\mathrm{sec,test}$ = \qquad A ( \% margin)} \quad \fbox{$I_\mathrm{aux,test}$ = \qquad A ( \% margin)} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Inductor Design}
+
+The aim of this last section is to design and build the external inductor to integrate the obtained leakage inductance and reach the desired value for your DAB. 
+This process is also iterative; be aware that you might need to reconsider your choices. 
+The questions in this section represent a (mostly) independent iterative loop with respect to the one of the transformer (it is only influenced by the measured leakage inductance).  
+To wind your inductor, choose the same wire you used for the primary side of your transformer. 
+The core shape is a toroidal core. 
+This shapes leads to simpler design at the cost of a higher volume.   
+Be aware that it may not be possible to realize exactly the value of your choice and that \textbf{reasonable} deviations are acceptable.
+
+
+
+
+
+
+\subsection{Q40: Evaluate the External Inductance} 
+Based on the measured leakage inductance (total, referred to the primary side), calculate the external inductance $L_\mathrm{ext}$ you need to add in order to reach the desired inductance value $L$. 
+\\
+
+\begin{framed}
+The desired DAB inductance is $L = 26.04\,\upmu\mathrm{H}$ (from Q11: $L_\mathrm{m,MIN} = 10L$). The measured total leakage inductance referred to the primary is $L_\mathrm{leak} = 2.67\,\upmu\mathrm{H}$ (Q33). The external inductance needed is:
+\begin{equation}
+    L_\mathrm{ext} = L - L_\mathrm{leak} = 26.04 - 2.67 = 23.37\,\upmu\mathrm{H}
+\end{equation}
+\end{framed}
+
+\fbox{$L_\mathrm{ext} = 23.37\,\upmu \mathrm{H}$} \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+
+
+
+
+\subsection{Q41: Design of the External Inductance} 
+Choose one of the cores in the Table \ref{tab:toroids}. 
+Evaluate the integer number of turns needed to reach the value $L_s$ as close as possible to the desired $L_\mathrm{ext}$.
+\textbf{Note}: Indicate "2x" in your selected core if you need to use two cores in parallel.  
+\\
+
+\begin{framed}
+The required number of turns for each core is $N = \sqrt{L_\mathrm{ext}/A_L}$ (from $L = A_L N^2$):
+\begin{center}\begin{tabular}{clcccc}\toprule
+Ref. & Core & $A_L$ (nH) & $N$ (exact) & $N$ (rounded) & $L_s = A_L N^2$ ($\upmu$H) \\\midrule
+A/B & T94/130-2 & 8.4 & 51.8 & 52 & 22.71 \\
+C   & T157-2    & 14  & 40.1 & 40 & 22.40 \\
+D   & T184-2    & 24  & 30.6 & 31 & 23.06 \\\bottomrule
+\end{tabular}\end{center}
+Core C (T157-2) is selected: the required turns $N = \sqrt{L_\mathrm{ext}/A_L} = \sqrt{23370/14} = 40.9 \approx 41$. The resulting inductance $L_s = 14\times41^2 = 23.53\,\upmu\mathrm{H}$, giving a total $L_\mathrm{tot} = L_\mathrm{leak} + L_s = 2.67 + 23.53 = 26.20\,\upmu\mathrm{H}$ ($+0.6\%$ deviation from $L = 26.04\,\upmu\mathrm{H}$, within acceptable tolerance).
+\end{framed}
+
+\fbox{Selected core = C (T157-2)} \qquad \fbox{$N_\mathrm{L,s}$ = 41} \qquad \fbox{$L_\mathrm{s} = 23.53\,\upmu \mathrm{H}$} \hfill\fbox{\qquad / 4 pt.}
+
+\begin{table}[!h]
+\centering
+\caption{Available toroids for realizing the external inductor. }
+\label{tab:toroids}
+\begin{tabular}{clccccc}
+	\toprule
+	Ref. & Part Number  & Material & $A_\mathrm{L} \left(\mathrm{nH}/N^2\right)$   & $\mu_\mathrm{r}$ & $H_\mathrm{max}$ (A/m) & Datasheet           \\
+	\toprule
+    A & T94-2      & 2   & 8.4   & 10    & 7150  & \href{https://www.rf-microwave.com/resources/products_attachments/6128f4a31a84b.pdf}{Link}\\
+    B & T130-2      & 2 & 8.4   & 10    & 7150  & \href{https://www.rf-microwave.com/resources/products_attachments/6128f4a31a84b.pdf}{Link}\\
+    C & T157-2      & 2  & 14    & 10    & 7150  &  \href{https://datasheets.micrometals.com/T157-2-DataSheet.pdf}{Link}\\
+    D & T184-2      & 2  & 24    & 10    & 7150  &  \href{https://datasheets.micrometals.com/T184-2-DataSheet.pdf}{Link}\\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Q42: Magnetic Field and Flux Density}
+Calculate the peak magnetic field $H_{\mathrm{L,peak}}$ for the inductor. 
+To avoid saturation, the magnetic field should be lower than the maximum one reported in Table~\ref{tab:toroids}. 
+
+Then, evaluate the magnetic flux value in your inductor considering your peak primary current and the number of turn you selected in Q43. 
+To limit the losses, the flux should be lower than 30 mT. 
+
+If you cannot fulfill this requirement, try to use another available core. 
+If even this last solution is not enough, you can parallel two cores. 
+Be aware that you need back to the previous question and recalculate the number of turns. 
+\\
+
+\begin{framed}
+The peak primary current from the DAB model at worst-case $V_\mathrm{in,min}=30\,\mathrm{V}$ is $I_\mathrm{peak} = i_\varphi = 3.604\,\mathrm{A}$ (Q3). For the T157-2 core, the mean magnetic path length is $l_m = \pi(40.0+24.1)/2 = 100.7\,\mathrm{mm}$ (from OD$\,=40.0\,\mathrm{mm}$, ID$\,=24.1\,\mathrm{mm}$, datasheet). With $N=41$ turns:
+\begin{align}
+    H_\mathrm{L,peak} &= \frac{N\,I_\mathrm{peak}}{l_m} = \frac{41\times3.604}{0.1007} = 1467\,\mathrm{A/m} \quad < 7150\,\mathrm{A/m} \quad\checkmark\\
+    B_\mathrm{L,peak} &= \mu_0\,\mu_r\,H_\mathrm{L,peak} = 4\pi\!\times\!10^{-7}\times10\times1467 = 18.4\,\mathrm{mT} \quad < 30\,\mathrm{mT} \quad\checkmark
+\end{align}
+Both saturation and flux density constraints are comfortably satisfied.
+\end{framed}
+
+\fbox{$H_{\mathrm{L,peak}}$ = $1467\,\mathrm{A/m}$} \qquad
+\fbox{$B_{\mathrm{L,peak}}$ = $18.4\,\mathrm{mT}$} \hfill\fbox{\qquad / 3 pt.}
+
+
+
+
+
+
+
+
+
+\subsection{Q43: Winding and Measurement of the Inductor}
+Using the same wire you selected for the primary of the transformer, wind the calculated number of turns on the selected core. 
+Terminate your wires using the same procedure as for your transformer. 
+Then, using the LCR meter to evaluate Ls and Rs. 
+
+\textbf{Note}: The toroidal cores are also fragile. Handle them with caution!  
+
+\textbf{Note}: Distribute your turns uniformly around the core to obtain a result closer to the one calculated analytically. 
+You can also adjust the position of your turns to tailor your inductor value to the desired one. 
+Once you find the optimal position, fix the two winding ends to the core with a small amount of glue or tape (e.g., use a glue gun). 
+\\
+Show a picture of your inductor in the answer box.
+
+\begin{framed}
+	\vspace{2em}
+	\textbf{Please write your answer inside the frame. Keep your text explanations concise and on point. In calculations include input data and do not forget units when you substitute symbols for values. \\ Delete this before writing anything.}
+	\vspace{2em}
+\end{framed}
+
+\fbox{$L_{s}= \qquad \upmu \mathrm{H}$}  and \fbox{$R_{s}= \qquad \Omega$} at \fbox{$f$ = \qquad kHz} \hfill \fbox{\qquad / 5 pt.}
+
+
+
+
+
+
+
+\subsection{Q44: Check Copper Losses in the Inductor}
+Taking into account the primary-side RMS current and the $R_s$ you just measured, evaluate the copper losses expected in your inductor and calculate them as a percentage of the nominal output power. 
+This is the estimated efficiency drop due to the losses in your inductor. 
+
+
+\textbf{Note}: It is suggested not to allow more than 1 W for the smaller core and 2 W for the larger cores to avoid overheating. 
+If this happens, change the wire to reduce the resistance (you are eventually allowed to parallel two wires if needed). \\
+
+\begin{framed}
+Using the measured AC resistance $R_s = 0.069\,\Omega$ (Q43) and the worst-case primary RMS current $I_{1,\mathrm{RMS}} = 2.015\,\mathrm{A}$ at $V_\mathrm{in,min}=30\,\mathrm{V}$ (Q15):
+\begin{equation}
+    P_{\mathrm{Cu},L} = I_{1,\mathrm{RMS}}^2 \cdot R_s = (2.015)^2 \times 0.069 = 0.280\,\mathrm{W}
+\end{equation}
+As a fraction of nominal output power $P_\mathrm{out,nom} = 50\,\mathrm{W}$:
+\begin{equation}
+    \frac{P_{\mathrm{Cu},L}}{P_\mathrm{out,nom}} = \frac{0.280}{50} \times 100\% = 0.56\%
+\end{equation}
+This is well below the 2\,W limit recommended for core C, so no wire change is needed.
+\end{framed}
+
+\fbox{$P_{\mathrm{Cu},L}$ = $0.280\,\mathrm{W}$} which corresponds to \fbox{$0.56\,\%$} of output power \hfill\fbox{\qquad / 2 pt.}
+
+
+
+
+
+\subsection{Q45: Saturation Measurement} 
+Repeat the saturation test that you previously performed on the transformer.  
+Using the power choke meter, provide the results following these steps: 
+\begin{itemize}
+    \item Keep the secondary windings open.
+    \item Connect both the Force and Sense cables to the power choke meter and to the terminals of the primary.
+    \item Once connected, cover with the provided Plexiglas box.
+    \item \textbf{DO NOT TOUCH IT until the end of the measuring process. You could get seriously injured!}
+    \item In the control software: 
+    \begin{itemize}
+        \item Set the maximum voltage to 60 V;
+        \item Set the maximum pulse duration to 200 $\upmu \mathrm{s}$ (increase it later if necessary);
+        \item Set the maximum current to \textbf{at least twice} the maximum input current rounded up to the nearest integer. 
+    \end{itemize}
+    \item Start the measurement.
+\end{itemize}
+
+
+Verify that your core is not saturating, and provide the curves of both the incremental and the secant inductance in the answer box, along with a picture of the measuring setup.
+In addition, provide a concise reason for why you believe the core is not saturating. 
+
+\begin{framed}
+The maximum current for the test is set based on the worst-case peak primary current. The DAB inductor current waveform is piecewise-linear; the peak occurs at $\theta = \varphi$ (end of the first ramp segment). At worst-case $V_\mathrm{in,min} = 30\,\mathrm{V}$ and $P_\mathrm{out} = 50\,\mathrm{W}$, the DAB power equation gives phase shift $\varphi = 30.0^\circ$ (Q15). The peak current is then:
+\begin{equation}
+    i_\varphi = i_0 + \frac{(V_1 + V_2')\,\varphi}{\omega L} = 0.405 + \frac{(30 + 50.0)\times0.524}{2\pi\times80\times10^3\times26.04\times10^{-6}} = 3.604\,\mathrm{A}
+\end{equation}
+where $i_0 = 0.405\,\mathrm{A}$ is the current at $\theta=0$ (Q15), $V_2' = n\,V_\mathrm{out} = 4.167\times12 = 50.0\,\mathrm{V}$, and $\varphi = 30.0^\circ = 0.524\,\mathrm{rad}$.
+
+The required current limit is at least twice this value, rounded up:
+\begin{equation}
+    I_\mathrm{max,test} = \lceil 2 \times 3.604 \rceil = \lceil 7.21 \rceil = 8\,\mathrm{A}
+\end{equation}
+This margin ensures the saturation test probes well beyond the operating current range, confirming that no saturation occurs in normal operation. From Q42, $H_\mathrm{peak} = 1467\,\mathrm{A/m}$ at $I_\mathrm{peak} = 3.604\,\mathrm{A}$, which is far below $H_\mathrm{max} = 7150\,\mathrm{A/m}$, so no saturation is expected.\\
+
+\textit{(Insert oscilloscope screenshot and photo of measurement setup here.)}
+\end{framed}
+\hfill\fbox{\qquad / 4 pt.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
