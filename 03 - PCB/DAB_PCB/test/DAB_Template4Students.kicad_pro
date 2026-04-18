@@ -651,7 +651,7 @@
         "uuid": "10e55807-643b-4bc9-b726-ccd65e076347"
       }
     ],
-    "used_designators": "Rhi3-5,Cli2-4,Rboot2-4,Chi3-5,C_boot2-4,Rli2-4,SWH?1-8,Rgs2-8,Rg2-8,Dboot2-4,IC1-4,L1,C_vdd2-4,D1-2,#PWR1-16,C1-5,C_li2,Tr1,R1-4,Shunt1-3",
+    "used_designators": "Z2,Tr2,S2,Me1-4,J1-3,C14-25,J?1,IC13-17,HS1,L2,RrtE1,LED5-8,SWH?9,PS2-3,Shunt4,R7-12,D6-7,#PWR1,#PWR31-39",
     "variants": []
   },
   "sheets": [
