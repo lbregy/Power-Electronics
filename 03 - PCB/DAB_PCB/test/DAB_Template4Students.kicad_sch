@@ -6379,6 +6379,260 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:VDD"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "VDD"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VDD\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "VDD_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VDD_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "root_0_AZ1117IH-3.3TRG1_DAB_EE365.SchLib_1"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -7607,6 +7861,12 @@
 		(uuid "1ba327e7-c1ae-4953-9cf4-c48b29489dbe")
 	)
 	(junction
+		(at 318.77 476.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1c246901-702d-4e62-a5a2-be3c8dabc8af")
+	)
+	(junction
 		(at 534.67 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7677,12 +7937,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "36f17c0a-a471-4fe1-91cb-d849b48d9a5e")
-	)
-	(junction
-		(at 246.38 462.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "37e9b2ac-340c-4ee9-937e-8774a6d0106b")
 	)
 	(junction
 		(at 415.29 74.93)
@@ -8211,12 +8465,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c9fba922-47a5-4518-aefa-cfdf60c93680")
-	)
-	(junction
-		(at 318.77 476.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cc62d7e6-8b4c-4943-a6d2-1155f2de06f6")
 	)
 	(junction
 		(at 379.73 74.93)
@@ -8913,16 +9161,6 @@
 			(type default)
 		)
 		(uuid "10a63fd1-c96e-42d4-99c2-61e19a176b41")
-	)
-	(wire
-		(pts
-			(xy 246.38 463.55) (xy 246.38 462.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "10d67445-98d5-4c80-8297-25dc0344a4c6")
 	)
 	(wire
 		(pts
@@ -10514,6 +10752,16 @@
 			(type default)
 		)
 		(uuid "4d3e9722-520a-4082-84b9-1eab95f2f8d2")
+	)
+	(wire
+		(pts
+			(xy 246.38 463.55) (xy 246.38 462.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d550907-965d-4d34-a73c-956b951183f9")
 	)
 	(wire
 		(pts
@@ -12421,7 +12669,7 @@
 	)
 	(polyline
 		(pts
-			(xy 398.78 467.0044) (xy 635 467.0044)
+			(xy 419.1 467.36) (xy 635 467.0044)
 		)
 		(stroke
 			(width 0.762)
@@ -14986,7 +15234,7 @@
 		)
 		(uuid "0f3fd231-0a59-4db2-970a-da4d2b3e3950")
 	)
-	(label "3V3"
+	(label "3V3pri"
 		(at 318.77 480.06 0)
 		(effects
 			(font
@@ -15676,7 +15924,7 @@
 		)
 		(uuid "c5d7cfcb-6bee-4f34-8de4-3cb28d66636e")
 	)
-	(label "3V3"
+	(label "3V3pri"
 		(at 342.9 414.02 0)
 		(effects
 			(font
@@ -15736,7 +15984,7 @@
 		)
 		(uuid "d27209f2-b140-433f-aad8-bf8608760c98")
 	)
-	(label "3V3"
+	(label "3V3pri"
 		(at 257.81 386.08 0)
 		(effects
 			(font
@@ -15906,7 +16154,7 @@
 		)
 		(uuid "eb3bf7e9-fa9b-4c24-acd1-e19563054523")
 	)
-	(label "3V3"
+	(label "3V3pri"
 		(at 342.9 365.76 0)
 		(effects
 			(font
@@ -16658,7 +16906,7 @@
 		(dnp no)
 		(uuid "04736cec-3ee8-4506-915c-0da6f9279da5")
 		(property "Reference" "Shunt3"
-			(at 422.91 73.66 90)
+			(at 423.672 71.882 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18791,7 +19039,7 @@
 		(dnp no)
 		(uuid "232fd8dc-4004-4cb5-bb9a-6a828eec7132")
 		(property "Reference" "PS3"
-			(at 509.27 427.99 90)
+			(at 515.112 426.212 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18802,7 +19050,7 @@
 			)
 		)
 		(property "Value" "173951275"
-			(at 514.35 427.99 90)
+			(at 510.54 438.658 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19052,8 +19300,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "242b1d50-b974-420e-b493-35467b8c2418")
-		(property "Reference" "J?1"
-			(at 706.12 498.7544 90)
+		(property "Reference" "J1"
+			(at 710.692 496.316 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19308,7 +19556,7 @@
 		(instances
 			(project "DAB_Template4Students"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "J?1")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -19572,7 +19820,7 @@
 		(dnp no)
 		(uuid "2967b681-bb57-43be-90d2-112578651a22")
 		(property "Reference" "IC6"
-			(at 509.27 496.57 90)
+			(at 519.938 494.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19583,7 +19831,7 @@
 			)
 		)
 		(property "Value" "INA201AID"
-			(at 509.27 511.81 90)
+			(at 516.636 509.778 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22902,7 +23150,7 @@
 		(dnp no)
 		(uuid "4a92d518-ba85-426a-9d93-be5cde666772")
 		(property "Reference" "IC10"
-			(at 509.27 541.02 90)
+			(at 516.382 538.988 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22913,7 +23161,7 @@
 			)
 		)
 		(property "Value" "MCP6241-E_P"
-			(at 509.27 556.26 90)
+			(at 511.048 554.482 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24022,6 +24270,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VDD")
+		(at 334.01 491.49 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "558d0aea-b473-43f2-9aa3-13c698361ad1")
+		(property "Reference" "#PWR040"
+			(at 334.01 495.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3pri"
+			(at 334.01 486.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 334.01 491.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 334.01 491.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 334.01 491.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "01122966-c1b7-44ce-8055-c3240b9492ca")
+		)
+		(instances
+			(project "DAB_Template4Students"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DAB_EE365:root_0_mirrored_Phoenix-1755736_DAB_EE365.SchLib")
 		(at 100.33 96.52 270)
 		(mirror x)
@@ -24125,7 +24451,7 @@
 		(dnp no)
 		(uuid "57e2379d-7121-48d6-801f-65966c8cb51e")
 		(property "Reference" "Shunt1"
-			(at 120.65 73.66 90)
+			(at 121.158 71.628 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24710,7 +25036,7 @@
 		(dnp no)
 		(uuid "608aedf0-428a-4b37-89c5-0a2e9d2618c6")
 		(property "Reference" "IC4"
-			(at 621.03 279.4 90)
+			(at 627.126 277.622 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24721,7 +25047,7 @@
 			)
 		)
 		(property "Value" "UCC27288DR"
-			(at 621.03 294.64 90)
+			(at 623.062 292.862 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25065,80 +25391,6 @@
 			(project "DAB_Template4Students"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "DAB_Template4Students-altium-import:GND_POWER_GROUND")
-		(at 246.38 462.28 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "61fbdfa8-ac51-4892-95d1-73f5c04eaee2")
-		(property "Reference" "#PWR022"
-			(at 246.38 462.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 246.38 468.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 246.38 462.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 246.38 462.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 246.38 462.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "534d5d2f-27bf-44d0-bd27-60a6398aac8d")
-		)
-		(instances
-			(project "DAB_Template4Students"
-				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -25568,7 +25820,7 @@
 		(dnp no)
 		(uuid "68709c7f-0b9f-43cc-8dac-0c4a5ecc32af")
 		(property "Reference" "PS1"
-			(at 69.85 378.46 90)
+			(at 75.692 376.428 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25579,7 +25831,7 @@
 			)
 		)
 		(property "Value" "173951275"
-			(at 74.93 378.46 90)
+			(at 71.374 388.874 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -26239,7 +26491,7 @@
 		(dnp no)
 		(uuid "7affeb8e-a860-43fd-ac45-a05b2e954efd")
 		(property "Reference" "S1"
-			(at 313.436 461.01 90)
+			(at 317.5 459.232 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -26250,7 +26502,7 @@
 			)
 		)
 		(property "Value" "TL3305BF100QG"
-			(at 313.436 472.44 90)
+			(at 310.642 470.408 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27168,7 +27420,7 @@
 		(dnp no)
 		(uuid "83142a35-1366-4cdb-ab70-368584cdc843")
 		(property "Reference" "IC2"
-			(at 232.41 276.86 90)
+			(at 238.76 275.082 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27179,7 +27431,7 @@
 			)
 		)
 		(property "Value" "UCC27288DR"
-			(at 232.41 292.1 90)
+			(at 234.188 290.068 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27926,7 +28178,7 @@
 		(dnp no)
 		(uuid "8d662975-c34a-48e7-85f9-afc2efe3628c")
 		(property "Reference" "IC11"
-			(at 66.04 415.29 90)
+			(at 75.184 413.004 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27937,7 +28189,7 @@
 			)
 		)
 		(property "Value" "AZ1117IH-3.3TRG1"
-			(at 70.485 415.29 90)
+			(at 68.326 426.212 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -28469,7 +28721,7 @@
 		(dnp no)
 		(uuid "8e9ace46-ec31-4413-9d95-a964142afdab")
 		(property "Reference" "IC5"
-			(at 78.74 494.03 90)
+			(at 89.408 492.252 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -28480,7 +28732,7 @@
 			)
 		)
 		(property "Value" "INA201AID"
-			(at 78.74 509.27 90)
+			(at 86.614 507.238 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -28664,7 +28916,7 @@
 		(dnp no)
 		(uuid "91743044-933d-447f-814a-03c116042016")
 		(property "Reference" "L1"
-			(at 276.861 95.301 90)
+			(at 280.924 92.202 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29514,7 +29766,7 @@
 		(dnp no)
 		(uuid "99605b85-2818-4c97-bfcd-8199e44173b7")
 		(property "Reference" "IC3"
-			(at 487.68 280.67 90)
+			(at 493.776 278.892 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29525,7 +29777,7 @@
 			)
 		)
 		(property "Value" "UCC27288DR"
-			(at 487.68 295.91 90)
+			(at 489.712 294.386 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29945,7 +30197,7 @@
 		(dnp no)
 		(uuid "9f9dfc6a-8bb9-41a2-860e-78088aea2c58")
 		(property "Reference" "Shunt2"
-			(at 270.51 107.95 90)
+			(at 271.018 105.918 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30186,6 +30438,84 @@
 			(project "DAB_Template4Students"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "Rg1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 246.38 463.55 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a4f5a6e4-ff46-4131-9684-3568ba5696fc")
+		(property "Reference" "#PWR041"
+			(at 246.38 469.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 246.38 468.63 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 246.38 463.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 246.38 463.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 246.38 463.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bac42284-7cfd-4886-9329-8809c2f32756")
+		)
+		(instances
+			(project "DAB_Template4Students"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -32499,7 +32829,7 @@
 		(dnp no)
 		(uuid "c1289693-7a77-442c-8f19-b27eb38deb3b")
 		(property "Reference" "IC7"
-			(at 267.97 393.7 90)
+			(at 278.638 391.668 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -32510,7 +32840,7 @@
 			)
 		)
 		(property "Value" "INA201AID"
-			(at 267.97 408.94 90)
+			(at 276.352 406.908 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -34076,7 +34406,7 @@
 		(dnp no)
 		(uuid "d18affb0-5a18-4a7b-96ec-55d6de6d4ffd")
 		(property "Reference" "IC8"
-			(at 267.97 443.23 90)
+			(at 279.4 441.198 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -34087,7 +34417,7 @@
 			)
 		)
 		(property "Value" "INA201AID"
-			(at 267.97 458.47 90)
+			(at 275.844 456.438 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -34805,7 +35135,7 @@
 		(dnp no)
 		(uuid "d569e4ca-e9a3-486a-87b0-97b672e94271")
 		(property "Reference" "IC12"
-			(at 509.27 375.92 90)
+			(at 520.7 374.142 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -34816,7 +35146,7 @@
 			)
 		)
 		(property "Value" "UA78L12ACDR"
-			(at 509.27 391.16 90)
+			(at 516.382 389.128 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -35713,7 +36043,7 @@
 		(dnp no)
 		(uuid "dc3ec9df-cc47-45c2-9574-eab3742fdd70")
 		(property "Reference" "IC9"
-			(at 81.28 537.21 90)
+			(at 89.154 535.432 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -35724,7 +36054,7 @@
 			)
 		)
 		(property "Value" "MCP6241-E_P"
-			(at 81.28 552.45 90)
+			(at 83.312 550.418 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -36053,6 +36383,84 @@
 			(project "DAB_Template4Students"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "Csens2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 261.62 454.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e0f3935e-a224-4d7a-aa1b-d8f5d8b981c3")
+		(property "Reference" "#PWR042"
+			(at 261.62 461.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 261.62 459.74 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 261.62 454.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 261.62 454.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 261.62 454.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cf06e601-8837-437e-9a0e-7b5fec16ad1a")
+		)
+		(instances
+			(project "DAB_Template4Students"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -36613,80 +37021,6 @@
 			(project "DAB_Template4Students"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "R6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "DAB_Template4Students-altium-import:GND_POWER_GROUND")
-		(at 261.62 454.66 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e9e08409-4002-4d3c-b33c-b7d0d86cb72e")
-		(property "Reference" "#PWR020"
-			(at 261.62 454.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 261.62 461.01 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 261.62 454.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 261.62 454.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 261.62 454.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin ""
-			(uuid "af78ffde-8ba6-4728-b72e-616e332e99fc")
-		)
-		(instances
-			(project "DAB_Template4Students"
-				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -38088,7 +38422,7 @@
 		(dnp no)
 		(uuid "fa8c8edc-b931-4684-9186-ab6c081cb156")
 		(property "Reference" "IC1"
-			(at 104.14 276.86 90)
+			(at 110.49 274.828 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38099,7 +38433,7 @@
 			)
 		)
 		(property "Value" "UCC27288DR"
-			(at 104.14 292.1 90)
+			(at 105.664 290.576 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
