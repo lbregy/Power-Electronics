@@ -1,0 +1,214 @@
+(footprint "TO-220AB"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "SWH??"
+		(at 6.918198 1.10375 270)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "3702d196-8c97-4390-83cb-0f404a5466f7")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "Put MOSFET Part Number Here!"
+		(at -7.280402 17.86233 270)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "585b3ed9-35e6-4d29-910e-4300e141ed46")
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e2ca918b-23ba-4abe-8dfa-cfc319de8ed3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ab0ee6ba-bda1-44e2-be5b-efaa30b1e127")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(sheetname "DAB_Schematic")
+	(sheetfile "DAB_Schematic.kicad_sch")
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -5.35 -2.85)
+		(end -5.35 1.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cfe0e401-68e3-460e-a331-a435a6d6f635")
+	)
+	(fp_line
+		(start -5.35 -2.85)
+		(end 5.35 -2.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3a9a0746-7f75-4c60-9161-e21e5537cb58")
+	)
+	(fp_line
+		(start -5.35 -2.35)
+		(end 5.35 -2.35)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "aebffadb-d7bc-4ab1-990b-928affe0fa22")
+	)
+	(fp_line
+		(start -5.35 1.85)
+		(end 5.35 1.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "77c5b74b-18f9-4b43-82cc-97fc01b0843e")
+	)
+	(fp_line
+		(start 5.35 -2.85)
+		(end 5.35 1.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "136b24e5-2a8e-46f0-9650-2e14244e1618")
+	)
+	(fp_circle
+		(center -4.7 1.2)
+		(end -4.575 1.2)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "5ff280d4-87d3-488f-b3c0-a22fbb6de20e")
+	)
+	(fp_line
+		(start -5.35 -2.85)
+		(end -5.35 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.13")
+		(uuid "eab1f14f-b0c6-4fea-acf9-1dd049f5772b")
+	)
+	(fp_line
+		(start -5.35 -2.85)
+		(end 5.35 -2.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.13")
+		(uuid "5d4a2f3c-db4a-4d19-8779-0e66a964e796")
+	)
+	(fp_line
+		(start -5.35 -1.55)
+		(end 5.35 -1.55)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.13")
+		(uuid "7ba5fff7-11b6-4e76-a022-c747d9150c3b")
+	)
+	(fp_line
+		(start -5.35 1.85)
+		(end 5.35 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.13")
+		(uuid "4ad34b8c-3a7f-4b10-bf65-59b9149592d9")
+	)
+	(fp_line
+		(start 5.35 -2.85)
+		(end 5.35 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.13")
+		(uuid "4d8942d7-9ef4-40b0-8681-48dfeeab6029")
+	)
+	(fp_line
+		(start -0.5 0)
+		(end 0.5 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.15")
+		(uuid "76add010-4133-4938-a7af-f35ea0b6a950")
+	)
+	(fp_line
+		(start 0 -0.5)
+		(end 0 0.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "User.15")
+		(uuid "68240ecd-9d9d-4761-bd2d-85907d6ab60c")
+	)
+	(pad "1" thru_hole rect
+		(at -2.54 0)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2be5c721-3f9c-44b7-aaa4-8e7461f53210")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "a6348ee8-a005-4b23-a3da-bb4a5d02554a")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 0)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "f2de193b-4bed-4958-942a-759a8c84b1fb")
+	)
+	(embedded_fonts no)
+)
