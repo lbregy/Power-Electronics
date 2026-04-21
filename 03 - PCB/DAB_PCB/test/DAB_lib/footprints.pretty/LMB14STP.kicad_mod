@@ -7,7 +7,7 @@
 		(at -1.80361 -6.124898 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "3b59768e-5f58-4316-9b40-d2bce7e1792d")
+		(uuid "bc3acbed-4bc2-4e89-83a8-98cb1a859172")
 		(effects
 			(font
 				(size 1.524 1.524)
@@ -20,7 +20,7 @@
 		(unlocked yes)
 		(layer "F.SilkS")
 		(hide yes)
-		(uuid "dd887dcb-17dd-4fc7-9427-a33484749494")
+		(uuid "5cef5100-1a62-495f-ae1c-c7dcacc31cbf")
 		(effects
 			(font
 				(size 1.524 1.524)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "16ba128b-3020-499e-afd1-ee0b684fad75")
+		(uuid "1d64de37-70d5-444c-badd-feb65426e94c")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "a85da8c7-50c1-478b-be1c-2b1335174324")
+		(uuid "a70da545-ce53-4454-b8dc-89018ccd3d7e")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -53,6 +53,46 @@
 	(sheetname "DAB_Schematic")
 	(sheetfile "DAB_Schematic.kicad_sch")
 	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -3.525 -4.61)
+		(end 3.525 -4.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7481e71b-b1cb-492f-affb-0db5a5a4cff3")
+	)
+	(fp_line
+		(start -3.525 4.61)
+		(end -3.525 -4.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ed0a97fb-0458-433d-8f47-298ea9d6f618")
+	)
+	(fp_line
+		(start -3.525 4.61)
+		(end 3.525 4.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "71558779-0ebb-4289-b170-fd2354fc1647")
+	)
+	(fp_line
+		(start 3.525 4.61)
+		(end 3.525 -4.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "09e099f0-2a07-4aab-b771-d1789c91b664")
+	)
 	(fp_arc
 		(start 3.1 -2.86)
 		(mid 3.15 -2.91)
@@ -62,7 +102,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "66a05b56-7afa-4ce6-9fa3-55304e3efa04")
+		(uuid "562d7c5d-877f-46c9-8811-102345c9657d")
 	)
 	(fp_arc
 		(start 3.2 -2.86)
@@ -73,111 +113,42 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "9eb0c22b-927d-4b23-b953-c939043f7ad3")
-	)
-	(fp_line
-		(start -2.525 -2.4)
-		(end 2.525 -2.4)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.13")
-		(uuid "6f48f916-ba85-495c-874c-27d6334dbbbb")
-	)
-	(fp_line
-		(start -2.525 2.4)
-		(end -2.525 -2.4)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.13")
-		(uuid "c97f89a4-856e-436a-a800-208947cfe12b")
-	)
-	(fp_line
-		(start -2.525 2.4)
-		(end 2.525 2.4)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.13")
-		(uuid "646d12d2-03bf-4ac6-83ea-7ac0ea6662eb")
-	)
-	(fp_line
-		(start 2.525 2.4)
-		(end 2.525 -2.4)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.13")
-		(uuid "a6d5ac19-da2c-4ad7-a4d3-6884a3334b58")
-	)
-	(fp_line
-		(start -3.525 -4.61)
-		(end 3.525 -4.61)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.15")
-		(uuid "d168c580-e51a-49e6-bcba-ca845218359b")
-	)
-	(fp_line
-		(start -3.525 4.61)
-		(end -3.525 -4.61)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.15")
-		(uuid "81d1ca76-62b9-4682-8755-031da7a997be")
-	)
-	(fp_line
-		(start -3.525 4.61)
-		(end 3.525 4.61)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.15")
-		(uuid "8e64d948-dbe0-4d4e-bc3d-7ff0976b5a35")
-	)
-	(fp_line
-		(start 3.525 4.61)
-		(end 3.525 -4.61)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "User.15")
-		(uuid "beaef6f3-4aec-47d3-aab2-66269be44c85")
+		(uuid "59a45f92-95a6-46f0-b70c-2f9f2ba8891a")
 	)
 	(pad "1" smd rect
 		(at 2.05 -2.86 90)
 		(size 1.5 0.9)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "057bd23f-185d-4eac-bebc-dc5f8d397983")
+		(uuid "f9b66349-3104-48b2-bded-5d19ae84c2cc")
 	)
 	(pad "2" smd rect
 		(at 2.05 2.86 90)
 		(size 1.5 0.9)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "02911bed-c284-47c9-91cb-2fc493884eb9")
+		(uuid "721a1630-c2d0-485d-a8e0-bc997a82a420")
 	)
 	(pad "3" smd rect
 		(at -2.05 2.86 90)
 		(size 1.5 0.9)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "4d7f2887-dc77-44ab-8796-72cf72d37b24")
+		(uuid "c1d01171-e713-4724-b7a5-12804a994c03")
 	)
 	(pad "4" smd rect
 		(at -2.05 -2.86 90)
 		(size 1.5 0.9)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(uuid "e95cfe78-b8cd-4925-89b4-e248ceba9889")
+		(uuid "d4dcb989-202c-42f1-af3e-d75256538223")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/DAB_lib/3d/LMBS-1_MCE.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 90)
+		)
+	)
 )

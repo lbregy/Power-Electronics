@@ -1,4 +1,4 @@
 (sym_lib_table
 	(version 7)
-	(lib (name "DAB_EE365") (type "Altium") (uri "${KIPRJMOD}/DAB_EE365.SchLib") (options "") (descr ""))
+	(lib (name "DAB_EE365") (type "Altium") (uri "${KIPRJMOD}/DAB_lib/DAB_EE365.SchLib") (options "") (descr ""))
 )
