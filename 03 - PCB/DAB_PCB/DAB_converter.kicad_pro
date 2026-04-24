@@ -224,7 +224,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "v1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -476,7 +476,7 @@
     ]
   },
   "meta": {
-    "filename": "DAB_Template4Students.kicad_pro",
+    "filename": "DAB_converter.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -541,7 +541,7 @@
     "annotate_start_num": 0,
     "annotation": {
       "method": 0,
-      "sort_order": 1
+      "sort_order": 0
     },
     "bom_export_filename": "${PROJECTNAME}.csv",
     "bom_fmt_presets": [],
@@ -650,18 +650,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "DAB_Template4Students.kicad_sch",
-        "name": "DAB_Schematic",
+        "filename": "DAB_converter.kicad_sch",
+        "name": "DAB_converter",
         "uuid": "10e55807-643b-4bc9-b726-ccd65e076347"
       }
     ],
-    "used_designators": "TP2-18,J4-5,#PWR65-85,C21-22,HS2-4,IC14-15",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "10e55807-643b-4bc9-b726-ccd65e076347",
-      "DAB_Schematic"
+      "DAB_converter"
     ]
   ],
   "text_variables": {
