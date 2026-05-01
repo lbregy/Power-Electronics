@@ -10063,6 +10063,16 @@
 	)
 	(wire
 		(pts
+			(xy 784.86 127) (xy 787.4 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26f0aac7-e040-4028-b43f-31b650c25466")
+	)
+	(wire
+		(pts
 			(xy 337.82 444.5) (xy 340.36 444.5)
 		)
 		(stroke
@@ -10180,6 +10190,16 @@
 			(type default)
 		)
 		(uuid "2a857c14-a650-46a4-a98c-dcca6cdb478a")
+	)
+	(wire
+		(pts
+			(xy 784.86 106.68) (xy 787.4 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a99cd26-5818-407d-a806-bb057246b1fc")
 	)
 	(wire
 		(pts
@@ -10393,7 +10413,7 @@
 	)
 	(wire
 		(pts
-			(xy 791.21 102.87) (xy 789.94 102.87)
+			(xy 787.4 93.98) (xy 786.13 93.98)
 		)
 		(stroke
 			(width 0)
@@ -10763,6 +10783,16 @@
 	)
 	(wire
 		(pts
+			(xy 787.4 109.22) (xy 786.13 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c440f29-96f7-496c-bd69-01d9dd98773b")
+	)
+	(wire
+		(pts
 			(xy 74.93 414.02) (xy 77.47 414.02)
 		)
 		(stroke
@@ -10853,7 +10883,7 @@
 	)
 	(wire
 		(pts
-			(xy 788.67 100.33) (xy 791.21 100.33)
+			(xy 784.86 91.44) (xy 787.4 91.44)
 		)
 		(stroke
 			(width 0)
@@ -11253,7 +11283,7 @@
 	)
 	(wire
 		(pts
-			(xy 789.94 102.87) (xy 789.94 104.14)
+			(xy 786.13 93.98) (xy 786.13 95.25)
 		)
 		(stroke
 			(width 0)
@@ -12396,7 +12426,7 @@
 	)
 	(wire
 		(pts
-			(xy 789.94 82.55) (xy 789.94 83.82)
+			(xy 786.13 73.66) (xy 786.13 74.93)
 		)
 		(stroke
 			(width 0)
@@ -12716,7 +12746,7 @@
 	)
 	(wire
 		(pts
-			(xy 788.67 80.01) (xy 791.21 80.01)
+			(xy 784.86 71.12) (xy 787.4 71.12)
 		)
 		(stroke
 			(width 0)
@@ -14009,7 +14039,7 @@
 	)
 	(wire
 		(pts
-			(xy 791.21 129.54) (xy 789.94 129.54)
+			(xy 788.67 143.51) (xy 787.4 143.51)
 		)
 		(stroke
 			(width 0)
@@ -14360,6 +14390,16 @@
 	)
 	(wire
 		(pts
+			(xy 786.13 109.22) (xy 786.13 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bda0d5da-dfda-45a8-8592-a7ffe976ca35")
+	)
+	(wire
+		(pts
 			(xy 750.57 118.11) (xy 753.11 118.11)
 		)
 		(stroke
@@ -14470,7 +14510,7 @@
 	)
 	(wire
 		(pts
-			(xy 789.94 129.54) (xy 789.94 130.81)
+			(xy 787.4 143.51) (xy 787.4 144.78)
 		)
 		(stroke
 			(width 0)
@@ -14550,7 +14590,7 @@
 	)
 	(wire
 		(pts
-			(xy 791.21 82.55) (xy 789.94 82.55)
+			(xy 787.4 73.66) (xy 786.13 73.66)
 		)
 		(stroke
 			(width 0)
@@ -14969,6 +15009,16 @@
 			(type default)
 		)
 		(uuid "d1cd10f1-eed0-4eb5-ac7e-997812784de5")
+	)
+	(wire
+		(pts
+			(xy 784.86 124.46) (xy 787.4 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1ef61d2-cdd5-4f34-ac5f-57ec119c2cac")
 	)
 	(wire
 		(pts
@@ -16184,6 +16234,16 @@
 	)
 	(wire
 		(pts
+			(xy 784.86 127) (xy 784.86 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd21bce5-3cf5-4bea-938b-616eab7fb10c")
+	)
+	(wire
+		(pts
 			(xy 210.82 77.47) (xy 213.36 77.47)
 		)
 		(stroke
@@ -16224,7 +16284,7 @@
 	)
 	(wire
 		(pts
-			(xy 788.67 127) (xy 791.21 127)
+			(xy 786.13 140.97) (xy 788.67 140.97)
 		)
 		(stroke
 			(width 0)
@@ -16532,8 +16592,8 @@
 		)
 		(uuid "39002ac1-9c27-4592-8b0d-ecd4edd84145")
 	)
-	(label "ADCB1"
-		(at 788.67 100.33 180)
+	(label "V''"
+		(at 784.86 91.44 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16582,6 +16642,16 @@
 		)
 		(uuid "450bc70b-3587-40da-99d4-c3773e37f27d")
 	)
+	(label "I''"
+		(at 516.89 492.76 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "48caf5f5-c05b-443f-8d61-8952fcd467bf")
+	)
 	(label "PWM1A_ISO"
 		(at 172.72 275.59 0)
 		(effects
@@ -16603,7 +16673,7 @@
 		(uuid "4a1ea9bd-6346-4924-9052-832460ee345f")
 	)
 	(label "ECAP2_ISO"
-		(at 788.67 127 180)
+		(at 786.13 140.97 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16882,7 +16952,17 @@
 		)
 		(uuid "9435c6c4-8b4d-44b4-8e14-8b01b20897ca")
 	)
-	(label "ADCA2"
+	(label "V'"
+		(at 784.86 106.68 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9467ad6a-a170-43e2-8462-8f1a516b33cf")
+	)
+	(label "ADCA3"
 		(at 59.69 490.22 180)
 		(effects
 			(font
@@ -16922,7 +17002,7 @@
 		)
 		(uuid "9a023af7-f792-49a6-823a-365a0caee56f")
 	)
-	(label "prim+"
+	(label "prim-"
 		(at 67.31 368.3 0)
 		(effects
 			(font
@@ -17032,6 +17112,16 @@
 		)
 		(uuid "b1c778a8-fd66-43ca-97fe-2afcbce95f03")
 	)
+	(label "I'"
+		(at 88.9 490.22 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "babe3b06-9990-4335-8419-f5091cf1e9c1")
+	)
 	(label "vg2"
 		(at 210.82 101.6 180)
 		(effects
@@ -17112,8 +17202,8 @@
 		)
 		(uuid "c343332f-96ec-470b-a53a-baa964bd8c4c")
 	)
-	(label "ADCA1"
-		(at 788.67 80.01 180)
+	(label "I''"
+		(at 784.86 71.12 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -17141,6 +17231,16 @@
 			(justify left)
 		)
 		(uuid "c8597bef-d19a-48af-891f-bcce911f8e89")
+	)
+	(label "V'"
+		(at 128.27 535.94 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ca8d257c-290e-4ab0-879e-525cb91e64db")
 	)
 	(label "vg7"
 		(at 383.54 77.47 180)
@@ -17302,6 +17402,16 @@
 		)
 		(uuid "e5ffafec-7a65-4ae9-a4cd-25f8d6beb85a")
 	)
+	(label "V''"
+		(at 556.26 539.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e7486305-963b-4835-9009-524268e0b00d")
+	)
 	(label "PWM3B_ISO"
 		(at 746.76 88.9 180)
 		(effects
@@ -17311,6 +17421,16 @@
 			(justify right bottom)
 		)
 		(uuid "e8058a95-c061-4b9a-a86c-6f821f60095c")
+	)
+	(label "I'"
+		(at 784.86 124.46 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e8ec5ff1-8ca2-4bd3-8e8f-ecf4962e63b0")
 	)
 	(label "vs5"
 		(at 367.03 87.63 0)
@@ -17629,7 +17749,7 @@
 	)
 	(symbol
 		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
-		(at 791.21 100.33 90)
+		(at 787.4 91.44 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17639,7 +17759,7 @@
 		(dnp no)
 		(uuid "01369956-5d19-42c5-9225-d2296f5ec1e1")
 		(property "Reference" "TP16"
-			(at 796.29 95.25 90)
+			(at 792.48 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17649,8 +17769,8 @@
 				(justify right bottom)
 			)
 		)
-		(property "Value" "I_sec"
-			(at 799.338 106.68 90)
+		(property "Value" "V''"
+			(at 795.528 97.79 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17660,8 +17780,8 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 791.21 100.33 0)
+		(property "Footprint" "DAB:test point 2"
+			(at 787.4 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17672,7 +17792,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 791.21 100.33 0)
+			(at 787.4 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17683,7 +17803,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 791.21 100.33 0)
+			(at 787.4 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17694,7 +17814,7 @@
 			)
 		)
 		(property "DATASHEET LINK" "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17706,7 +17826,7 @@
 			)
 		)
 		(property "HEIGHT" "8.38mm"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17718,7 +17838,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" "SAMTEC"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17730,7 +17850,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" "TSW-202-07-T-S"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17742,7 +17862,7 @@
 			)
 		)
 		(property "MOUSER PART NUMBER" "200-TSW20207TS"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17754,7 +17874,7 @@
 			)
 		)
 		(property "MOUSER PRICE/STOCK" "https://www.mouser.co.uk/ProductDetail/Samtec/TSW-202-07-T-S?qs=rU5fayqh%252BE1T8HlkVOHZPg%3D%3D"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17766,7 +17886,7 @@
 			)
 		)
 		(property "ARROW PART NUMBER" "TSW-202-07-T-S"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17778,7 +17898,7 @@
 			)
 		)
 		(property "ARROW PRICE/STOCK" "https://www.arrow.com/en/products/tsw-202-07-t-s/samtec?utm_currency=USD&region=europe"
-			(at 791.21 100.33 90)
+			(at 787.4 91.44 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18880,6 +19000,183 @@
 	)
 	(symbol
 		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
+		(at 787.4 106.68 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0c8f3024-2294-4724-a43a-25af1bb6acb7")
+		(property "Reference" "TP19"
+			(at 792.48 101.6 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "V'"
+			(at 795.274 113.03 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Footprint" "DAB:test point 2"
+			(at 787.4 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 787.4 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 787.4 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DATASHEET LINK" "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "HEIGHT" "8.38mm"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MANUFACTURER_NAME" "SAMTEC"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MANUFACTURER_PART_NUMBER" "TSW-202-07-T-S"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MOUSER PART NUMBER" "200-TSW20207TS"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MOUSER PRICE/STOCK" "https://www.mouser.co.uk/ProductDetail/Samtec/TSW-202-07-T-S?qs=rU5fayqh%252BE1T8HlkVOHZPg%3D%3D"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "ARROW PART NUMBER" "TSW-202-07-T-S"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "ARROW PRICE/STOCK" "https://www.arrow.com/en/products/tsw-202-07-t-s/samtec?utm_currency=USD&region=europe"
+			(at 787.4 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(pin "1"
+			(uuid "c0124add-9bbb-452f-9edb-71c2d815bab3")
+		)
+		(pin "2"
+			(uuid "ba31b07a-48db-4ea4-af58-a4c9ae70f311")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "TP19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
 		(at 703.58 110.49 90)
 		(unit 1)
 		(body_style 1)
@@ -18911,7 +19208,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 703.58 110.49 0)
 			(hide yes)
 			(show_name no)
@@ -19952,6 +20249,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 786.13 110.49 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "19dc87af-657a-45db-8409-d04ea5634c2b")
+		(property "Reference" "#PWR087"
+			(at 786.13 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 786.13 115.57 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 786.13 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 786.13 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 786.13 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ad40cb90-2471-4c7a-b525-7bb31966e3aa")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR087")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DAB_EE365:root_0_NMOS-2_DAB_EE365.SchLib")
 		(at 218.44 74.93 90)
 		(unit 1)
@@ -20444,7 +20819,7 @@
 	)
 	(symbol
 		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
-		(at 791.21 127 90)
+		(at 788.67 140.97 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -20454,7 +20829,7 @@
 		(dnp no)
 		(uuid "22614eff-2148-4d26-9081-c037bbffd03a")
 		(property "Reference" "TP15"
-			(at 796.29 121.92 90)
+			(at 793.75 135.89 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20465,7 +20840,7 @@
 			)
 		)
 		(property "Value" "I_ac"
-			(at 799.338 133.35 90)
+			(at 796.798 147.32 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20475,8 +20850,8 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 791.21 127 0)
+		(property "Footprint" "DAB:test point 2"
+			(at 788.67 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20487,7 +20862,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 791.21 127 0)
+			(at 788.67 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20498,7 +20873,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 791.21 127 0)
+			(at 788.67 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20509,7 +20884,7 @@
 			)
 		)
 		(property "DATASHEET LINK" "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20521,7 +20896,7 @@
 			)
 		)
 		(property "HEIGHT" "8.38mm"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20533,7 +20908,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" "SAMTEC"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20545,7 +20920,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" "TSW-202-07-T-S"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20557,7 +20932,7 @@
 			)
 		)
 		(property "MOUSER PART NUMBER" "200-TSW20207TS"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20569,7 +20944,7 @@
 			)
 		)
 		(property "MOUSER PRICE/STOCK" "https://www.mouser.co.uk/ProductDetail/Samtec/TSW-202-07-T-S?qs=rU5fayqh%252BE1T8HlkVOHZPg%3D%3D"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20581,7 +20956,7 @@
 			)
 		)
 		(property "ARROW PART NUMBER" "TSW-202-07-T-S"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20593,7 +20968,7 @@
 			)
 		)
 		(property "ARROW PRICE/STOCK" "https://www.arrow.com/en/products/tsw-202-07-t-s/samtec?utm_currency=USD&region=europe"
-			(at 791.21 127 90)
+			(at 788.67 140.97 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21851,7 +22226,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 632.46 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -22531,7 +22906,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 758.19 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -23270,7 +23645,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 789.94 104.14 0)
+		(at 786.13 95.25 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -23281,7 +23656,7 @@
 		(fields_autoplaced yes)
 		(uuid "3b628d60-a936-4ea8-88a9-25ec2d4198a2")
 		(property "Reference" "#PWR085"
-			(at 789.94 110.49 0)
+			(at 786.13 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23292,7 +23667,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 789.94 109.22 0)
+			(at 786.13 100.33 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -23302,7 +23677,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 789.94 104.14 0)
+			(at 786.13 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23313,7 +23688,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 789.94 104.14 0)
+			(at 786.13 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23324,7 +23699,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 789.94 104.14 0)
+			(at 786.13 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23793,7 +24168,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 664.21 127 0)
 			(hide yes)
 			(show_name no)
@@ -24525,7 +24900,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 664.21 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -25082,7 +25457,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 632.46 127 0)
 			(hide yes)
 			(show_name no)
@@ -25259,7 +25634,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 703.58 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -27534,7 +27909,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 703.58 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -28826,6 +29201,183 @@
 		)
 	)
 	(symbol
+		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
+		(at 787.4 124.46 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "77fbabf4-6540-47a6-9aaa-c6c65462136d")
+		(property "Reference" "TP20"
+			(at 792.48 119.38 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Value" "I'"
+			(at 795.528 130.81 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "Footprint" "DAB:test point 2"
+			(at 787.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 787.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 787.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DATASHEET LINK" "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "HEIGHT" "8.38mm"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MANUFACTURER_NAME" "SAMTEC"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MANUFACTURER_PART_NUMBER" "TSW-202-07-T-S"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MOUSER PART NUMBER" "200-TSW20207TS"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "MOUSER PRICE/STOCK" "https://www.mouser.co.uk/ProductDetail/Samtec/TSW-202-07-T-S?qs=rU5fayqh%252BE1T8HlkVOHZPg%3D%3D"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "ARROW PART NUMBER" "TSW-202-07-T-S"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(property "ARROW PRICE/STOCK" "https://www.arrow.com/en/products/tsw-202-07-t-s/samtec?utm_currency=USD&region=europe"
+			(at 787.4 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right bottom)
+			)
+		)
+		(pin "1"
+			(uuid "7dfa346d-67b1-4cea-aa90-d1cc6ee5980e")
+		)
+		(pin "2"
+			(uuid "cd15b25c-d4a3-4249-9d29-fbdb1dc67afb")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "TP20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DAB_EE365:root_2_Resistor (SMD)_DAB_EE365.SchLib")
 		(at 612.14 278.13 0)
 		(unit 1)
@@ -29478,7 +30030,7 @@
 	)
 	(symbol
 		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
-		(at 791.21 80.01 90)
+		(at 787.4 71.12 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -29488,7 +30040,7 @@
 		(dnp no)
 		(uuid "7c8adf4f-6d11-4d67-b41a-b6576e1bb390")
 		(property "Reference" "TP14"
-			(at 796.29 74.93 90)
+			(at 792.48 66.04 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29498,8 +30050,8 @@
 				(justify right bottom)
 			)
 		)
-		(property "Value" "I_prim"
-			(at 799.084 86.36 90)
+		(property "Value" "I''"
+			(at 795.274 77.47 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29509,8 +30061,8 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 791.21 80.01 0)
+		(property "Footprint" "DAB:test point 2"
+			(at 787.4 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29521,7 +30073,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 791.21 80.01 0)
+			(at 787.4 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29532,7 +30084,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 791.21 80.01 0)
+			(at 787.4 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29543,7 +30095,7 @@
 			)
 		)
 		(property "DATASHEET LINK" "http://suddendocs.samtec.com/catalog_english/tsw_th.pdf"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29555,7 +30107,7 @@
 			)
 		)
 		(property "HEIGHT" "8.38mm"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29567,7 +30119,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" "SAMTEC"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29579,7 +30131,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" "TSW-202-07-T-S"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29591,7 +30143,7 @@
 			)
 		)
 		(property "MOUSER PART NUMBER" "200-TSW20207TS"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29603,7 +30155,7 @@
 			)
 		)
 		(property "MOUSER PRICE/STOCK" "https://www.mouser.co.uk/ProductDetail/Samtec/TSW-202-07-T-S?qs=rU5fayqh%252BE1T8HlkVOHZPg%3D%3D"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29615,7 +30167,7 @@
 			)
 		)
 		(property "ARROW PART NUMBER" "TSW-202-07-T-S"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29627,7 +30179,7 @@
 			)
 		)
 		(property "ARROW PRICE/STOCK" "https://www.arrow.com/en/products/tsw-202-07-t-s/samtec?utm_currency=USD&region=europe"
-			(at 791.21 80.01 90)
+			(at 787.4 71.12 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30055,7 +30607,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 789.94 130.81 0)
+		(at 787.4 144.78 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -30066,7 +30618,7 @@
 		(fields_autoplaced yes)
 		(uuid "7feb774c-1427-4b9f-a2af-5d58a5829a8d")
 		(property "Reference" "#PWR084"
-			(at 789.94 137.16 0)
+			(at 787.4 151.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30077,7 +30629,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 789.94 135.89 0)
+			(at 787.4 149.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30087,7 +30639,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 789.94 130.81 0)
+			(at 787.4 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30098,7 +30650,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 789.94 130.81 0)
+			(at 787.4 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30109,7 +30661,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 789.94 130.81 0)
+			(at 787.4 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30133,7 +30685,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 789.94 83.82 0)
+		(at 786.13 74.93 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -30144,7 +30696,7 @@
 		(fields_autoplaced yes)
 		(uuid "80621f51-9e45-4f7c-ba00-d88bc9370050")
 		(property "Reference" "#PWR083"
-			(at 789.94 90.17 0)
+			(at 786.13 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30155,7 +30707,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 789.94 88.9 0)
+			(at 786.13 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30165,7 +30717,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 789.94 83.82 0)
+			(at 786.13 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30176,7 +30728,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 789.94 83.82 0)
+			(at 786.13 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30187,7 +30739,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 789.94 83.82 0)
+			(at 786.13 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30398,7 +30950,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 744.22 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -31012,7 +31564,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 758.19 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -32471,7 +33023,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 632.46 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -33185,7 +33737,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 662.94 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -33598,7 +34150,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 664.21 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -35074,6 +35626,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 784.86 128.27 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a606c12c-8304-4e04-a2f2-fa34271abda5")
+		(property "Reference" "#PWR088"
+			(at 784.86 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 784.86 133.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 784.86 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 784.86 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 784.86 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9e6e9b0a-f2b8-403d-8efa-e28d03a0ad25")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR088")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DAB_EE365:root_2_WP710A10LGD_DAB_EE365.SchLib")
 		(at 749.3 407.67 270)
 		(unit 1)
@@ -36525,7 +37155,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+		(property "Footprint" "DAB:test point 2"
 			(at 632.46 110.49 0)
 			(hide yes)
 			(show_name no)
