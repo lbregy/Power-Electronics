@@ -5801,6 +5801,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+3.3V"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+3.3V"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+3.3V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3.3V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -7426,12 +7565,6 @@
 		(uuid "1c48c12e-3427-436b-ac26-ffb06e1c56fa")
 	)
 	(junction
-		(at 510.54 419.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "23074ac2-cb3f-43d5-896f-6b0298ad1d53")
-	)
-	(junction
 		(at 354.33 359.41)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8078,6 +8211,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8a4f2f2-3de5-4b34-9a8c-67bb16c0f7fc")
+	)
+	(junction
+		(at 510.54 419.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d956b250-2d42-4594-b176-e3d3c1367e91")
 	)
 	(junction
 		(at 146.05 275.59)
@@ -9000,6 +9139,16 @@
 			(type default)
 		)
 		(uuid "138d46e9-44d4-4e06-b0a1-eea76d7aa6d1")
+	)
+	(wire
+		(pts
+			(xy 510.54 416.56) (xy 510.54 419.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13d1777a-2269-4c66-bee6-e29161054275")
 	)
 	(wire
 		(pts
@@ -10964,16 +11113,6 @@
 	)
 	(wire
 		(pts
-			(xy 510.54 419.1) (xy 510.54 421.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "54a39aae-3d5d-4f73-adab-79b6c1036903")
-	)
-	(wire
-		(pts
 			(xy 574.04 485.14) (xy 574.04 487.68)
 		)
 		(stroke
@@ -12167,16 +12306,6 @@
 	)
 	(wire
 		(pts
-			(xy 510.54 416.56) (xy 510.54 419.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "80fd634c-d40d-48ac-b26a-89a140a0ed45")
-	)
-	(wire
-		(pts
 			(xy 574.04 539.75) (xy 579.12 539.75)
 		)
 		(stroke
@@ -12528,6 +12657,16 @@
 	)
 	(wire
 		(pts
+			(xy 632.46 245.11) (xy 632.46 247.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b73e6db-ede9-4857-8fd6-df23fa407585")
+	)
+	(wire
+		(pts
 			(xy 558.8 374.65) (xy 560.07 374.65)
 		)
 		(stroke
@@ -12738,16 +12877,6 @@
 	)
 	(wire
 		(pts
-			(xy 632.46 245.11) (xy 632.46 247.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "91037fee-b2f2-42eb-b7a6-24a5c5f8a662")
-	)
-	(wire
-		(pts
 			(xy 67.31 386.08) (xy 77.47 386.08)
 		)
 		(stroke
@@ -12895,16 +13024,6 @@
 			(type default)
 		)
 		(uuid "97fed353-672c-4208-b79c-2f888197de44")
-	)
-	(wire
-		(pts
-			(xy 518.16 419.1) (xy 510.54 419.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9848568c-2704-4b60-bad9-ae498dc133d3")
 	)
 	(wire
 		(pts
@@ -13991,6 +14110,16 @@
 	)
 	(wire
 		(pts
+			(xy 510.54 419.1) (xy 518.16 419.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf5e2eda-7670-45a6-b9e4-a02586562318")
+	)
+	(wire
+		(pts
 			(xy 109.22 259.08) (xy 109.22 256.54)
 		)
 		(stroke
@@ -14630,6 +14759,16 @@
 			(type default)
 		)
 		(uuid "d2ca98b3-4d6e-42b6-a33c-81b18b2a994c")
+	)
+	(wire
+		(pts
+			(xy 510.54 419.1) (xy 510.54 421.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3a3764d-88e9-42d0-be07-5db4a2704efa")
 	)
 	(wire
 		(pts
@@ -16262,16 +16401,6 @@
 			(justify left top)
 		)
 		(uuid "43f1697b-dedc-4eb5-acb9-05d92c2aee95")
-	)
-	(label ""
-		(at 510.54 416.56 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "450bc70b-3587-40da-99d4-c3773e37f27d")
 	)
 	(label "I''"
 		(at 516.89 492.76 180)
@@ -19311,6 +19440,84 @@
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 632.46 245.11 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "110b960d-49b9-4fd4-a52f-8f6541d9b52f")
+		(property "Reference" "#PWR07"
+			(at 632.46 248.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "12Vsec"
+			(at 632.46 240.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 632.46 245.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 632.46 245.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 632.46 245.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d37a6cd5-52f5-4d54-940c-1029536f9aa0")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -26350,84 +26557,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VDD")
-		(at 632.46 245.11 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "56eed218-219f-4c1d-a864-56086ae1fda1")
-		(property "Reference" "#PWR06"
-			(at 632.46 248.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "12Vsec"
-			(at 632.46 240.03 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 632.46 245.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 632.46 245.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 632.46 245.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a2c7a2f5-5468-4aa2-b3fe-f369c3d0d510")
-		)
-		(instances
-			(project "DAB_converter"
-				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "DAB_EE365:root_0_ShuntResistor_DAB_EE365.SchLib")
 		(at 132.08 66.04 90)
 		(unit 1)
@@ -29108,6 +29237,83 @@
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "#PWR055")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 510.54 416.56 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "703c505c-f97d-4b13-9f59-2f02759b49b3")
+		(property "Reference" "#PWR034"
+			(at 510.54 420.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "12Vsec"
+			(at 510.54 411.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 510.54 416.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 510.54 416.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 510.54 416.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5cc408ba-020a-4574-b44b-ebc054137b33")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -34963,84 +35169,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VDD")
-		(at 513.08 364.49 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "950a87a2-c6cb-4440-bf8f-672051f1d939")
-		(property "Reference" "#PWR022"
-			(at 513.08 368.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "12Vsec"
-			(at 513.08 359.41 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 513.08 364.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 513.08 364.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 513.08 364.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "aa5490d7-c3b5-4ec6-b1a4-2f4cabd0ebfc")
-		)
-		(instances
-			(project "DAB_converter"
-				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "DAB_EE365:root_0_Test point_DAB_EE365.SchLib")
 		(at 792.48 111.76 90)
 		(unit 1)
@@ -38129,6 +38257,83 @@
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
 					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 513.08 364.49 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b3ec101b-2da5-43d1-a065-8f9e3ecf478b")
+		(property "Reference" "#PWR022"
+			(at 513.08 368.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "12Vsec"
+			(at 513.08 359.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 513.08 364.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 513.08 364.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 513.08 364.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f17fa73a-cdb0-4389-b7f9-b7cb9f12d0c3")
+		)
+		(instances
+			(project "DAB_converter"
+				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -44189,84 +44394,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VDD")
-		(at 499.11 246.38 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e1266e55-820e-480c-ad05-ccaab082bc88")
-		(property "Reference" "#PWR07"
-			(at 499.11 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "12Vsec"
-			(at 499.11 241.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 499.11 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 499.11 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 499.11 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fc4893a5-72e3-449d-941c-b2ecca0e3e23")
-		)
-		(instances
-			(project "DAB_converter"
-				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR07")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "DAB_EE365:root_1_Capacitor (SMD)_DAB_EE365.SchLib")
 		(at 135.89 411.48 270)
 		(unit 1)
@@ -44909,8 +45036,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VDD")
-		(at 510.54 416.56 0)
+		(lib_id "power:+3.3V")
+		(at 499.11 246.38 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -44919,9 +45046,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "ebb77012-a79d-4306-a848-b0436ef136e2")
-		(property "Reference" "#PWR034"
-			(at 510.54 420.37 0)
+		(uuid "e9be32e1-7f34-45bc-b7cf-4f45e2e9dacd")
+		(property "Reference" "#PWR06"
+			(at 499.11 250.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -44932,7 +45059,7 @@
 			)
 		)
 		(property "Value" "12Vsec"
-			(at 510.54 411.48 0)
+			(at 499.11 241.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -44942,7 +45069,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 510.54 416.56 0)
+			(at 499.11 246.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -44953,7 +45080,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 510.54 416.56 0)
+			(at 499.11 246.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -44963,8 +45090,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 510.54 416.56 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 499.11 246.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -44975,12 +45102,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "71a195a4-3330-4c89-9746-e8721d023042")
+			(uuid "94bbdd45-d9b0-4d50-b9be-88a1bd2dfee6")
 		)
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "#PWR034")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)

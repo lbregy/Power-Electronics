@@ -667,7 +667,7 @@
         "uuid": "10e55807-643b-4bc9-b726-ccd65e076347"
       }
     ],
-    "used_designators": "TP17,TP21-27,#PWR73-74,#PWR89-94",
+    "used_designators": "TP17,TP21-27,#PWR6-7,#PWR22,#PWR34,#PWR73-74,#PWR89-94",
     "variants": []
   },
   "sheets": [
