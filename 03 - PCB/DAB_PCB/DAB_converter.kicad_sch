@@ -17854,7 +17854,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "032cb2c1-72da-4978-81d2-f9c92b710ec9")
-		(property "Reference" "SWH7"
+		(property "Reference" "Q4"
 			(at 260.096 102.616 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17921,7 +17921,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH7")
+					(reference "Q4")
 					(unit 1)
 				)
 			)
@@ -19868,7 +19868,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "168bf544-9076-43a7-b1d2-79174ded2552")
-		(property "Reference" "SWH6"
+		(property "Reference" "Q6"
 			(at 366.776 101.346 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19935,7 +19935,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH6")
+					(reference "Q6")
 					(unit 1)
 				)
 			)
@@ -20528,7 +20528,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1adeb2d4-d33c-45a9-b200-5917893eaeb0")
-		(property "Reference" "SWH1"
+		(property "Reference" "Q1"
 			(at 227.076 77.216 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20595,7 +20595,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH1")
+					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -20935,7 +20935,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "21e41af1-b022-43e4-b42b-a95317ccc1a5")
-		(property "Reference" "SWH8"
+		(property "Reference" "Q8"
 			(at 399.796 102.616 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21002,7 +21002,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH8")
+					(reference "Q8")
 					(unit 1)
 				)
 			)
@@ -21957,7 +21957,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "257396f2-55c4-4ed8-b4f1-4fa874b408d8")
-		(property "Reference" "SWH4"
+		(property "Reference" "Q7"
 			(at 399.796 77.216 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22024,7 +22024,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH4")
+					(reference "Q7")
 					(unit 1)
 				)
 			)
@@ -22910,7 +22910,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "318e1e86-4401-4b0a-abf9-0fb5a099061e")
-		(property "Reference" "SWH3"
+		(property "Reference" "Q5"
 			(at 366.776 77.216 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22977,7 +22977,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH3")
+					(reference "Q5")
 					(unit 1)
 				)
 			)
@@ -25796,7 +25796,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4ba7e102-a493-4cbb-bba4-676c438b0ca2")
-		(property "Reference" "SWH5"
+		(property "Reference" "Q2"
 			(at 227.076 101.346 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25863,7 +25863,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH5")
+					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -32137,8 +32137,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "822d9cf5-f233-491c-b3af-d4f8d8fc5fdd")
-		(property "Reference" "Rboot4"
-			(at 483.87 254.508 90)
+		(property "Reference" "R23"
+			(at 486.156 255.016 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -32201,7 +32201,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Rboot4")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -36205,7 +36205,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9ac917cd-0a9a-4dfa-b8ee-536610a86707")
-		(property "Reference" "Dboot1"
+		(property "Reference" "D6"
 			(at 106.68 264.16 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -36269,7 +36269,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Dboot1")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -36941,7 +36941,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a5a4368f-af88-47ab-9ad0-428a8461a962")
-		(property "Reference" "Dboot3"
+		(property "Reference" "D9"
 			(at 623.57 266.7 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -37005,7 +37005,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Dboot3")
+					(reference "D9")
 					(unit 1)
 				)
 			)
@@ -38350,7 +38350,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b57d60d7-f0b1-4f27-86fc-a643da7bd914")
-		(property "Reference" "SWH2"
+		(property "Reference" "Q3"
 			(at 260.096 77.216 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -38417,7 +38417,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "SWH2")
+					(reference "Q3")
 					(unit 1)
 				)
 			)
@@ -40203,8 +40203,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c4de92f8-c87f-4fbb-8d5a-e834cdc94d39")
-		(property "Reference" "Rboot3"
-			(at 617.22 253.238 90)
+		(property "Reference" "R24"
+			(at 619.506 253.238 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -40267,7 +40267,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Rboot3")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -40518,7 +40518,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c98176c9-8b23-4735-b745-3c948083fdac")
-		(property "Reference" "Dboot4"
+		(property "Reference" "D8"
 			(at 490.22 269.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -40582,7 +40582,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Dboot4")
+					(reference "D8")
 					(unit 1)
 				)
 			)
@@ -41012,7 +41012,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cd768067-053d-4057-8a65-693a30a6f366")
-		(property "Reference" "Rboot2"
+		(property "Reference" "R22"
 			(at 228.6 250.19 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -41076,7 +41076,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Rboot2")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -41255,7 +41255,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ce35da1d-b5e1-45b6-a3d8-caad322a1b96")
-		(property "Reference" "Dboot2"
+		(property "Reference" "D7"
 			(at 234.95 264.16 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -41319,7 +41319,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Dboot2")
+					(reference "D7")
 					(unit 1)
 				)
 			)
@@ -45124,8 +45124,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ed535234-c26b-429d-a5d3-4f32b4c4d7c3")
-		(property "Reference" "Rboot1"
-			(at 100.076 250.698 90)
+		(property "Reference" "R21"
+			(at 102.616 251.46 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -45188,7 +45188,7 @@
 		(instances
 			(project "DAB_converter"
 				(path "/10e55807-643b-4bc9-b726-ccd65e076347"
-					(reference "Rboot1")
+					(reference "R21")
 					(unit 1)
 				)
 			)
